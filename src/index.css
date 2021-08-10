@@ -19,6 +19,7 @@ html {
 }
 
 body {
+  height: 90vh;
   background-image: linear-gradient(to right bottom, #f77b41, #ffd38d);
   background-size: cover;
   background-repeat: no-repeat;
