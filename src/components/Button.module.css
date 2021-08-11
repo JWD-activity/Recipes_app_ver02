@@ -10,8 +10,12 @@
   margin-left: 1rem;
 }
 
+.icon {
+  margin-right: 0.5rem;
+}
+
 .fill {
-  background-image: linear-gradient(to right, #f77b41, #fcbb55);
+  background-image: linear-gradient(to right bottom, #f77b41 70%, #fcbb55);
   color: #fff;
 }
 
@@ -19,5 +23,9 @@
   .btn {
     padding: 0.5rem 1rem;
     margin-left: 0.5rem;
+  }
+
+  .icon {
+    margin-right: 0;
   }
 }
