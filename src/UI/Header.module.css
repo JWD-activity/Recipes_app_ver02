@@ -1,0 +1,16 @@
+.btn-box {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-mobile {
+}
+
+@media screen and (max-width: 576px) {
+  .btn-box {
+    /* justify-content: flex-end; */
+  }
+
+  .btn-mobile {
+  }
+}

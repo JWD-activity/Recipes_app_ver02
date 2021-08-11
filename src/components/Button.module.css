@@ -1,12 +1,13 @@
 .btn {
   border: none;
   padding: 1rem 2rem;
-  border-radius: 3rem;
+  border-radius: 0.5rem;
   font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   cursor: pointer;
+  margin-left: 1rem;
 }
 
 .fill {
@@ -14,9 +15,9 @@
   color: #fff;
 }
 
-.icon {
-  margin-right: 0.5rem;
-}
-
-.outline {
+@media screen and (max-width: 576px) {
+  .btn {
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+  }
 }
