@@ -2,9 +2,52 @@
   font-size: 1.5rem;
 }
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.modal {
+  position: fixed;
+  top: 30vh;
+  left: 10%;
+  width: 80%;
+  z-index: 100;
+  overflow: hidden;
+  padding: 2rem 4rem;
+}
+.modal-top {
+  flex-direction: row-reverse;
+}
+
 .modal-header {
   margin: 2rem 0;
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
   letter-spacing: -0.05rem;
+}
+
+.modal-close {
+  padding: 0.7rem 1.4rem;
+  margin-left: 0.5rem;
+}
+
+.modal-close > i {
+  margin-right: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 576px) {
+  .modal {
+    top: 10vh;
+    left: 5%;
+    width: 90%;
+    padding: 2rem 1.5rem;
+  }
 }

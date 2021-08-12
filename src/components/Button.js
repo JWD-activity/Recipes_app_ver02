@@ -3,8 +3,11 @@ import classes from './Button.module.css';
 
 function Button(props) {
   return (
-    <button className={`${classes['fill']} ${classes.button}`}>
-      {props.icon && <i className={`${props.icon} ${classes['icon']} `}></i>}
+    <button
+      onClick={props.onClick}
+      className={`${props.className} ${classes.button} ${classes.fill}`}
+    >
+      {props.icon && <i className={`${props.icon} ${classes.icon}`}></i>}
       {props.children}
     </button>
   );

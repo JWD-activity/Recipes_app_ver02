@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Logo from '../components/Logo';
 import Button from '../components/Button';
 import classes from './Header.module.css';
-function Header() {
+function Header(props) {
   const [button, setButton] = useState(true);
 
   const showButton = () => {
@@ -22,7 +22,9 @@ function Header() {
         <Logo />
       </div>
       <div className={`col-sm-8 ${classes['btn-box']}`}>
-        <Button icon='fas fa-plus-square'>{button && 'Add recipe'}</Button>
+        <Button icon='fas fa-plus-square' onClick={props.onClickHanlder}>
+          {button && 'Add recipe'}
+        </Button>
         <Button icon='fas fa-bookmark'>{button && 'Bookmark'}</Button>
       </div>
     </header>
