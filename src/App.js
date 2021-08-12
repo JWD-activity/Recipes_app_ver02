@@ -1,14 +1,15 @@
 import './App.css';
 import Header from './UI/Header';
+import FormModal from './components/FormModal';
 
 function App() {
   return (
     <div className='app container'>
       <Header />
-      <div className='row'>
+      <main className='row'>
         <div className='search-results col'>Search</div>
         <div className='recipe col'>Recipe</div>
-      </div>
+      </main>
     </div>
   );
 }

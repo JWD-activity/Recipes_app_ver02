@@ -1,4 +1,4 @@
-.btn {
+.button {
   border: none;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
@@ -17,10 +17,15 @@
 .fill {
   background-image: linear-gradient(to right bottom, #f77b41 70%, #fcbb55);
   color: #fff;
+  transition: all 0.5s;
+}
+
+.fill:hover {
+  background-image: linear-gradient(to right bottom, #f76b2a 60%, #fcbb55);
 }
 
 @media screen and (max-width: 576px) {
-  .btn {
+  button {
     padding: 0.5rem 1rem;
     margin-left: 0.5rem;
   }
