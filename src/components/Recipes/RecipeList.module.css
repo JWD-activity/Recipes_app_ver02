@@ -8,10 +8,14 @@
   margin: 0.5rem 0;
   background-color: #fff;
   font-size: 1.5rem;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
+.li:hover,
 .li.active {
-  background-color: #f77b41;
+  background-color: #ec9690;
+  /* background-color: #f77b41; */
   color: #fff;
   font-weight: 500;
   font-size: 1.7rem;

@@ -2,9 +2,12 @@ import React from 'react';
 import classes from './RecipeDetail.module.css';
 
 function RecipeDetail(props) {
+  const id = props.clickedRecipe;
+  const recipe = props.recipes.find((recipe) => recipe.id === id);
+
   return (
     <>
-      {props.recipes.map((recipe) => (
+      {recipe ? (
         <ul key={recipe.id} className={`row ${classes.ul}`}>
           <li>{recipe.title}</li>
           <li className={'col'}>
@@ -16,7 +19,9 @@ function RecipeDetail(props) {
           </li>
           <li>Ingredients: {recipe.ingredients}</li>
         </ul>
-      ))}
+      ) : (
+        ''
+      )}
     </>
   );
 }
