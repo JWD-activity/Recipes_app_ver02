@@ -5,7 +5,7 @@ function Button(props) {
   return (
     <button
       onClick={props.onClick}
-      className={`${props.className} ${classes.button} ${classes.fill}`}
+      className={`${classes.button} ${classes.fill} ${props.className ?? ''}`}
     >
       {props.icon && <i className={`${props.icon} ${classes.icon}`}></i>}
       {props.children}

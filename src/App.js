@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './UI/Header';
-// import FormModal from './components/FormModal';
 import AddRecipes from './components/Recipes/AddRecipes';
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
     setShowModal(true);
   };
 
-  const onCloseHanlder = () => {
+  const closeModalHanlder = () => {
     setShowModal(false);
   };
 
@@ -25,12 +24,13 @@ function App() {
     <div className='app container'>
       <AddRecipes
         modal={showModal}
-        onClose={onCloseHanlder}
+        onCloseModal={closeModalHanlder}
         onAddRecipe={addNewRecipeHandler}
         list={recipeList}
       />
       <Header onClickHanlder={onClickHanlder} />
       <main className='row'>
+        <div className='recipe col'>Recipe</div>
         <div className='recipe col'>Recipe</div>
       </main>
     </div>
