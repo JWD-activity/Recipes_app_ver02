@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './UI/Header';
-import FormModal from './components/FormModal';
+// import FormModal from './components/FormModal';
+import AddRecipes from './components/Recipes/AddRecipes';
 
 function App() {
+  const [recipeList, setRecipeList] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
+  const addNewRecipeHandler = (recipe) => {
+    setRecipeList((prevRecipeList) => {
+      return [...prevRecipeList, recipe];
+    });
+  };
   const onClickHanlder = () => {
     setShowModal(true);
   };
@@ -16,8 +23,12 @@ function App() {
 
   return (
     <div className='app container'>
-      {showModal && <FormModal onClose={onCloseHanlder} />}
-
+      <AddRecipes
+        modal={showModal}
+        onClose={onCloseHanlder}
+        onAddRecipe={addNewRecipeHandler}
+        list={recipeList}
+      />
       <Header onClickHanlder={onClickHanlder} />
       <main className='row'>
         <div className='recipe col'>Recipe</div>
