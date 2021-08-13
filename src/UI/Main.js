@@ -4,7 +4,6 @@ import RecipeList from '../components/Recipes/RecipeList';
 import RecipeDetail from '../components/Recipes/RecipeDetail';
 
 function Main(props) {
-  const [recipeClicked, setRecipeClicked] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState('');
 
   const recipeClickHandler = (event) => {
