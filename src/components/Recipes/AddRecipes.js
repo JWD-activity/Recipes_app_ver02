@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import FormModal from '../FormModal';
+import { v4 as createId } from 'uuid';
 function AddRecipes(props) {
   const [validated, setValidated] = useState(false);
   const [recipe, setRecipe] = useState({
+    id: '',
     title: '',
     cookingTime: '',
     servings: 0,
@@ -27,7 +29,8 @@ function AddRecipes(props) {
       event.stopPropagation();
       setValidated(true);
     } else {
-      props.onAddRecipe(recipe);
+      const id = createId();
+      props.onAddRecipe(recipe, (recipe.id = id));
       console.log(props.list);
       closeHandler();
     }

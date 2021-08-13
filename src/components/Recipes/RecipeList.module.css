@@ -1,0 +1,23 @@
+.ul {
+  list-style: none;
+  padding: 0;
+}
+
+.li {
+  padding: 1rem 0rem 1rem 1.5rem;
+  margin: 0.5rem 0;
+  background-color: #fff;
+  font-size: 1.5rem;
+}
+
+.li.active {
+  background-color: #f77b41;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.7rem;
+  letter-spacing: 0.05rem;
+}
+
+.icon {
+  color: #f77b41;
+}

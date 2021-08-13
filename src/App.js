@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './UI/Header';
+import Main from './UI/Main';
 import AddRecipes from './components/Recipes/AddRecipes';
 
 function App() {
@@ -29,10 +30,7 @@ function App() {
         list={recipeList}
       />
       <Header onClickHanlder={onClickHanlder} />
-      <main className='row'>
-        <div className='recipe col'>Recipe</div>
-        <div className='recipe col'>Recipe</div>
-      </main>
+      <Main recipes={recipeList} />
     </div>
   );
 }

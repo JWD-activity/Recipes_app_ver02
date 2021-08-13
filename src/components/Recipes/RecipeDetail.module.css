@@ -1,0 +1,16 @@
+.ul {
+  list-style: none;
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  color: #141210;
+  padding: 0 2rem;
+}
+
+.ul > li:first-child {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.ul > li {
+  padding: 0.5rem 0;
+}
