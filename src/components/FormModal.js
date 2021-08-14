@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from './Card';
 import classes from './FormModal.module.css';
 import { Form, Row, Col } from 'react-bootstrap';
 import Button from './Button';
-import IngrediBadge from './IngrediBadge';
+import IngrediList from './IngrediList';
 
 function FormModal(props) {
+  const enterKeyPressHandler = (event) => {
+    if (event.key === 'Enter' && event.target.value.trim().length !== 0) {
+      props.onAddIngredient(event.target.value);
+      event.target.value = '';
+    }
+  };
+
+  // const listDisplayHandler = () => {
+  //   props.listOfIngredient;
+  // };
+
   return (
     <div className={classes.backdrop}>
       <Card className={classes.modal}>
@@ -82,18 +93,15 @@ function FormModal(props) {
                   placeholder=''
                   className={classes.form}
                   onChange={props.changeHandler}
+                  onKeyDown={enterKeyPressHandler}
                 />
               </Form.Group>
               <ul className={`${classes.ul} mx-1`}>
-                <IngrediBadge>ingrkjeluoa20</IngrediBadge>
-                <IngrediBadge>ingrkoa20</IngrediBadge>
-                <IngrediBadge>ingrkjeluoa20ghghgh</IngrediBadge>
-                <IngrediBadge>in</IngrediBadge>
-                <IngrediBadge>ing=oa20ghghgh</IngrediBadge>
-                <IngrediBadge>ingrkjeluoa20ghghghioioioi</IngrediBadge>
-                <IngrediBadge>ingrkjeluoa20ghghghioioioi</IngrediBadge>
-                <IngrediBadge>ingrkjeluoa20ghghghioioioi</IngrediBadge>
-                <IngrediBadge>ingrkjeluoa20ghghghioioioi</IngrediBadge>
+                <IngrediList
+                  className={classes.li}
+                  listOfIngredient={props.listOfIngredient}
+                  icon={'fas fa-times'}
+                />
               </ul>
             </Col>
             <Col>

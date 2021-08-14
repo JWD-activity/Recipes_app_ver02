@@ -4,23 +4,36 @@ import { v4 as createId } from 'uuid';
 
 function AddRecipes(props) {
   const [validated, setValidated] = useState(false);
-  const [ingredients, setIngredients] = useState([]);
+  // const [ingredientList, setIngredientList] = useState([]);
+  const [ingredientList, setIngredientList] = useState([]);
+
   const [recipe, setRecipe] = useState({
     id: '',
     title: '',
     cookingTime: '',
     servings: 0,
-    ingredients: ingredients,
+    ingredients: [],
   });
 
   const changeHandler = (event) => {
     const value = event.target.value;
-    setRecipe({ ...recipe, [event.target.id]: value });
+    setRecipe({
+      ...recipe,
+      [event.target.id]: value,
+      ingredients: ingredientList,
+    });
   };
 
   const closeHandler = () => {
     props.onCloseModal();
     setValidated(false);
+    setIngredientList([]);
+  };
+
+  const onAddIngredient = (ingredients) => {
+    setIngredientList((prevList) => {
+      return [...prevList, ingredients];
+    });
   };
 
   const addRecipeHandler = (event) => {
@@ -34,7 +47,7 @@ function AddRecipes(props) {
     } else {
       const id = createId();
       props.onAddRecipe(recipe, (recipe.id = id));
-      console.log(props.list);
+      setIngredientList([]);
       closeHandler();
     }
   };
@@ -46,6 +59,10 @@ function AddRecipes(props) {
           onClose={closeHandler}
           submitHandler={addRecipeHandler}
           changeHandler={changeHandler}
+          onAddIngredient={onAddIngredient}
+          // addIngredientHandler={ingredientEnterHandler}
+          // enteredIngredient={setIngredientList}
+          listOfIngredient={ingredientList}
           isValid={validated}
         />
       )}
