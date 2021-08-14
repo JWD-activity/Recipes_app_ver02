@@ -97,7 +97,7 @@ function FormModal(props) {
               </ul>
             </Col>
             <Col>
-              <Button type='submit'>upload</Button>
+              <Button type='submit'>save</Button>
             </Col>
           </Row>
         </Form>

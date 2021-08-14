@@ -4,7 +4,8 @@ import classes from './IngrediBadge.module.css';
 function IngrediBadge(props) {
   return (
     <li className={`${props.className ?? ''} ${classes.li}`}>
-      {props.children}
+      <span>{props.children}</span>
+      <i className='fas fa-times'></i>
     </li>
   );
 }

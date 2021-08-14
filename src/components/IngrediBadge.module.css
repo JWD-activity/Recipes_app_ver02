@@ -1,8 +1,18 @@
 .li {
-  background-color: #f0f0f0;
+  background-color: #cee6de;
   border-radius: 0.3rem;
   padding: 0.3rem 1rem;
   margin: 0.5rem;
   display: inline-block;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.li:hover {
+  background-color: #429b7d;
+  color: #fff;
+}
+
+.li > span {
+  margin-right: 2rem;
 }

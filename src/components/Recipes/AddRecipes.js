@@ -4,12 +4,13 @@ import { v4 as createId } from 'uuid';
 
 function AddRecipes(props) {
   const [validated, setValidated] = useState(false);
+  const [ingredients, setIngredients] = useState([]);
   const [recipe, setRecipe] = useState({
     id: '',
     title: '',
     cookingTime: '',
     servings: 0,
-    ingredients: '',
+    ingredients: ingredients,
   });
 
   const changeHandler = (event) => {
