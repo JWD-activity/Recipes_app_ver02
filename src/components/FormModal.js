@@ -3,6 +3,7 @@ import Card from './Card';
 import classes from './FormModal.module.css';
 import { Form, Row, Col } from 'react-bootstrap';
 import Button from './Button';
+import IngrediBadge from './IngrediBadge';
 
 function FormModal(props) {
   return (
@@ -83,6 +84,17 @@ function FormModal(props) {
                   onChange={props.changeHandler}
                 />
               </Form.Group>
+              <ul className={`${classes.ul} mx-1`}>
+                <IngrediBadge>ingrkjeluoa20</IngrediBadge>
+                <IngrediBadge>ingrkoa20</IngrediBadge>
+                <IngrediBadge>ingrkjeluoa20ghghgh</IngrediBadge>
+                <IngrediBadge>in</IngrediBadge>
+                <IngrediBadge>ing=oa20ghghgh</IngrediBadge>
+                <IngrediBadge>ingrkjeluoa20ghghghioioioi</IngrediBadge>
+                <IngrediBadge>ingrkjeluoa20ghghghioioioi</IngrediBadge>
+                <IngrediBadge>ingrkjeluoa20ghghghioioioi</IngrediBadge>
+                <IngrediBadge>ingrkjeluoa20ghghghioioioi</IngrediBadge>
+              </ul>
             </Col>
             <Col>
               <Button type='submit'>upload</Button>

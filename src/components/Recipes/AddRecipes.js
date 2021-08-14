@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FormModal from '../FormModal';
 import { v4 as createId } from 'uuid';
+
 function AddRecipes(props) {
   const [validated, setValidated] = useState(false);
   const [recipe, setRecipe] = useState({
@@ -24,6 +25,7 @@ function AddRecipes(props) {
   const addRecipeHandler = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
+
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();

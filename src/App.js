@@ -13,6 +13,7 @@ function App() {
       return [...prevRecipeList, recipe];
     });
   };
+
   const onClickHanlder = () => {
     setShowModal(true);
   };

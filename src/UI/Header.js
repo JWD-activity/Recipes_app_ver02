@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Logo from '../components/Logo';
 import Button from '../components/Button';
 import classes from './Header.module.css';
+
 function Header(props) {
-  const [button, setButton] = useState(true);
+  const [smallButton, setSmallButton] = useState(true);
 
   const showButton = () => {
-    if (window.innerWidth <= 576) setButton(false);
-    else setButton(true);
+    if (window.innerWidth <= 576) setSmallButton(false);
+    else setSmallButton(true);
   };
 
   useEffect(() => {
@@ -23,9 +24,9 @@ function Header(props) {
       </div>
       <div className={`col-sm-8 ${classes['btn-box']}`}>
         <Button icon='fas fa-plus-square' onClick={props.onClickHanlder}>
-          {button && 'Add recipe'}
+          {smallButton && 'Add recipe'}
         </Button>
-        <Button icon='fas fa-bookmark'>{button && 'Bookmark'}</Button>
+        <Button icon='fas fa-bookmark'>{smallButton && 'Bookmark'}</Button>
       </div>
     </header>
   );

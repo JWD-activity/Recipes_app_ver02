@@ -14,7 +14,7 @@
 
 .li:hover,
 .li.active {
-  background-color: #ec9690;
+  background-color: rgb(235, 125, 92);
   /* background-color: #f77b41; */
   color: #fff;
   font-weight: 500;
