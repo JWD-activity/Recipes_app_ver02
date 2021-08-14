@@ -6,6 +6,13 @@ import Button from './Button';
 import IngrediList from './IngrediList';
 
 function FormModal(props) {
+  const deleteHandler = (event) => {
+    const index = event.target.dataset.index;
+    let updateList = props.listOfIngredient.splice(index, 1);
+    props.onAddIngredient(updateList);
+    console.log(updateList);
+  };
+
   const enterKeyPressHandler = (event) => {
     if (event.key === 'Enter' && event.target.value.trim().length !== 0) {
       event.preventDefault();
@@ -102,6 +109,7 @@ function FormModal(props) {
                     className={classes.li}
                     listOfIngredient={props.listOfIngredient}
                     icon={'fas fa-times'}
+                    deleteHandler={deleteHandler}
                   />
                 </ul>
               </Row>

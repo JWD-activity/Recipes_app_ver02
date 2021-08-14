@@ -16,8 +16,8 @@
   color: #fff;
 }
 
-.li > span {
-  margin-right: 2rem;
+.li > i {
+  margin-left: 2rem;
 }
 
 .backdrop {
