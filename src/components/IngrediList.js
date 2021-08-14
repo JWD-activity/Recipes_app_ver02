@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './IngrediList.module.css';
 
 function IngrediBadge(props) {
   return props.listOfIngredient.length !== 0

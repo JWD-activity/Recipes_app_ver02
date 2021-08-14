@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card from './Card';
 import classes from './FormModal.module.css';
 import { Form, Row, Col } from 'react-bootstrap';
@@ -8,14 +8,11 @@ import IngrediList from './IngrediList';
 function FormModal(props) {
   const enterKeyPressHandler = (event) => {
     if (event.key === 'Enter' && event.target.value.trim().length !== 0) {
+      event.preventDefault();
       props.onAddIngredient(event.target.value);
       event.target.value = '';
     }
   };
-
-  // const listDisplayHandler = () => {
-  //   props.listOfIngredient;
-  // };
 
   return (
     <div className={classes.backdrop}>
@@ -85,24 +82,29 @@ function FormModal(props) {
               </Row>
             </Col>
             <Col sm={12} md={6} className={classes.form}>
-              <Form.Group className='mb-3' controlId='ingredients'>
-                <Form.Label>Ingredients</Form.Label>
-                <Form.Control
-                  required
-                  type='text'
-                  placeholder=''
-                  className={classes.form}
-                  onChange={props.changeHandler}
-                  onKeyDown={enterKeyPressHandler}
-                />
-              </Form.Group>
-              <ul className={`${classes.ul} mx-1`}>
-                <IngrediList
-                  className={classes.li}
-                  listOfIngredient={props.listOfIngredient}
-                  icon={'fas fa-times'}
-                />
-              </ul>
+              <Row>
+                <Form.Group
+                  className='mb-3 align-items-center'
+                  controlId='ingredients'
+                >
+                  <Form.Label>Ingredients</Form.Label>
+                  <Form.Control
+                    type='text'
+                    placeholder='Enter your ingredient'
+                    className={` ${classes.form}`}
+                    onChange={props.changeHandler}
+                    onKeyDown={enterKeyPressHandler}
+                  />
+                </Form.Group>
+
+                <ul className={`${classes.ul} mx-1`}>
+                  <IngrediList
+                    className={classes.li}
+                    listOfIngredient={props.listOfIngredient}
+                    icon={'fas fa-times'}
+                  />
+                </ul>
+              </Row>
             </Col>
             <Col>
               <Button type='submit'>save</Button>
