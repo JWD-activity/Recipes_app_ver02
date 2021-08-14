@@ -4,7 +4,7 @@ import { v4 as createId } from 'uuid';
 
 function AddRecipes(props) {
   const [validated, setValidated] = useState(false);
-  // const [ingredientList, setIngredientList] = useState([]);
+
   const [ingredientList, setIngredientList] = useState([]);
 
   const [recipe, setRecipe] = useState({
@@ -60,8 +60,6 @@ function AddRecipes(props) {
           submitHandler={addRecipeHandler}
           changeHandler={changeHandler}
           onAddIngredient={onAddIngredient}
-          // addIngredientHandler={ingredientEnterHandler}
-          // enteredIngredient={setIngredientList}
           listOfIngredient={ingredientList}
           isValid={validated}
         />

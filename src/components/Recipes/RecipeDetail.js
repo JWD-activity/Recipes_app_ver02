@@ -18,10 +18,8 @@ function RecipeDetail(props) {
             <i className='fas fa-user-friends'></i>
             {recipe.servings} servings
           </li>
-          <li>
-            Ingredients:
-            {<IngrediList listOfIngredient={recipe.ingredients} />}
-          </li>
+          <li>Ingredients:</li>
+          {<IngrediList listOfIngredient={recipe.ingredients} />}
         </ul>
       ) : (
         ''
