@@ -15,6 +15,8 @@ function AddRecipes(props) {
     ingredients: [],
   });
 
+  const [ingredient, setIngredient] = useState({ id: '', name: '' });
+
   const changeHandler = (event) => {
     const value = event.target.value;
     setRecipe({
