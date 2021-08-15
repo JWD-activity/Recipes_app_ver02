@@ -4,6 +4,7 @@ import classes from './FormModal.module.css';
 import { Form, Row, Col } from 'react-bootstrap';
 import Button from './Button';
 import IngrediList from './IngrediList';
+import { v4 as createId } from 'uuid';
 
 function FormModal(props) {
   const deleteHandler = (event) => {
@@ -16,7 +17,8 @@ function FormModal(props) {
   const enterKeyPressHandler = (event) => {
     if (event.key === 'Enter' && event.target.value.trim().length !== 0) {
       event.preventDefault();
-      props.onAddIngredient(event.target.value);
+      const id = createId();
+      props.onAddIngredient(event, id);
       event.target.value = '';
     }
   };

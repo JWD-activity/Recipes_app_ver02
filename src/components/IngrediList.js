@@ -2,10 +2,10 @@ import React from 'react';
 
 function IngrediList(props) {
   return props.listOfIngredient.length !== 0
-    ? props.listOfIngredient.map((ingredient, index) => (
+    ? props.listOfIngredient.map((ingredient) => (
         <li
-          key={index}
-          data-index={index}
+          key={ingredient.id}
+          data-index={ingredient.id}
           className={`${props.className ?? ''}`}
           onClick={props.deleteHandler}
         >
