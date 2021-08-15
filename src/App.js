@@ -12,6 +12,8 @@ function App() {
     setRecipeList((prevRecipeList) => {
       return [...prevRecipeList, recipe];
     });
+
+    console.log(recipeList);
   };
 
   const onClickHanlder = () => {
