@@ -6,6 +6,7 @@ function AddRecipes(props) {
   const [validated, setValidated] = useState(false);
 
   const [ingredientList, setIngredientList] = useState([]);
+
   const [ingredient, setIngredient] = useState({ id: '', name: '' });
 
   const [recipe, setRecipe] = useState({
@@ -33,12 +34,13 @@ function AddRecipes(props) {
 
   const onAddIngredient = (event, newId) => {
     const value = event.target.value;
-    setIngredient({ ...ingredient, id: newId, name: value });
-    console.log(ingredient);
+    setIngredient({ id: newId, name: value });
 
     setIngredientList((prev) => {
       return [...prev, ingredient];
     });
+
+    console.log(ingredient);
     // setIngredientList((prevList) => {
     //   return [...prevList, ingredient];
     // });

@@ -9,6 +9,7 @@ function Main(props) {
   const recipeClickHandler = (event) => {
     setSelectedRecipe(event.target.dataset.id);
   };
+
   return (
     <main className='row'>
       <div className='recipe col-sm-12 col-md-6 col-lg-5'>
