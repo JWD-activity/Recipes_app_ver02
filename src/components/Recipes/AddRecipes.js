@@ -7,7 +7,7 @@ function AddRecipes(props) {
 
   const [ingredientList, setIngredientList] = useState([]);
 
-  const [ingredient, setIngredient] = useState({ id: '', name: '' });
+  // const [ingredient, setIngredient] = useState({ id: '', name: '' });
 
   const [recipe, setRecipe] = useState({
     id: '',
@@ -32,18 +32,27 @@ function AddRecipes(props) {
     setIngredientList([]);
   };
 
-  const onAddIngredient = (event, newId) => {
+  const onAddIngredient = (event) => {
     const value = event.target.value;
-    setIngredient({ id: newId, name: value });
+    // setIngredient({ id: newId, name: value });
 
     setIngredientList((prev) => {
-      return [...prev, ingredient];
+      return [...prev, value];
     });
 
-    console.log(ingredient);
+    // console.log(ingredient, ingredientList);
     // setIngredientList((prevList) => {
     //   return [...prevList, ingredient];
     // });
+  };
+
+  const enterKeyPressHandler = (event) => {
+    if (event.key === 'Enter' && event.target.value.trim().length !== 0) {
+      event.preventDefault();
+      const id = createId();
+      onAddIngredient(event, id);
+      event.target.value = '';
+    }
   };
 
   const addRecipeHandler = (event) => {
@@ -69,6 +78,7 @@ function AddRecipes(props) {
           onClose={closeHandler}
           submitHandler={addRecipeHandler}
           changeHandler={changeHandler}
+          enterHandler={enterKeyPressHandler}
           onAddIngredient={onAddIngredient}
           listOfIngredient={ingredientList}
           isValid={validated}

@@ -1,28 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from './Card';
 import classes from './FormModal.module.css';
 import { Form, Row, Col } from 'react-bootstrap';
 import Button from './Button';
-import IngrediList from './IngrediList';
+import IngrediList from './Recipes/IngrediList';
 import { v4 as createId } from 'uuid';
 
 function FormModal(props) {
-  const deleteHandler = (event) => {
-    const index = event.target.dataset.index;
-    let updateList = props.listOfIngredient.splice(index, 1);
-    props.onAddIngredient(updateList);
-    console.log(updateList);
-  };
-
-  const enterKeyPressHandler = (event) => {
-    if (event.key === 'Enter' && event.target.value.trim().length !== 0) {
-      event.preventDefault();
-      const id = createId();
-      props.onAddIngredient(event, id);
-      event.target.value = '';
-    }
-  };
-
   return (
     <div className={classes.backdrop}>
       <Card className={classes.modal}>
@@ -102,17 +86,23 @@ function FormModal(props) {
                     placeholder='Enter your ingredient'
                     className={` ${classes.form}`}
                     onChange={props.changeHandler}
-                    onKeyDown={enterKeyPressHandler}
+                    onKeyDown={props.enterHandler}
                   />
                 </Form.Group>
 
                 <ul className={`${classes.ul} mx-1`}>
                   <IngrediList
+                    listOfIngredient={props.listOfIngredient}
+                    icon={'fas fa-times'}
+                  />
+
+                  {/* <IngrediList
                     className={classes.li}
                     listOfIngredient={props.listOfIngredient}
                     icon={'fas fa-times'}
                     deleteHandler={deleteHandler}
-                  />
+                    ingredient={props.ingredient}
+                  /> */}
                 </ul>
               </Row>
             </Col>
