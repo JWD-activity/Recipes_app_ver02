@@ -36,7 +36,6 @@ function AddRecipes(props) {
 
   const onAddIngredient = (event) => {
     const value = event.target.value;
-    // console.log(ingredient, ingredientList);
     setIngredientList((prevList) => {
       return [...prevList, value];
     });
@@ -64,6 +63,7 @@ function AddRecipes(props) {
       props.onAddRecipe(recipe, (recipe.id = id));
       setIngredientList([]);
       closeHandler();
+      console.log(recipe);
     }
   };
 

@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
-import classes from './IngrediList.module.css';
+import React from 'react';
 
 function IngrediList(props) {
-  // let count = 0;
   let list = props.listOfIngredient;
 
   return list.length !== 0
@@ -10,11 +8,11 @@ function IngrediList(props) {
         <li
           key={ingredient}
           data-id={ingredient}
-          className={`${props.className ?? ''} ${classes.li}`}
+          className={`${props.className ?? ''}`}
           onClick={props.deleteHandler}
         >
           {ingredient}
-          {props.icon && <i className={props.icon} />}
+          {props.icon && <i data-id={ingredient} className={props.icon} />}
         </li>
       ))
     : '';

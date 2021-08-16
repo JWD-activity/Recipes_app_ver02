@@ -19,7 +19,7 @@ function RecipeDetail(props) {
             {recipe.servings} servings
           </li>
           <li>Ingredients:</li>
-          {/* {<IngrediList listOfIngredient={recipe.ingredients} />} */}
+          {<IngrediList listOfIngredient={recipe.ingredients} />}
         </ul>
       ) : (
         ''

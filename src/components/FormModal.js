@@ -94,6 +94,7 @@ function FormModal(props) {
                     listOfIngredient={props.listOfIngredient}
                     icon={'fas fa-times'}
                     deleteHandler={props.deleteHandler}
+                    className={classes.li}
                   />
                 </ul>
               </Row>
