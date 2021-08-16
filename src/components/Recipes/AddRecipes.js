@@ -4,11 +4,7 @@ import { v4 as createId } from 'uuid';
 
 function AddRecipes(props) {
   const [validated, setValidated] = useState(false);
-
   const [ingredientList, setIngredientList] = useState([]);
-
-  // const [ingredient, setIngredient] = useState({ id: '', name: '' });
-
   const [recipe, setRecipe] = useState({
     id: '',
     title: '',
@@ -16,6 +12,12 @@ function AddRecipes(props) {
     servings: 0,
     ingredients: [],
   });
+
+  const deleteHandler = (event) => {
+    let id = event.target.dataset.id;
+    const data = ingredientList;
+    setIngredientList(data.filter((item) => item !== id));
+  };
 
   const changeHandler = (event) => {
     const value = event.target.value;
@@ -34,16 +36,10 @@ function AddRecipes(props) {
 
   const onAddIngredient = (event) => {
     const value = event.target.value;
-    // setIngredient({ id: newId, name: value });
-
-    setIngredientList((prev) => {
-      return [...prev, value];
-    });
-
     // console.log(ingredient, ingredientList);
-    // setIngredientList((prevList) => {
-    //   return [...prevList, ingredient];
-    // });
+    setIngredientList((prevList) => {
+      return [...prevList, value];
+    });
   };
 
   const enterKeyPressHandler = (event) => {
@@ -79,6 +75,7 @@ function AddRecipes(props) {
           submitHandler={addRecipeHandler}
           changeHandler={changeHandler}
           enterHandler={enterKeyPressHandler}
+          deleteHandler={deleteHandler}
           onAddIngredient={onAddIngredient}
           listOfIngredient={ingredientList}
           isValid={validated}

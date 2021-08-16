@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './IngrediList.module.css';
 
 function IngrediList(props) {
+  // let count = 0;
   let list = props.listOfIngredient;
-  let count = 0;
+
   return list.length !== 0
     ? list.map((ingredient) => (
         <li
-          key={count++}
-          data-id={count++}
+          key={ingredient}
+          data-id={ingredient}
           className={`${props.className ?? ''} ${classes.li}`}
-          // onClick={props.deleteHandler}
+          onClick={props.deleteHandler}
         >
           {ingredient}
           {props.icon && <i className={props.icon} />}

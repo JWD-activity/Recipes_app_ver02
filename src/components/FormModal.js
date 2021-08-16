@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card from './Card';
 import classes from './FormModal.module.css';
 import { Form, Row, Col } from 'react-bootstrap';
 import Button from './Button';
 import IngrediList from './Recipes/IngrediList';
-import { v4 as createId } from 'uuid';
 
 function FormModal(props) {
   return (
@@ -94,15 +93,8 @@ function FormModal(props) {
                   <IngrediList
                     listOfIngredient={props.listOfIngredient}
                     icon={'fas fa-times'}
+                    deleteHandler={props.deleteHandler}
                   />
-
-                  {/* <IngrediList
-                    className={classes.li}
-                    listOfIngredient={props.listOfIngredient}
-                    icon={'fas fa-times'}
-                    deleteHandler={deleteHandler}
-                    ingredient={props.ingredient}
-                  /> */}
                 </ul>
               </Row>
             </Col>
