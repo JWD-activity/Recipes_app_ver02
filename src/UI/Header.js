@@ -26,7 +26,7 @@ function Header(props) {
         <Button icon='fas fa-plus-square' onClick={props.onClickHanlder}>
           {smallButton && 'Add recipe'}
         </Button>
-        <Button icon='fas fa-bookmark'>{smallButton && 'Bookmark'}</Button>
+        {/* <Button icon='fas fa-bookmark'>{smallButton && 'Bookmark'}</Button> */}
       </div>
     </header>
   );

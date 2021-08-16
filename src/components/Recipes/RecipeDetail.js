@@ -11,7 +11,7 @@ function RecipeDetail(props) {
       let hours = Math.floor(time / 60);
       var min = time % 60;
       return hours + 'hr ' + min + 'mins';
-    }
+    } else return time + 'mins';
   };
 
   return (
