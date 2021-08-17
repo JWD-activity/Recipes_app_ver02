@@ -8,11 +8,12 @@ function Main(props) {
 
   const recipeClickHandler = (event) => {
     setSelectedRecipe(event.target.dataset.id);
-    // console.log('click: ', event.target.dataset.id);
+
+    console.log('click: ', event.target.dataset.id);
     // props.setActive(selectedRecipe);
+    console.log('select: ', selectedRecipe);
   };
 
-  console.log(selectedRecipe);
   return (
     <main className='row'>
       <div className='recipe col-sm-12 col-md-6 col-lg-5'>

@@ -16,8 +16,8 @@ function App() {
       return [recipe, ...prevRecipeList];
     });
     activeHandler(recipe);
-    console.log('Main: ', recipe);
-    console.log('Main add active: ', activeRecipe);
+    // console.log('Main: ', recipe);
+    // console.log('Main add active: ', activeRecipe);
   };
 
   const onClickHanlder = () => {
@@ -29,9 +29,12 @@ function App() {
   };
 
   const activeHandler = (recipe) => {
+    console.log('app: ', recipe);
     setActiveRecipe(recipe.id);
-    console.log('Main active: ', activeRecipe);
   };
+  // const activeHandler = (id) => {
+  //   setActiveRecipe(id);
+  // };
 
   return (
     <div className='app container'>

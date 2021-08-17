@@ -5,7 +5,7 @@ import IngrediList from '../Recipes/IngrediList';
 function RecipeDetail(props) {
   const id = props.clickedRecipe;
   const recipe = props.recipes.find((recipe) => recipe.id === id);
-  if (recipe) props.setActive(recipe);
+  if (recipe) props.setActive(recipe.id);
   // recipe && props.setActive(recipe);
   // recipe ?? console.log('detail: ', recipe);
   // console.log('detail: ', recipe);

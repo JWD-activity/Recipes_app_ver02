@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './RecipeList.module.css';
 
 function RecipeList(props) {
-  console.log('list: ', props.isActive);
+  console.log(props.isActive);
   return (
     <ul className={classes.ul}>
       {props.recipes.map((recipe) => (
@@ -10,7 +10,9 @@ function RecipeList(props) {
           key={recipe.id}
           data-id={recipe.id}
           className={`${classes.li} text-capitalize ${
-            props.isActive && props.isActive === recipe.id ? classes.active : ''
+            props.isActive && props.isActive.id === recipe.id
+              ? classes.active
+              : ''
           }`}
           onClick={props.onClick}
         >
