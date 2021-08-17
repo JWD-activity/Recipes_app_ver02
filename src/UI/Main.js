@@ -8,6 +8,8 @@ function Main(props) {
 
   const recipeClickHandler = (event) => {
     setSelectedRecipe(event.target.dataset.id);
+    // console.log('click: ', event.target.dataset.id);
+    // props.setActive(selectedRecipe);
   };
 
   console.log(selectedRecipe);
