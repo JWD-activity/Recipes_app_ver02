@@ -6,6 +6,7 @@ import AddRecipes from './components/Recipes/AddRecipes';
 
 function App() {
   const [recipeList, setRecipeList] = useState([]);
+
   const [showModal, setShowModal] = useState(false);
 
   const addNewRecipeHandler = (recipe) => {
