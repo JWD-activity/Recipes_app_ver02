@@ -14,25 +14,29 @@ function RecipeDetail(props) {
     } else return time + 'mins';
   };
 
+  const renderDetailInfo = (recipe) => {
+    return recipe ? (
+      <ul key={recipe.id} className={`row ${classes.ul}`}>
+        <li>{recipe.title}</li>
+        <li className={'col'}>
+          <i className='far fa-clock'></i>{' '}
+          {calcCookingTime(+recipe.cookingTime)}
+        </li>
+        <li className={'col'}>
+          <i className='fas fa-user-friends'></i>
+          {recipe.servings} servings
+        </li>
+        <li>Ingredients:</li>
+        {<IngrediList listOfIngredient={recipe.ingredients} />}
+      </ul>
+    ) : (
+      ''
+    );
+  };
+
   return (
     <>
-      {recipe ? (
-        <ul key={recipe.id} className={`row ${classes.ul}`}>
-          <li>{recipe.title}</li>
-          <li className={'col'}>
-            <i className='far fa-clock'></i>{' '}
-            {calcCookingTime(+recipe.cookingTime)}
-          </li>
-          <li className={'col'}>
-            <i className='fas fa-user-friends'></i>
-            {recipe.servings} servings
-          </li>
-          <li>Ingredients:</li>
-          {<IngrediList listOfIngredient={recipe.ingredients} />}
-        </ul>
-      ) : (
-        ''
-      )}
+      {recipe ? renderDetailInfo(recipe) : renderDetailInfo(props.recipes[0])}
     </>
   );
 }

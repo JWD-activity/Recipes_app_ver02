@@ -10,7 +10,7 @@ function App() {
 
   const addNewRecipeHandler = (recipe) => {
     setRecipeList((prevRecipeList) => {
-      return [...prevRecipeList, recipe];
+      return [recipe, ...prevRecipeList];
     });
 
     console.log(recipeList);
