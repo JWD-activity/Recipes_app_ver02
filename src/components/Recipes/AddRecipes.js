@@ -14,9 +14,11 @@ function AddRecipes(props) {
   });
 
   const deleteHandler = (event) => {
-    let id = event.target.dataset.id;
+    let index = event.target.dataset.index;
     const data = ingredientList;
-    setIngredientList(data.filter((item) => item !== id));
+
+    data.splice(index, 1);
+    setIngredientList(data.filter((item) => item));
   };
 
   const changeHandler = (event) => {

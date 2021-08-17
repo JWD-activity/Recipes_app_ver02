@@ -7,15 +7,12 @@ function IngrediList(props) {
     ? list.map((ingredient) => (
         <li
           key={count++}
-          data-id={ingredient}
           data-index={count}
           className={`${props.className ?? ''}`}
           onClick={props.deleteHandler}
         >
           {ingredient}
-          {props.icon && (
-            <i data-index={count} data-id={ingredient} className={props.icon} />
-          )}
+          {props.icon && <i data-index={count} className={props.icon} />}
         </li>
       ))
     : '';
