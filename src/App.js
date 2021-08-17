@@ -7,6 +7,8 @@ import AddRecipes from './components/Recipes/AddRecipes';
 function App() {
   const [recipeList, setRecipeList] = useState([]);
 
+  const [activeRecipe, setActiveRecipe] = useState('');
+
   const [showModal, setShowModal] = useState(false);
 
   const addNewRecipeHandler = (recipe) => {
@@ -34,7 +36,11 @@ function App() {
         list={recipeList}
       />
       <Header onClickHanlder={onClickHanlder} />
-      <Main recipes={recipeList} />
+      <Main
+        recipes={recipeList}
+        isActive={activeRecipe}
+        setActive={setActiveRecipe}
+      />
     </div>
   );
 }
