@@ -15,7 +15,7 @@ function RecipeDetail(props) {
   };
 
   const renderDetailInfo = (recipe) => {
-    recipe && props.isActive(recipe);
+    // recipe && props.isActive(recipe);
     return recipe ? (
       <ul key={recipe.id} className={`row ${classes.ul}`}>
         <li>{recipe.title}</li>
