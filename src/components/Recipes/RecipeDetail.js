@@ -5,6 +5,9 @@ import IngrediList from '../Recipes/IngrediList';
 function RecipeDetail(props) {
   const id = props.clickedRecipe;
   const recipe = props.recipes.find((recipe) => recipe.id === id);
+  // recipe && props.setActive(recipe);
+  // recipe ?? console.log('detail: ', recipe);
+  // console.log('detail: ', recipe);
 
   const calcCookingTime = (time) => {
     if (time >= 60) {
@@ -15,7 +18,9 @@ function RecipeDetail(props) {
   };
 
   const renderDetailInfo = (recipe) => {
-    // recipe && props.isActive(recipe);
+    // recipe && props.setActive(recipe);
+    if (recipe) props.setActive(recipe);
+
     return recipe ? (
       <ul key={recipe.id} className={`row ${classes.ul}`}>
         <li>{recipe.title}</li>

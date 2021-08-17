@@ -15,8 +15,9 @@ function App() {
     setRecipeList((prevRecipeList) => {
       return [recipe, ...prevRecipeList];
     });
-
-    console.log(recipeList);
+    activeHandler(recipe);
+    console.log('Main: ', recipe);
+    console.log('Main add active: ', activeRecipe);
   };
 
   const onClickHanlder = () => {
@@ -25,6 +26,11 @@ function App() {
 
   const closeModalHanlder = () => {
     setShowModal(false);
+  };
+
+  const activeHandler = (recipe) => {
+    setActiveRecipe(recipe.id);
+    console.log('Main active: ', activeRecipe);
   };
 
   return (
@@ -39,7 +45,7 @@ function App() {
       <Main
         recipes={recipeList}
         isActive={activeRecipe}
-        setActive={setActiveRecipe}
+        setActive={activeHandler}
       />
     </div>
   );

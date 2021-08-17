@@ -14,12 +14,17 @@ function Main(props) {
   return (
     <main className='row'>
       <div className='recipe col-sm-12 col-md-6 col-lg-5'>
-        <RecipeList recipes={props.recipes} onClick={recipeClickHandler} />
+        <RecipeList
+          recipes={props.recipes}
+          onClick={recipeClickHandler}
+          isActive={props.isActive}
+        />
       </div>
       <div className='recipe col-sm-12 col-md-6 col-lg-7'>
         <RecipeDetail
           recipes={props.recipes}
           clickedRecipe={selectedRecipe ?? ''}
+          setActive={props.setActive}
         />
       </div>
     </main>
