@@ -4,6 +4,8 @@
   font-size: 1.5rem;
   color: #615551;
   padding: 0 2rem;
+  height: 35rem;
+  overflow: auto;
 }
 
 .ul > li:first-child {
@@ -13,4 +15,10 @@
 
 .ul > li {
   padding: 0.5rem 0;
+}
+
+@media screen and (max-width: 576px) {
+  .ul {
+    padding: 2rem 2rem;
+  }
 }
