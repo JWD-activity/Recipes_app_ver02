@@ -10,6 +10,7 @@ import UpdateContent from './pages/UpdateContent';
 import CreateContent from './pages/CreateContent';
 
 function App() {
+  console.log('App render');
   const [mode, setMode] = useState('read');
   const [recipeList, setRecipeList] = useState([
     {

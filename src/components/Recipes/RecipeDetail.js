@@ -3,6 +3,7 @@ import classes from './RecipeDetail.module.css';
 import IngrediList from '../Recipes/IngrediList';
 
 function RecipeDetail(props) {
+  console.log('Recipe Detail render');
   const { activeRecipe } = props;
   console.log(activeRecipe);
 

@@ -4,6 +4,7 @@ import RecipeList from '../components/Recipes/RecipeList';
 import RecipeDetail from '../components/Recipes/RecipeDetail';
 
 function ReadContent(props) {
+  console.log('ReadContent render');
   const { recipeList, activeRecipe, onRecipeClick } = props;
 
   const recipeClickHandler = (event) => {
@@ -11,7 +12,7 @@ function ReadContent(props) {
 
     console.log('click: ', event.target.dataset.id);
     // props.setActive(selectedRecipe);
-    // console.log('select: ', selectedRecipe);
+    console.log('active: ', activeRecipe);
   };
 
   return (
@@ -20,7 +21,7 @@ function ReadContent(props) {
         <RecipeList
           recipeList={recipeList}
           onClick={recipeClickHandler}
-          // isActive={props.isActive}
+          isActive={activeRecipe ?? ''}
         />
       </div>
       <div className='recipe col-sm-12 col-md-6 col-lg-7'>
