@@ -5,7 +5,7 @@ import RecipeDetail from '../components/Recipes/RecipeDetail';
 
 function ReadContent(props) {
   console.log('ReadContent render');
-  const { recipeList, activeRecipe, onRecipeClick } = props;
+  const { recipeList, activeRecipe, onRecipeClick, checkEmptyRecipe } = props;
 
   const recipeClickHandler = (event) => {
     onRecipeClick(+event.target.dataset.id);
@@ -28,6 +28,7 @@ function ReadContent(props) {
         <RecipeDetail
           recipeList={recipeList}
           activeRecipe={activeRecipe ?? ''}
+          checkEmptyRecipe={checkEmptyRecipe}
           // clickedRecipe={selectedRecipe ?? ''}
           // setActive={props.setActive}
         />

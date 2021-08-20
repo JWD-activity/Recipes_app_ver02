@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './UI/Header';
+import Footer from './UI/Footer';
 // import Main from './UI/Main';
 // import AddRecipes from './components/Recipes/AddRecipes';
 import Welcome from './pages/WelcomeContent';
@@ -99,6 +100,10 @@ function App() {
     // setActiveRecipe();
   };
 
+  const isEmptyRecipe = (recipe) => {
+    return Object.keys(recipe).length === 0 && recipe.constructor === Object;
+  };
+
   // const activeHandler = (recipe) => {
   //   console.log('app: ', recipe);
   //   setActiveRecipe(recipe.id);
@@ -124,6 +129,7 @@ function App() {
           recipeList={recipeList}
           onRecipeClick={recipClickHandler}
           activeRecipe={activeRecipe}
+          checkEmptyRecipe={isEmptyRecipe}
         />
       ) : mode === 'create' ? (
         <CreateContent
@@ -146,6 +152,7 @@ function App() {
         onAddRecipe={addNewRecipeHandler}
         list={recipeList}
       /> */}
+      <Footer activeRecipe={activeRecipe} checkEmptyRecipe={isEmptyRecipe} />
     </div>
     /* <AddRecipes
         modal={showModal}

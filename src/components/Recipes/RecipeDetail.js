@@ -4,12 +4,8 @@ import IngrediList from '../Recipes/IngrediList';
 
 function RecipeDetail(props) {
   console.log('Recipe Detail render');
-  const { activeRecipe } = props;
+  const { activeRecipe, checkEmptyRecipe } = props;
   console.log(activeRecipe);
-
-  const isEmptyRecipe =
-    Object.keys(activeRecipe).length === 0 &&
-    activeRecipe.constructor === Object;
 
   const calcCookingTime = (time) => {
     if (time >= 60) {
@@ -37,7 +33,7 @@ function RecipeDetail(props) {
     );
   };
 
-  return !isEmptyRecipe ? displayDetails(activeRecipe) : '';
+  return !checkEmptyRecipe(activeRecipe) ? displayDetails(activeRecipe) : '';
 }
 
 export default RecipeDetail;
