@@ -23,7 +23,7 @@ function Header(props) {
         <Logo />
       </div>
       <div className={`col-sm-8 ${classes['btn-box']}`}>
-        <Button icon='fas fa-plus-square' onClick={props.onClickHanlder}>
+        <Button icon='fas fa-plus-square' onClick={props.onClick}>
           {smallButton && 'Add recipe'}
         </Button>
         {/* <Button icon='fas fa-bookmark'>{smallButton && 'Bookmark'}</Button> */}

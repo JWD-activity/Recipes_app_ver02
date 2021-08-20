@@ -3,7 +3,7 @@ import Card from './Card';
 import classes from './FormModal.module.css';
 import { Form, Row, Col } from 'react-bootstrap';
 import Button from './Button';
-import IngrediList from './Recipes/IngrediList';
+// import IngrediList from './Recipes/IngrediList';
 
 function FormModal(props) {
   return (
@@ -89,14 +89,14 @@ function FormModal(props) {
                   />
                 </Form.Group>
 
-                <ul className={`${classes.ul} mx-1`}>
+                {/* <ul className={`${classes.ul} mx-1`}>
                   <IngrediList
                     listOfIngredient={props.listOfIngredient}
                     icon={'fas fa-times'}
                     deleteHandler={props.deleteHandler}
                     className={classes.li}
                   />
-                </ul>
+                </ul> */}
               </Row>
             </Col>
             <Col>

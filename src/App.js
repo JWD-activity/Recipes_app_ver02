@@ -1,44 +1,132 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './UI/Header';
-import Main from './UI/Main';
-import AddRecipes from './components/Recipes/AddRecipes';
+// import Main from './UI/Main';
+// import AddRecipes from './components/Recipes/AddRecipes';
+import Welcome from './pages/WelcomeContent';
+import ReadContent from './pages/ReadContent';
+import DeleteContent from './pages/DeleteContent';
+import UpdateContent from './pages/UpdateContent';
+import CreateContent from './pages/CreateContent';
 
 function App() {
-  const [recipeList, setRecipeList] = useState([]);
-
-  const [activeRecipe, setActiveRecipe] = useState('');
-
+  const [mode, setMode] = useState('read');
+  const [recipeList, setRecipeList] = useState([
+    {
+      id: 1,
+      title: 'Garlic and Green Olives Pasta',
+      cookingTime: 15,
+      servings: 4,
+      ingredients: [
+        '12oz. pappardelle or other wide noodle',
+        'Kosher salt',
+        '¼cup extra-virgin olive oil',
+        '8 garlic cloves',
+        '1cup finely chopped parsley',
+        '1cup pitted Castelvetrano olives',
+        'crushed red pepper flakes',
+        'unsalted butter',
+        '1 cup basil leaves',
+        '2tsp. fresh lemon juice',
+      ],
+    },
+    {
+      id: 2,
+      title: 'Greek Salad',
+      cookingTime: 10,
+      servings: 3,
+      ingredients: [
+        '6 firm ripe tomatoes',
+        '3 Lebanese cucumbers',
+        '1 red onion, sliced into rings',
+        '1 red capsicum, halved, deseeded, coarsely chopped',
+        '200g marinated Greek olives',
+        '220g marinated feta, coarsely chopped',
+        '1 tsp dried Greek oregano',
+        '1 tsp salt',
+        '125ml (1/2 cup) olive oil',
+        '60ml (1/4 cup) white vinegar',
+      ],
+    },
+  ]);
+  const [newRecipe, setNewRecipe] = useState({
+    id: '',
+    title: '',
+    cookingTime: '',
+    servings: 1,
+    ingredients: [],
+  });
   const [showModal, setShowModal] = useState(false);
+  // const [activeRecipe, setActiveRecipe] = useState('');
 
-  const addNewRecipeHandler = (recipe) => {
-    setRecipeList((prevRecipeList) => {
-      return [recipe, ...prevRecipeList];
-    });
-    activeHandler(recipe);
-    // console.log('Main: ', recipe);
-    // console.log('Main add active: ', activeRecipe);
-  };
+  // const addNewRecipeHandler = (recipe) => {
+  //   setRecipeList((prevRecipeList) => {
+  //     return [recipe, ...prevRecipeList];
+  //   });
+  //   activeHandler(recipe);
+  // console.log('Main: ', recipe);
+  // console.log('Main add active: ', activeRecipe);
+  // };
 
-  const onClickHanlder = () => {
-    setShowModal(true);
-  };
+  // const onClickHanlder = () => {
+  //   setShowModal(true);
+  // };
 
   const closeModalHanlder = () => {
+    setMode('read');
     setShowModal(false);
   };
 
-  const activeHandler = (recipe) => {
-    console.log('app: ', recipe);
-    setActiveRecipe(recipe.id);
-  };
+  // const activeHandler = (recipe) => {
+  //   console.log('app: ', recipe);
+  //   setActiveRecipe(recipe.id);
+  // };
   // const activeHandler = (id) => {
   //   setActiveRecipe(id);
   // };
 
+  const modalOpenHandler = () => {
+    setMode('create');
+    setShowModal(true);
+  };
+
   return (
     <div className='app container'>
-      <AddRecipes
+      {/* <AddRecipes
+        modal={showModal}
+        onCloseModal={closeModalHanlder}
+        onAddRecipe={addNewRecipeHandler}
+        list={recipeList}
+      /> */}
+      <Header onClick={modalOpenHandler} />
+
+      {mode === 'welcome' ? (
+        <Welcome />
+      ) : mode === 'read' ? (
+        <ReadContent />
+      ) : mode === 'create' ? (
+        <CreateContent
+          modal={showModal}
+          onCloseModal={closeModalHanlder}
+          // onAddRecipe={addNewRecipeHandler}
+          setNewRecipe={setNewRecipe}
+          // list={recipeList}
+        />
+      ) : mode === 'update' ? (
+        <UpdateContent />
+      ) : mode === 'delete' ? (
+        <DeleteContent />
+      ) : (
+        ''
+      )}
+      {/* <AddRecipes
+        modal={showModal}
+        onCloseModal={closeModalHanlder}
+        onAddRecipe={addNewRecipeHandler}
+        list={recipeList}
+      /> */}
+    </div>
+    /* <AddRecipes
         modal={showModal}
         onCloseModal={closeModalHanlder}
         onAddRecipe={addNewRecipeHandler}
@@ -49,8 +137,7 @@ function App() {
         recipes={recipeList}
         isActive={activeRecipe}
         setActive={activeHandler}
-      />
-    </div>
+      /> */
   );
 }
 
