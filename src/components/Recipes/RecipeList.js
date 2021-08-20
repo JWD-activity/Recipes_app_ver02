@@ -1,26 +1,28 @@
-// import React from 'react';
-// import classes from './RecipeList.module.css';
+import React from 'react';
+import classes from './RecipeList.module.css';
 
-// function RecipeList(props) {
-//   console.log(props.isActive);
-//   return (
-//     <ul className={classes.ul}>
-//       {props.recipes.map((recipe) => (
-//         <li
-//           key={recipe.id}
-//           data-id={recipe.id}
-//           className={`${classes.li} text-capitalize ${
-//             props.isActive && props.isActive.id === recipe.id
-//               ? classes.active
-//               : ''
-//           }`}
-//           onClick={props.onClick}
-//         >
-//           {recipe.title}
-//         </li>
-//       ))}
-//     </ul>
-//   );
-// }
+function RecipeList(props) {
+  const { onClick } = props;
+  // console.log(props.isActive);
+  return (
+    <ul className={classes.ul}>
+      {props.recipeList.map((recipe) => (
+        <li
+          key={recipe.id}
+          data-id={recipe.id}
+          className={`${classes.li} text-capitalize `}
+          // className={`${classes.li} text-capitalize ${
+          //   props.isActive && props.isActive.id === recipe.id
+          //     ? classes.active
+          //     : ''
+          // }`}
+          onClick={onClick}
+        >
+          {recipe.title}
+        </li>
+      ))}
+    </ul>
+  );
+}
 
-// export default RecipeList;
+export default RecipeList;

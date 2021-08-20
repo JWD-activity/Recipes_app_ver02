@@ -57,7 +57,8 @@ function App() {
     ingredients: [],
   });
   const [showModal, setShowModal] = useState(false);
-  // const [activeRecipe, setActiveRecipe] = useState('');
+  const [selectedRecipe, setSelectedRecipe] = useState('');
+  const [activeRecipe, setActiveRecipe] = useState({});
 
   // const addNewRecipeHandler = (recipe) => {
   //   setRecipeList((prevRecipeList) => {
@@ -77,6 +78,26 @@ function App() {
     setShowModal(false);
   };
 
+  const modalOpenHandler = () => {
+    setMode('create');
+    setShowModal(true);
+  };
+
+  const getActiveRecipe = (id) => {
+    const getRecipe = recipeList.filter((recipe) => {
+      if (recipe.id === id) return recipe;
+    });
+    console.log('get', getRecipe);
+    return getRecipe;
+  };
+
+  const recipClickHandler = (id) => {
+    setSelectedRecipe(id);
+    const recipe = getActiveRecipe(id);
+    setActiveRecipe(...recipe);
+    // setActiveRecipe();
+  };
+
   // const activeHandler = (recipe) => {
   //   console.log('app: ', recipe);
   //   setActiveRecipe(recipe.id);
@@ -84,11 +105,6 @@ function App() {
   // const activeHandler = (id) => {
   //   setActiveRecipe(id);
   // };
-
-  const modalOpenHandler = () => {
-    setMode('create');
-    setShowModal(true);
-  };
 
   return (
     <div className='app container'>
@@ -103,7 +119,11 @@ function App() {
       {mode === 'welcome' ? (
         <Welcome />
       ) : mode === 'read' ? (
-        <ReadContent />
+        <ReadContent
+          recipeList={recipeList}
+          onRecipeClick={recipClickHandler}
+          activeRecipe={activeRecipe}
+        />
       ) : mode === 'create' ? (
         <CreateContent
           modal={showModal}
