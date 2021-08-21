@@ -4,8 +4,8 @@ import IngrediList from '../Recipes/IngrediList';
 
 function RecipeDetail(props) {
   console.log('Recipe Detail render');
-  const { activeRecipe, checkEmptyRecipe } = props;
-  // console.log(activeRecipe);
+  const { recipe } = props;
+  console.log('detail after', recipe);
 
   const calcCookingTime = (time) => {
     if (time >= 60) {
@@ -15,8 +15,8 @@ function RecipeDetail(props) {
     } else return time + 'mins';
   };
 
-  const displayDetails = (recipe) => {
-    return (
+  const renderDetailInfo = (recipe) => {
+    return recipe ? (
       <ul key={recipe.id} className={`row ${classes.ul}`}>
         <li>{recipe.title}</li>
         <li className={'col'}>
@@ -30,10 +30,12 @@ function RecipeDetail(props) {
         <li>Ingredients:</li>
         {<IngrediList listOfIngredient={recipe.ingredients} />}
       </ul>
+    ) : (
+      ''
     );
   };
 
-  return !checkEmptyRecipe(activeRecipe) ? displayDetails(activeRecipe) : '';
+  return <>{renderDetailInfo(recipe)}</>;
 }
 
 export default RecipeDetail;

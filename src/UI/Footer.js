@@ -3,9 +3,15 @@ import Button from '../components/Button';
 import classes from './Footer.module.css';
 
 export default function Footer(props) {
-  const { activeRecipe, checkEmptyRecipe, onUpdate, setMode } = props;
+  const {
+    activeRecipe,
+    checkEmptyRecipe,
+    onUpdate,
+    setMode,
+    selectedRecipeId,
+  } = props;
 
-  console.log('footer render', activeRecipe.id);
+  console.log('footer render', selectedRecipeId);
   const deleteClickHandler = () => {
     setMode('delete');
   };
@@ -15,7 +21,7 @@ export default function Footer(props) {
       <div
         className={`col-sm-12 col-md-6 col-lg-7 ${classes['button-container']}`}
       >
-        {!checkEmptyRecipe(activeRecipe) && (
+        {selectedRecipeId !== 0 && (
           <>
             <Button className={classes.button} onClick={onUpdate}>
               Update

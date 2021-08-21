@@ -62,8 +62,8 @@ function App() {
     ingredients: ingredients,
   });
   const [showModal, setShowModal] = useState(false);
-  const [selectedRecipe, setSelectedRecipe] = useState('');
-  const [activeRecipe, setActiveRecipe] = useState({});
+  const [selectedRecipeId, setSelectedRecipeId] = useState(0);
+  // const [activeRecipe, setActiveRecipe] = useState({});
 
   const addNewRecipeHandler = (recipe) => {
     const id = createId();
@@ -81,32 +81,48 @@ function App() {
     ) {
       var recipes = [...recipeList];
       const index = recipes.find((recipe, index) => {
-        if (recipe.id === activeRecipe.id) return index;
+        if (recipe.id === selectedRecipeId) return index;
       });
       recipes.splice(index, 1);
       setRecipeList(recipes);
-      setActiveRecipe({});
       setMode('read');
       alert('The recipe has been deleted successfully!');
     }
   };
 
+  const updateRecipeHandler = (recipe) => {
+    console.log('gettt', recipe);
+    setRecipeList(recipe);
+    const updatedRecipe = readRecipe(selectedRecipeId);
+    // setActiveRecipe(...updatedRecipe);
+    // const result = getActiveRecipe(selectedRecipe);
+    console.log('after', updatedRecipe);
+    setMode('read');
+  };
+  // const updateRecipeHandler = (event) => {
+  //   event.preventDefault();
+  //   const updatedRecipe = recipeList.map((recipe) =>
+  //     recipe.id === activeRecipe.id
+  //       ? {
+  //           id: id,
+  //           title: updatedTitle,
+  //           cookingTime: updatedTime,
+  //           servings: updatedServings,
+  //           ingredients: updatedIngredients,
+  //         }
+  //       : recipe
+  //   );
+
+  //   console.log('updatedForm: ', updatedRecipe);
+  // };
   const deleteIngredientHandler = (event) => {
     const index = event.target.dataset.index;
-    const data = activeRecipe.ingredients;
+    const getRecipe = readRecipe(selectedRecipeId);
+    const data = getRecipe.ingredients;
     data.splice(index, 1);
     setIngredients(data.filter((ingredient) => ingredient));
     console.log('ing', data, recipeList);
   };
-
-  //   activeHandler(recipe);
-  // console.log('Main: ', recipe);
-  // console.log('Main add active: ', activeRecipe);
-  // };
-
-  // const onClickHanlder = () => {
-  //   setShowModal(true);
-  // };
 
   const closeModalHanlder = () => {
     setMode('read');
@@ -123,31 +139,23 @@ function App() {
     setShowModal(true);
   };
 
-  const getActiveRecipe = (id) => {
+  const readRecipe = (id) => {
+    console.log('read:', id);
     const getRecipe = recipeList.filter((recipe) => {
       if (recipe.id === id) return recipe;
     });
-    console.log('get', getRecipe);
     return getRecipe;
   };
 
   const recipClickHandler = (id) => {
-    setSelectedRecipe(id);
-    const recipe = getActiveRecipe(id);
-    setActiveRecipe(...recipe);
+    setSelectedRecipeId(id);
+    // const recipe = readRecipe(id);
+    // setActiveRecipe(...recipe);
   };
 
   const isEmptyRecipe = (recipe) => {
     return Object.keys(recipe).length === 0 && recipe.constructor === Object;
   };
-
-  // const activeHandler = (recipe) => {
-  //   console.log('app: ', recipe);
-  //   setActiveRecipe(recipe.id);
-  // };
-  // const activeHandler = (id) => {
-  //   setActiveRecipe(id);
-  // };
 
   return (
     <div className='app container'>
@@ -158,8 +166,8 @@ function App() {
         <ReadContent
           recipeList={recipeList}
           onRecipeClick={recipClickHandler}
-          activeRecipe={activeRecipe}
-          checkEmptyRecipe={isEmptyRecipe}
+          selectedRecipeId={selectedRecipeId}
+          readRecipe={readRecipe}
         />
       ) : mode === 'create' ? (
         <CreateContent
@@ -167,15 +175,20 @@ function App() {
           onCloseModal={closeModalHanlder}
           onAddRecipe={addNewRecipeHandler}
           setNewRecipe={setNewRecipe}
+          // selectedRecipe={selectedRecipe}
+          // readRecipe={readRecipe}
           // list={recipeList}
         />
       ) : mode === 'update' ? (
         <UpdateContent
           modal={showModal}
           onCloseModal={closeModalHanlder}
-          activeRecipe={activeRecipe}
-          deleteIngredient={deleteIngredientHandler}
           ingredients={ingredients}
+          recipeList={recipeList}
+          deleteIngredient={deleteIngredientHandler}
+          onUpdate={updateRecipeHandler}
+          selectedRecipeId={selectedRecipeId}
+          readRecipe={readRecipe}
         />
       ) : mode === 'delete' ? (
         deleteRecipeHanlder()
@@ -183,9 +196,9 @@ function App() {
         ''
       )}
       <Footer
-        activeRecipe={activeRecipe}
+        // activeRecipe={activeRecipe}
         checkEmptyRecipe={isEmptyRecipe}
-        selectedRecipe={selectedRecipe}
+        selectedRecipeId={selectedRecipeId}
         onUpdate={updateModalOpenHandler}
         setMode={setMode}
       />

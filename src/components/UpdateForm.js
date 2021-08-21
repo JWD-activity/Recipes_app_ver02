@@ -6,11 +6,64 @@ import Button from './Button';
 import IngrediList from './Recipes/IngrediList';
 
 function UpdateForm(props) {
-  const { onClose, activeRecipe, deleteIngredient, ingredientList } = props;
-  const { title, cookingTime, servings, ingredients } = activeRecipe;
-  const [updated, setUpdated] = useState(activeRecipe.title);
+  const {
+    onClose,
+    activeRecipe,
+    deleteIngredient,
+    ingredientList,
+    recipeList,
+    onUpdate,
+    selectedRecipeId,
+    readRecipe,
+  } = props;
 
-  console.log('in:', ingredients.length);
+  const data = readRecipe(selectedRecipeId);
+  const [recipe] = data;
+  console.log('in:', recipe);
+
+  const { id, title, cookingTime, servings, ingredients } = recipe;
+
+  const [updatedTitle, setUpdatedTitle] = useState(title);
+  const [updatedTime, setUpdatedTime] = useState(cookingTime);
+  const [updatedServings, setUpdatedServings] = useState(servings);
+  const [updatedIngredients, setUpdatedIngredients] = useState(ingredients);
+
+  const updateHandler = () => {
+    const updatedRecipe = recipeList.map((recipe) =>
+      recipe.id === selectedRecipeId
+        ? {
+            id: recipe.id,
+            title: updatedTitle,
+            cookingTime: updatedTime,
+            servings: updatedServings,
+            ingredients: updatedIngredients,
+          }
+        : recipe
+    );
+
+    console.log('updatedForm: ', updatedRecipe);
+    onUpdate(updatedRecipe);
+    // getActiveRecipe(selectedRecipeId);
+  };
+
+  const onChangeHandler = (event) => {
+    switch (event.target.name) {
+      case 'title':
+        setUpdatedTitle(event.target.value);
+        break;
+      case 'time':
+        setUpdatedTime(event.target.value);
+        break;
+      case 'servings':
+        setUpdatedServings(event.target.value);
+        break;
+      case 'ingredients':
+        setUpdatedIngredients(event.target.value);
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <div className={classes.backdrop}>
@@ -29,11 +82,7 @@ function UpdateForm(props) {
             </header>
           </Col>
         </Row>
-        <Form
-          onSubmit={props.submitHandler}
-          noValidate
-          validated={props.isValid}
-        >
+        <Form onSubmit={updateHandler} noValidate validated={props.isValid}>
           <Row>
             <Col sm={12} md={6} className={classes.form}>
               <Row>
@@ -43,8 +92,9 @@ function UpdateForm(props) {
                     type='text'
                     placeholder=''
                     className={classes.form}
-                    onChange={props.changeHandler}
-                    value={title}
+                    onChange={onChangeHandler}
+                    value={updatedTitle}
+                    name='title'
                     required
                   />
                 </Form.Group>
@@ -60,8 +110,9 @@ function UpdateForm(props) {
                       className={classes.form}
                       min='1'
                       step='1'
-                      onChange={props.changeHandler}
-                      value={cookingTime}
+                      name='time'
+                      onChange={onChangeHandler}
+                      value={updatedTime}
                     />
                   </Form.Group>
                 </Col>
@@ -75,8 +126,9 @@ function UpdateForm(props) {
                       className={classes.form}
                       min='1'
                       step='1'
-                      onChange={props.changeHandler}
-                      value={servings}
+                      onChange={onChangeHandler}
+                      name='servings'
+                      value={updatedServings}
                     />
                   </Form.Group>
                 </Col>
@@ -93,14 +145,15 @@ function UpdateForm(props) {
                     type='text'
                     placeholder='Enter your ingredient'
                     className={` ${classes.form}`}
-                    onChange={props.changeHandler}
+                    onChange={onChangeHandler}
                     onKeyDown={props.enterHandler}
+                    name='ingredient'
                   />
                 </Form.Group>
-                {ingredients.length > 0 ? (
+                {updatedIngredients.length > 0 ? (
                   <ul className={`${classes.ul} mx-1`}>
                     <IngrediList
-                      listOfIngredient={ingredients}
+                      listOfIngredient={updatedIngredients}
                       icon={'fas fa-times'}
                       deleteIngredient={deleteIngredient}
                       className={classes.li}

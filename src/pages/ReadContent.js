@@ -5,8 +5,12 @@ import RecipeDetail from '../components/Recipes/RecipeDetail';
 
 function ReadContent(props) {
   console.log('ReadContent render');
-  const { recipeList, activeRecipe, onRecipeClick, checkEmptyRecipe } = props;
+  const { recipeList, onRecipeClick, selectedRecipeId, readRecipe } = props;
 
+  const data = readRecipe(selectedRecipeId);
+  const [recipe] = data;
+  //recipe is single recipeobject
+  console.log('RECIPE', recipe);
   const recipeClickHandler = (event) => {
     onRecipeClick(+event.target.dataset.id);
   };
@@ -17,17 +21,11 @@ function ReadContent(props) {
         <RecipeList
           recipeList={recipeList}
           onClick={recipeClickHandler}
-          isActive={activeRecipe ?? ''}
+          isActive={recipe ?? ''}
         />
       </div>
       <div className='recipe col-sm-12 col-md-6 col-lg-7'>
-        <RecipeDetail
-          recipeList={recipeList}
-          activeRecipe={activeRecipe ?? ''}
-          checkEmptyRecipe={checkEmptyRecipe}
-          // clickedRecipe={selectedRecipe ?? ''}
-          // setActive={props.setActive}
-        />
+        <RecipeDetail recipe={recipe} />
       </div>
     </main>
   );
