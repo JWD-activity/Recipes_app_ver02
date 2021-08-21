@@ -67,6 +67,15 @@ function App() {
       return [recipe, ...prevRecipeList];
     });
   };
+
+  const deleteRecipeHanlder = (id) => {
+    console.log('dele:', selectedRecipe);
+    setMode('delete');
+    setRecipeList(deleteSelectedRecipe(selectedRecipe));
+    setActiveRecipe({});
+    setMode('read');
+    // return getRecipe;
+  };
   //   activeHandler(recipe);
   // console.log('Main: ', recipe);
   // console.log('Main add active: ', activeRecipe);
@@ -96,6 +105,14 @@ function App() {
       if (recipe.id === id) return recipe;
     });
     console.log('get', getRecipe);
+    return getRecipe;
+  };
+
+  const deleteSelectedRecipe = (id) => {
+    const getRecipe = recipeList.filter((recipe) => {
+      if (recipe.id !== id) return recipe;
+    });
+    console.log('afterDelete: ', getRecipe);
     return getRecipe;
   };
 
@@ -168,6 +185,7 @@ function App() {
         activeRecipe={activeRecipe}
         checkEmptyRecipe={isEmptyRecipe}
         onUpdate={updateModalOpenHandler}
+        onDelete={deleteRecipeHanlder}
       />
     </div>
     /* <AddRecipes

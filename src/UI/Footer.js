@@ -3,7 +3,7 @@ import Button from '../components/Button';
 import classes from './Footer.module.css';
 
 export default function Footer(props) {
-  const { activeRecipe, checkEmptyRecipe, onUpdate } = props;
+  const { activeRecipe, checkEmptyRecipe, onUpdate, onDelete } = props;
 
   console.log('footer render', activeRecipe);
   return (
@@ -17,7 +17,9 @@ export default function Footer(props) {
             <Button className={classes.button} onClick={onUpdate}>
               Update
             </Button>
-            <Button className={classes.button}>Delete</Button>
+            <Button className={classes.button} onClick={onDelete}>
+              Delete
+            </Button>
           </>
         )}
       </div>
