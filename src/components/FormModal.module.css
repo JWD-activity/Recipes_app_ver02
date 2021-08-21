@@ -74,6 +74,10 @@
   /* overflow-y: scroll; */
 }
 
+.row-height {
+  min-height: 25rem;
+}
+
 @media screen and (max-width: 576px) {
   .modal {
     width: 90%;

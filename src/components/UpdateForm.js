@@ -138,7 +138,7 @@ function UpdateForm(props) {
               </Row>
             </Col>
             <Col sm={12} md={6} className={classes.form}>
-              <Row>
+              <Row className={`${classes['row-height']}`}>
                 <Form.Group
                   className='mb-3 align-items-center'
                   controlId='ingredients'

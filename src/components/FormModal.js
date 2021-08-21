@@ -81,7 +81,7 @@ function FormModal(props) {
               </Row>
             </Col>
             <Col sm={12} md={6} className={classes.form}>
-              <Row>
+              <Row className={`${classes['row-height']}`}>
                 <Form.Group
                   className='mb-3 align-items-center'
                   controlId='ingredients'
@@ -97,14 +97,14 @@ function FormModal(props) {
                   />
                 </Form.Group>
 
-                <ul className={`${classes.ul} mx-1`}>
+                {/* <ul className={`${classes.ul} mx-1`}>
                   <IngrediList
                     listOfIngredient={props.listOfIngredient}
                     icon={'fas fa-times'}
                     deleteHandler={props.deleteHandler}
                     className={classes.li}
                   />
-                </ul>
+                </ul> */}
               </Row>
             </Col>
             <Col>
