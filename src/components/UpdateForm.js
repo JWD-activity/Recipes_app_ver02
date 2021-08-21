@@ -1,12 +1,16 @@
-import React from 'react';
-import Card from './Card';
+import React, { useState } from 'react';
 import classes from './FormModal.module.css';
 import { Form, Row, Col } from 'react-bootstrap';
+import Card from './Card';
 import Button from './Button';
-// import IngrediList from './Recipes/IngrediList';
+import IngrediList from './Recipes/IngrediList';
 
-function FormModal(props) {
-  var { mode, onClose } = props;
+function UpdateForm(props) {
+  const { mode, onClose, activeRecipe } = props;
+  const { title, cookingTime, servings, ingredients } = activeRecipe;
+  const [updated, setUpdated] = useState(activeRecipe.title);
+
+  console.log('in:', ingredients.length);
 
   return (
     <div className={classes.backdrop}>
@@ -21,7 +25,7 @@ function FormModal(props) {
           </Col>
           <Col xs={12} sm={9}>
             <header className={classes['modal-header']}>
-              <h3>Add a new recipe</h3>
+              <h3>Update a recipe</h3>
             </header>
           </Col>
         </Row>
@@ -40,6 +44,7 @@ function FormModal(props) {
                     placeholder=''
                     className={classes.form}
                     onChange={props.changeHandler}
+                    value={title}
                     required
                   />
                 </Form.Group>
@@ -56,6 +61,7 @@ function FormModal(props) {
                       min='1'
                       step='1'
                       onChange={props.changeHandler}
+                      value={cookingTime}
                     />
                   </Form.Group>
                 </Col>
@@ -70,6 +76,7 @@ function FormModal(props) {
                       min='1'
                       step='1'
                       onChange={props.changeHandler}
+                      value={servings}
                     />
                   </Form.Group>
                 </Col>
@@ -90,15 +97,18 @@ function FormModal(props) {
                     onKeyDown={props.enterHandler}
                   />
                 </Form.Group>
-
-                {/* <ul className={`${classes.ul} mx-1`}>
-                  <IngrediList
-                    listOfIngredient={props.listOfIngredient}
-                    icon={'fas fa-times'}
-                    deleteHandler={props.deleteHandler}
-                    className={classes.li}
-                  />
-                </ul> */}
+                {ingredients.length > 0 ? (
+                  <ul className={`${classes.ul} mx-1`}>
+                    <IngrediList
+                      listOfIngredient={ingredients}
+                      icon={'fas fa-times'}
+                      deleteHandler={props.deleteHandler}
+                      className={classes.li}
+                    />
+                  </ul>
+                ) : (
+                  ''
+                )}
               </Row>
             </Col>
             <Col>
@@ -111,4 +121,4 @@ function FormModal(props) {
   );
 }
 
-export default FormModal;
+export default UpdateForm;

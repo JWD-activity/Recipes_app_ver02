@@ -4,7 +4,7 @@ import { v4 as createId } from 'uuid';
 
 function CreateContent(props) {
   console.log('CreateContent render');
-  const { modal, onCloseModal, onAddRecipe, setNewRecipe } = props;
+  const { modal, onCloseModal, onAddRecipe, setNewRecipe, mode } = props;
 
   // const [validated, setValidated] = useState(false);
   // const [ingredientList, setIngredientList] = useState([]);
@@ -76,6 +76,7 @@ function CreateContent(props) {
     <div>
       <FormModal
         onClose={onCloseModal}
+        mode={mode}
         // submitHandler={addRecipeHandler}
         // changeHandler={changeHandler}
         // enterHandler={enterKeyPressHandler}

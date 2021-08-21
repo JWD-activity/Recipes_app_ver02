@@ -62,10 +62,11 @@ function App() {
   const [selectedRecipe, setSelectedRecipe] = useState('');
   const [activeRecipe, setActiveRecipe] = useState({});
 
-  // const addNewRecipeHandler = (recipe) => {
-  //   setRecipeList((prevRecipeList) => {
-  //     return [recipe, ...prevRecipeList];
-  //   });
+  const addNewRecipeHandler = (recipe) => {
+    setRecipeList((prevRecipeList) => {
+      return [recipe, ...prevRecipeList];
+    });
+  };
   //   activeHandler(recipe);
   // console.log('Main: ', recipe);
   // console.log('Main add active: ', activeRecipe);
@@ -82,6 +83,11 @@ function App() {
 
   const modalOpenHandler = () => {
     setMode('create');
+    setShowModal(true);
+  };
+
+  const updateModalOpenHandler = () => {
+    setMode('update');
     setShowModal(true);
   };
 
@@ -135,12 +141,18 @@ function App() {
         <CreateContent
           modal={showModal}
           onCloseModal={closeModalHanlder}
-          // onAddRecipe={addNewRecipeHandler}
+          mode={mode}
+          onAddRecipe={addNewRecipeHandler}
           setNewRecipe={setNewRecipe}
           // list={recipeList}
         />
       ) : mode === 'update' ? (
-        <UpdateContent />
+        <UpdateContent
+          modal={showModal}
+          onCloseModal={closeModalHanlder}
+          mode={mode}
+          activeRecipe={activeRecipe}
+        />
       ) : mode === 'delete' ? (
         <DeleteContent />
       ) : (
@@ -152,7 +164,11 @@ function App() {
         onAddRecipe={addNewRecipeHandler}
         list={recipeList}
       /> */}
-      <Footer activeRecipe={activeRecipe} checkEmptyRecipe={isEmptyRecipe} />
+      <Footer
+        activeRecipe={activeRecipe}
+        checkEmptyRecipe={isEmptyRecipe}
+        onUpdate={updateModalOpenHandler}
+      />
     </div>
     /* <AddRecipes
         modal={showModal}

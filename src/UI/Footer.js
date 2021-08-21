@@ -3,8 +3,9 @@ import Button from '../components/Button';
 import classes from './Footer.module.css';
 
 export default function Footer(props) {
-  const { activeRecipe, checkEmptyRecipe } = props;
-  console.log('footer', activeRecipe.length);
+  const { activeRecipe, checkEmptyRecipe, onUpdate } = props;
+
+  console.log('footer render', activeRecipe);
   return (
     <footer className={`row ${classes.footer}`}>
       <div className='col-sm-12 col-md-6 col-lg-5'>PageNation</div>
@@ -13,7 +14,9 @@ export default function Footer(props) {
       >
         {!checkEmptyRecipe(activeRecipe) && (
           <>
-            <Button className={classes.button}>Update</Button>
+            <Button className={classes.button} onClick={onUpdate}>
+              Update
+            </Button>
             <Button className={classes.button}>Delete</Button>
           </>
         )}
