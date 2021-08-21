@@ -22,11 +22,7 @@ function UpdateContent(props) {
       <UpdateForm
         onClose={onCloseModal}
         onUpdate={onUpdate}
-        activeRecipe={activeRecipe}
-        deleteIngredient={deleteIngredient}
-        ingredientList={ingredients}
         recipeList={recipeList}
-        getActiveRecipe={getActiveRecipe}
         selectedRecipeId={selectedRecipeId}
         readRecipe={readRecipe}
       />

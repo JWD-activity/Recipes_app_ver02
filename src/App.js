@@ -115,14 +115,13 @@ function App() {
 
   //   console.log('updatedForm: ', updatedRecipe);
   // };
-  const deleteIngredientHandler = (event) => {
-    const index = event.target.dataset.index;
-    const getRecipe = readRecipe(selectedRecipeId);
-    const data = getRecipe.ingredients;
-    data.splice(index, 1);
-    setIngredients(data.filter((ingredient) => ingredient));
-    console.log('ing', data, recipeList);
-  };
+  // const deleteIngredientHandler = (event) => {
+  //   const index = event.target.dataset.index;
+  //   const getRecipe = readRecipe(selectedRecipeId);
+  //   // data.splice(index, 1);
+  //   // setIngredients(data.filter((ingredient) => ingredient));
+  //   console.log('ing', getRecipe.ingredients);
+  // };
 
   const closeModalHanlder = () => {
     setMode('read');
@@ -185,7 +184,6 @@ function App() {
           onCloseModal={closeModalHanlder}
           ingredients={ingredients}
           recipeList={recipeList}
-          deleteIngredient={deleteIngredientHandler}
           onUpdate={updateRecipeHandler}
           selectedRecipeId={selectedRecipeId}
           readRecipe={readRecipe}

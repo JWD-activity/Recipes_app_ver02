@@ -6,20 +6,11 @@ import Button from './Button';
 import IngrediList from './Recipes/IngrediList';
 
 function UpdateForm(props) {
-  const {
-    onClose,
-    activeRecipe,
-    deleteIngredient,
-    ingredientList,
-    recipeList,
-    onUpdate,
-    selectedRecipeId,
-    readRecipe,
-  } = props;
+  console.log('UpdateFrom render');
+  const { onClose, recipeList, onUpdate, selectedRecipeId, readRecipe } = props;
 
   const data = readRecipe(selectedRecipeId);
   const [recipe] = data;
-  console.log('in:', recipe);
 
   const { id, title, cookingTime, servings, ingredients } = recipe;
 
@@ -41,9 +32,14 @@ function UpdateForm(props) {
         : recipe
     );
 
-    console.log('updatedForm: ', updatedRecipe);
     onUpdate(updatedRecipe);
-    // getActiveRecipe(selectedRecipeId);
+  };
+
+  const deleteIngredientHandler = (event) => {
+    const index = event.target.dataset.index;
+    const data = recipe.ingredients;
+    data.splice(index, 1);
+    setUpdatedIngredients(data.filter((ingredient) => ingredient));
   };
 
   const onChangeHandler = (event) => {
@@ -155,7 +151,7 @@ function UpdateForm(props) {
                     <IngrediList
                       listOfIngredient={updatedIngredients}
                       icon={'fas fa-times'}
-                      deleteIngredient={deleteIngredient}
+                      deleteIngredient={deleteIngredientHandler}
                       className={classes.li}
                     />
                   </ul>
