@@ -78,7 +78,14 @@ function UpdateForm(props) {
             </header>
           </Col>
         </Row>
-        <Form onSubmit={updateHandler} noValidate validated={props.isValid}>
+        <Form
+          action='/update'
+          onSubmit={updateHandler}
+          method='post'
+          noValidate
+          validated={props.isValid}
+        >
+          <input type='hidden' name='id' value={id} />
           <Row>
             <Col sm={12} md={6} className={classes.form}>
               <Row>

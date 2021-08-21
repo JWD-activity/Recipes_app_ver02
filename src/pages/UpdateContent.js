@@ -3,17 +3,8 @@ import UpdateForm from '../components/UpdateForm';
 
 function UpdateContent(props) {
   console.log('UpdateContent render');
-  const {
-    onCloseModal,
-    activeRecipe,
-    deleteIngredient,
-    ingredients,
-    recipeList,
-    onUpdate,
-    getActiveRecipe,
-    selectedRecipeId,
-    readRecipe,
-  } = props;
+  const { onCloseModal, recipeList, onUpdate, selectedRecipeId, readRecipe } =
+    props;
 
   console.log('updaterecip: ');
 

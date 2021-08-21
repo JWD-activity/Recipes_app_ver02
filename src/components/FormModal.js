@@ -3,7 +3,7 @@ import Card from './Card';
 import classes from './FormModal.module.css';
 import { Form, Row, Col } from 'react-bootstrap';
 import Button from './Button';
-// import IngrediList from './Recipes/IngrediList';
+import IngrediList from './Recipes/IngrediList';
 
 function FormModal(props) {
   var { mode, onClose } = props;
@@ -26,6 +26,8 @@ function FormModal(props) {
           </Col>
         </Row>
         <Form
+          action='/create'
+          method='post'
           onSubmit={props.submitHandler}
           noValidate
           validated={props.isValid}
@@ -37,6 +39,7 @@ function FormModal(props) {
                   <Form.Label>Recipe Title</Form.Label>
                   <Form.Control
                     type='text'
+                    name='title'
                     placeholder=''
                     className={classes.form}
                     onChange={props.changeHandler}
@@ -51,6 +54,7 @@ function FormModal(props) {
                     <Form.Control
                       required
                       type='number'
+                      name='time'
                       placeholder='min'
                       className={classes.form}
                       min='1'
@@ -69,6 +73,7 @@ function FormModal(props) {
                       className={classes.form}
                       min='1'
                       step='1'
+                      name='servings'
                       onChange={props.changeHandler}
                     />
                   </Form.Group>
@@ -88,17 +93,18 @@ function FormModal(props) {
                     className={` ${classes.form}`}
                     onChange={props.changeHandler}
                     onKeyDown={props.enterHandler}
+                    name='ingredient'
                   />
                 </Form.Group>
 
-                {/* <ul className={`${classes.ul} mx-1`}>
+                <ul className={`${classes.ul} mx-1`}>
                   <IngrediList
                     listOfIngredient={props.listOfIngredient}
                     icon={'fas fa-times'}
                     deleteHandler={props.deleteHandler}
                     className={classes.li}
                   />
-                </ul> */}
+                </ul>
               </Row>
             </Col>
             <Col>
