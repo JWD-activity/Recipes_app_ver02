@@ -9,7 +9,7 @@ function IngrediList(props) {
           key={count++}
           data-index={count}
           className={`${props.className ?? ''}`}
-          onClick={props.deleteHandler}
+          onClick={props.deleteIngredient}
         >
           {ingredient}
           {props.icon && <i data-index={count} className={props.icon} />}

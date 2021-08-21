@@ -3,14 +3,16 @@ import UpdateForm from '../components/UpdateForm';
 
 function UpdateContent(props) {
   console.log('UpdateContent render');
-  const { modal, onCloseModal, activeRecipe, mode } = props;
+  const { onCloseModal, activeRecipe, deleteIngredient, ingredients } = props;
   console.log('updaterecip: ', activeRecipe);
+
   return (
     <>
       <UpdateForm
-        mode={mode}
         onClose={onCloseModal}
         activeRecipe={activeRecipe}
+        deleteIngredient={deleteIngredient}
+        ingredientList={ingredients}
       />
     </>
   );

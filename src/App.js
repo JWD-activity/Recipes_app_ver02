@@ -52,12 +52,14 @@ function App() {
       ],
     },
   ]);
+
+  const [ingredients, setIngredients] = useState([]);
   const [newRecipe, setNewRecipe] = useState({
     id: '',
     title: '',
     cookingTime: '',
     servings: 1,
-    ingredients: [],
+    ingredients: ingredients,
   });
   const [showModal, setShowModal] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState('');
@@ -82,13 +84,21 @@ function App() {
         if (recipe.id === activeRecipe.id) return index;
       });
       recipes.splice(index, 1);
-      console.log('result', recipes);
       setRecipeList(recipes);
       setActiveRecipe({});
       setMode('read');
       alert('The recipe has been deleted successfully!');
     }
   };
+
+  const deleteIngredientHandler = (event) => {
+    const index = event.target.dataset.index;
+    const data = activeRecipe.ingredients;
+    data.splice(index, 1);
+    setIngredients(data.filter((ingredient) => ingredient));
+    console.log('ing', data, recipeList);
+  };
+
   //   activeHandler(recipe);
   // console.log('Main: ', recipe);
   // console.log('Main add active: ', activeRecipe);
@@ -121,24 +131,10 @@ function App() {
     return getRecipe;
   };
 
-  // const deleteSelectedRecipe = (id) => {
-  //   console.log('seledelete', id);
-  //   const recipes = [...recipeList];
-  //   recipes.find((recipe, index) => {
-  //     if (recipe.id === id) {
-  //       recipes.splice(index, 1);
-  //     }
-  //   });
-
-  //   console.log(recipes);
-  //   return recipes;
-  // };
-
   const recipClickHandler = (id) => {
     setSelectedRecipe(id);
     const recipe = getActiveRecipe(id);
     setActiveRecipe(...recipe);
-    // setActiveRecipe();
   };
 
   const isEmptyRecipe = (recipe) => {
@@ -155,14 +151,7 @@ function App() {
 
   return (
     <div className='app container'>
-      {/* <AddRecipes
-        modal={showModal}
-        onCloseModal={closeModalHanlder}
-        onAddRecipe={addNewRecipeHandler}
-        list={recipeList}
-      /> */}
       <Header onClick={modalOpenHandler} />
-
       {mode === 'welcome' ? (
         <Welcome />
       ) : mode === 'read' ? (
@@ -176,7 +165,6 @@ function App() {
         <CreateContent
           modal={showModal}
           onCloseModal={closeModalHanlder}
-          mode={mode}
           onAddRecipe={addNewRecipeHandler}
           setNewRecipe={setNewRecipe}
           // list={recipeList}
@@ -185,20 +173,15 @@ function App() {
         <UpdateContent
           modal={showModal}
           onCloseModal={closeModalHanlder}
-          mode={mode}
           activeRecipe={activeRecipe}
+          deleteIngredient={deleteIngredientHandler}
+          ingredients={ingredients}
         />
       ) : mode === 'delete' ? (
         deleteRecipeHanlder()
       ) : (
         ''
       )}
-      {/* <AddRecipes
-        modal={showModal}
-        onCloseModal={closeModalHanlder}
-        onAddRecipe={addNewRecipeHandler}
-        list={recipeList}
-      /> */}
       <Footer
         activeRecipe={activeRecipe}
         checkEmptyRecipe={isEmptyRecipe}
@@ -207,18 +190,6 @@ function App() {
         setMode={setMode}
       />
     </div>
-    /* <AddRecipes
-        modal={showModal}
-        onCloseModal={closeModalHanlder}
-        onAddRecipe={addNewRecipeHandler}
-        list={recipeList}
-      />
-      <Header onClickHanlder={onClickHanlder} />
-      <Main
-        recipes={recipeList}
-        isActive={activeRecipe}
-        setActive={activeHandler}
-      /> */
   );
 }
 

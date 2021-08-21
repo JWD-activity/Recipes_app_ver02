@@ -9,10 +9,6 @@ function ReadContent(props) {
 
   const recipeClickHandler = (event) => {
     onRecipeClick(+event.target.dataset.id);
-
-    console.log('click: ', event.target.dataset.id);
-    // props.setActive(selectedRecipe);
-    console.log('active: ', activeRecipe);
   };
 
   return (

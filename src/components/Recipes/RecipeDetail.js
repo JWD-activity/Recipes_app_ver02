@@ -5,7 +5,7 @@ import IngrediList from '../Recipes/IngrediList';
 function RecipeDetail(props) {
   console.log('Recipe Detail render');
   const { activeRecipe, checkEmptyRecipe } = props;
-  console.log(activeRecipe);
+  // console.log(activeRecipe);
 
   const calcCookingTime = (time) => {
     if (time >= 60) {

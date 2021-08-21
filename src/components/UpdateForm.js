@@ -6,7 +6,7 @@ import Button from './Button';
 import IngrediList from './Recipes/IngrediList';
 
 function UpdateForm(props) {
-  const { mode, onClose, activeRecipe } = props;
+  const { onClose, activeRecipe, deleteIngredient, ingredientList } = props;
   const { title, cookingTime, servings, ingredients } = activeRecipe;
   const [updated, setUpdated] = useState(activeRecipe.title);
 
@@ -102,7 +102,7 @@ function UpdateForm(props) {
                     <IngrediList
                       listOfIngredient={ingredients}
                       icon={'fas fa-times'}
-                      deleteHandler={props.deleteHandler}
+                      deleteIngredient={deleteIngredient}
                       className={classes.li}
                     />
                   </ul>
