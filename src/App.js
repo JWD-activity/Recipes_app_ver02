@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './UI/Header';
 import Footer from './UI/Footer';
-import { v4 as createId } from 'uuid';
-// import Main from './UI/Main';
-// import AddRecipes from './components/Recipes/AddRecipes';
+// import { v4 as createId } from 'uuid';
+
 import Welcome from './pages/WelcomeContent';
 import ReadContent from './pages/ReadContent';
-import DeleteContent from './pages/DeleteContent';
 import UpdateContent from './pages/UpdateContent';
 import CreateContent from './pages/CreateContent';
 
@@ -54,6 +52,7 @@ function App() {
   ]);
 
   const [ingredients, setIngredients] = useState([]);
+
   const [newRecipe, setNewRecipe] = useState({
     id: '',
     title: '',
@@ -61,12 +60,11 @@ function App() {
     servings: 1,
     ingredients: ingredients,
   });
+
   const [showModal, setShowModal] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
-  // const [activeRecipe, setActiveRecipe] = useState({});
 
   const addNewRecipeHandler = (recipe) => {
-    // const id = createId();
     console.log('new:', recipe);
     setRecipeList((prevRecipeList) => {
       return [recipe, ...prevRecipeList];
@@ -93,38 +91,11 @@ function App() {
   };
 
   const updateRecipeHandler = (recipe) => {
-    console.log('gettt', recipe);
     setRecipeList(recipe);
-    const updatedRecipe = readRecipe(selectedRecipeId);
-    // setActiveRecipe(...updatedRecipe);
-    // const result = getActiveRecipe(selectedRecipe);
-    console.log('after', updatedRecipe);
     setMode('read');
+    // const updatedRecipe = readRecipe(selectedRecipeId);
+    // console.log('after', updatedRecipe);
   };
-
-  // const updateRecipeHandler = (event) => {
-  //   event.preventDefault();
-  //   const updatedRecipe = recipeList.map((recipe) =>
-  //     recipe.id === activeRecipe.id
-  //       ? {
-  //           id: id,
-  //           title: updatedTitle,
-  //           cookingTime: updatedTime,
-  //           servings: updatedServings,
-  //           ingredients: updatedIngredients,
-  //         }
-  //       : recipe
-  //   );
-
-  //   console.log('updatedForm: ', updatedRecipe);
-  // };
-  // const deleteIngredientHandler = (event) => {
-  //   const index = event.target.dataset.index;
-  //   const getRecipe = readRecipe(selectedRecipeId);
-  //   // data.splice(index, 1);
-  //   // setIngredients(data.filter((ingredient) => ingredient));
-  //   console.log('ing', getRecipe.ingredients);
-  // };
 
   const closeModalHanlder = () => {
     setMode('read');
@@ -151,13 +122,11 @@ function App() {
 
   const recipClickHandler = (id) => {
     setSelectedRecipeId(id);
-    // const recipe = readRecipe(id);
-    // setActiveRecipe(...recipe);
   };
 
-  const isEmptyRecipe = (recipe) => {
-    return Object.keys(recipe).length === 0 && recipe.constructor === Object;
-  };
+  // const isEmptyRecipe = (recipe) => {
+  //   return Object.keys(recipe).length === 0 && recipe.constructor === Object;
+  // };
 
   return (
     <div className='app container'>
@@ -197,8 +166,6 @@ function App() {
         ''
       )}
       <Footer
-        // activeRecipe={activeRecipe}
-        checkEmptyRecipe={isEmptyRecipe}
         selectedRecipeId={selectedRecipeId}
         onUpdate={updateModalOpenHandler}
         setMode={setMode}

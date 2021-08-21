@@ -3,13 +3,7 @@ import Button from '../components/Button';
 import classes from './Footer.module.css';
 
 export default function Footer(props) {
-  const {
-    activeRecipe,
-    checkEmptyRecipe,
-    onUpdate,
-    setMode,
-    selectedRecipeId,
-  } = props;
+  const { onUpdate, setMode, selectedRecipeId } = props;
 
   console.log('footer render', selectedRecipeId);
   const deleteClickHandler = () => {
