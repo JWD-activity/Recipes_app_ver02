@@ -86,6 +86,7 @@ function App() {
       recipes.splice(index, 1);
       setRecipeList(recipes);
       setMode('read');
+      setSelectedRecipeId(0);
       alert('The recipe has been deleted successfully!');
     }
   };
