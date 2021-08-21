@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './UI/Header';
 import Footer from './UI/Footer';
+import { v4 as createId } from 'uuid';
 // import Main from './UI/Main';
 // import AddRecipes from './components/Recipes/AddRecipes';
 import Welcome from './pages/WelcomeContent';
@@ -63,18 +64,30 @@ function App() {
   const [activeRecipe, setActiveRecipe] = useState({});
 
   const addNewRecipeHandler = (recipe) => {
+    const id = createId();
+    console.log('new:', recipe);
     setRecipeList((prevRecipeList) => {
       return [recipe, ...prevRecipeList];
     });
   };
 
-  const deleteRecipeHanlder = (id) => {
-    console.log('dele:', selectedRecipe);
-    setMode('delete');
-    setRecipeList(deleteSelectedRecipe(selectedRecipe));
-    setActiveRecipe({});
-    setMode('read');
-    // return getRecipe;
+  const deleteRecipeHanlder = () => {
+    if (
+      window.confirm(
+        'Are you sure want to delete the recipe? If you delete the recipe, you will permanently lose your selected recipe.'
+      )
+    ) {
+      var recipes = [...recipeList];
+      const index = recipes.find((recipe, index) => {
+        if (recipe.id === activeRecipe.id) return index;
+      });
+      recipes.splice(index, 1);
+      console.log('result', recipes);
+      setRecipeList(recipes);
+      setActiveRecipe({});
+      setMode('read');
+      alert('The recipe has been deleted successfully!');
+    }
   };
   //   activeHandler(recipe);
   // console.log('Main: ', recipe);
@@ -108,13 +121,18 @@ function App() {
     return getRecipe;
   };
 
-  const deleteSelectedRecipe = (id) => {
-    const getRecipe = recipeList.filter((recipe) => {
-      if (recipe.id !== id) return recipe;
-    });
-    console.log('afterDelete: ', getRecipe);
-    return getRecipe;
-  };
+  // const deleteSelectedRecipe = (id) => {
+  //   console.log('seledelete', id);
+  //   const recipes = [...recipeList];
+  //   recipes.find((recipe, index) => {
+  //     if (recipe.id === id) {
+  //       recipes.splice(index, 1);
+  //     }
+  //   });
+
+  //   console.log(recipes);
+  //   return recipes;
+  // };
 
   const recipClickHandler = (id) => {
     setSelectedRecipe(id);
@@ -171,7 +189,7 @@ function App() {
           activeRecipe={activeRecipe}
         />
       ) : mode === 'delete' ? (
-        <DeleteContent />
+        deleteRecipeHanlder()
       ) : (
         ''
       )}
@@ -184,8 +202,9 @@ function App() {
       <Footer
         activeRecipe={activeRecipe}
         checkEmptyRecipe={isEmptyRecipe}
+        selectedRecipe={selectedRecipe}
         onUpdate={updateModalOpenHandler}
-        onDelete={deleteRecipeHanlder}
+        setMode={setMode}
       />
     </div>
     /* <AddRecipes

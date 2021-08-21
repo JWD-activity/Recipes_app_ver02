@@ -3,9 +3,12 @@ import Button from '../components/Button';
 import classes from './Footer.module.css';
 
 export default function Footer(props) {
-  const { activeRecipe, checkEmptyRecipe, onUpdate, onDelete } = props;
+  const { activeRecipe, checkEmptyRecipe, onUpdate, setMode } = props;
 
-  console.log('footer render', activeRecipe);
+  console.log('footer render', activeRecipe.id);
+  const deleteClickHandler = () => {
+    setMode('delete');
+  };
   return (
     <footer className={`row ${classes.footer}`}>
       <div className='col-sm-12 col-md-6 col-lg-5'>PageNation</div>
@@ -17,7 +20,7 @@ export default function Footer(props) {
             <Button className={classes.button} onClick={onUpdate}>
               Update
             </Button>
-            <Button className={classes.button} onClick={onDelete}>
+            <Button className={classes.button} onClick={deleteClickHandler}>
               Delete
             </Button>
           </>
