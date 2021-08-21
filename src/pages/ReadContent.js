@@ -12,7 +12,7 @@ function ReadContent(props) {
   //recipe is single recipeobject
   console.log('RECIPE', recipe);
   const recipeClickHandler = (event) => {
-    onRecipeClick(+event.target.dataset.id);
+    onRecipeClick(event.target.dataset.id);
   };
 
   return (

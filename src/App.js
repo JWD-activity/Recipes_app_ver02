@@ -16,7 +16,7 @@ function App() {
   const [mode, setMode] = useState('read');
   const [recipeList, setRecipeList] = useState([
     {
-      id: 1,
+      id: '59d0208e-0490',
       title: 'Garlic and Green Olives Pasta',
       cookingTime: 15,
       servings: 4,
@@ -34,7 +34,7 @@ function App() {
       ],
     },
     {
-      id: 2,
+      id: '59d0208e-0491',
       title: 'Greek Salad',
       cookingTime: 10,
       servings: 3,
@@ -66,11 +66,12 @@ function App() {
   // const [activeRecipe, setActiveRecipe] = useState({});
 
   const addNewRecipeHandler = (recipe) => {
-    const id = createId();
+    // const id = createId();
     console.log('new:', recipe);
     setRecipeList((prevRecipeList) => {
       return [recipe, ...prevRecipeList];
     });
+    setSelectedRecipeId(recipe.id);
   };
 
   const deleteRecipeHanlder = () => {
