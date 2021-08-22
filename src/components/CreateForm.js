@@ -8,7 +8,7 @@ import Card from './Card';
 import IngrediList from './Recipes/IngrediList';
 
 let validationSchema = Yup.object().shape({
-  title: Yup.string().required('Required'),
+  title: Yup.string().required('Required').min(1),
   cookingTime: Yup.number()
     .required('Required')
     .positive('Invalid Cooking time')
@@ -85,17 +85,15 @@ function CreateForm(props) {
                         id='title'
                         name='title'
                         className={`form-control ${classes.form}`}
-                        onChange={formik.handleChange}
-                        value={formik.values.title}
                       />
                       {errors.title && touched.title ? (
-                        <div>{errors.title}</div>
+                        <div className={classes.error}>{errors.title}</div>
                       ) : null}
                     </Col>
                   </Row>
 
                   <Row>
-                    <Col xs={12} sm={6}>
+                    <Col xs={12} sm={6} className='mb-4'>
                       <label htmlFor='cookingTime' className='form-label'>
                         Cook Time
                       </label>
@@ -108,8 +106,13 @@ function CreateForm(props) {
                         min='1'
                         step='1'
                       />
+                      {errors.cookingTime && touched.cookingTime ? (
+                        <div className={classes.error}>
+                          {errors.cookingTime}
+                        </div>
+                      ) : null}
                     </Col>
-                    <Col xs={12} sm={6}>
+                    <Col xs={12} sm={6} className='mb-4'>
                       <label htmlFor='servings' className='form-label'>
                         Servings
                       </label>
@@ -122,6 +125,9 @@ function CreateForm(props) {
                         min='1'
                         step='1'
                       />
+                      {errors.servings && touched.servings ? (
+                        <div className={classes.error}>{errors.servings}</div>
+                      ) : null}
                     </Col>
                   </Row>
                 </Col>

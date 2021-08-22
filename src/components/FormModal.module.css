@@ -78,6 +78,10 @@
   min-height: 25rem;
 }
 
+.error {
+  color: #dc3545;
+}
+
 @media screen and (max-width: 576px) {
   .modal {
     width: 90%;
