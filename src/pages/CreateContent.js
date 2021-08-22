@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import FormModal from '../components/FormModal';
+// import FormModal from '../components/FormModal';
 import { v4 as createId } from 'uuid';
+import CreateForm from '../components/CreateForm';
 
 function CreateContent(props) {
   console.log('CreateContent render');
@@ -94,18 +95,18 @@ function CreateContent(props) {
         // listOfIngredient={ingredientList}
         // isValid={validated}
       /> */}
-      {props.modal && (
-        <FormModal
+      {modal && (
+        <CreateForm
           onClose={closeHandler}
           mode={mode}
           submitHandler={addRecipeHandler}
-          isValid={validated}
-          changeHandler={changeHandler}
-          enterHandler={enterKeyPressHandler}
-          deleteHandler={deleteIngredientHandler}
-          onAddIngredient={onAddIngredient}
-          listOfIngredient={ingredientList}
-          isValid={validated}
+          // isValid={validated}
+          // changeHandler={changeHandler}
+          // enterHandler={enterKeyPressHandler}
+          // deleteHandler={deleteIngredientHandler}
+          // onAddIngredient={onAddIngredient}
+          // listOfIngredient={ingredientList}
+          // isValid={validated}
         />
       )}
     </div>
