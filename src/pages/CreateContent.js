@@ -57,11 +57,11 @@ function CreateContent(props) {
   };
 
   const enterKeyPressHandler = (event) => {
-    if (event.key === 'Enter' && event.target.value.trim().length !== 0) {
+    console.log(event);
+    if (event.target.value.trim().length !== 0) {
       event.preventDefault();
       const id = createId();
       onAddIngredient(event, id);
-      event.target.value = '';
     }
   };
 
@@ -102,10 +102,10 @@ function CreateContent(props) {
           submitHandler={addRecipeHandler}
           // isValid={validated}
           // changeHandler={changeHandler}
-          // enterHandler={enterKeyPressHandler}
-          // deleteHandler={deleteIngredientHandler}
+          enterHandler={enterKeyPressHandler}
+          deleteHandler={deleteIngredientHandler}
           // onAddIngredient={onAddIngredient}
-          // listOfIngredient={ingredientList}
+          listOfIngredient={ingredientList}
           // isValid={validated}
         />
       )}

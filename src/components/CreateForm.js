@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Form, Field, useFormik } from 'formik';
+import { Formik, Form, Field, useFormik, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import classes from './FormModal.module.css';
 import { Row, Col } from 'react-bootstrap';
@@ -21,20 +21,16 @@ let validationSchema = Yup.object().shape({
   ingredients: Yup.array().of(Yup.string()),
 });
 
-// const initialValues = {
-//   title: '',
-//   cookingTime: '',
-//   servings: '',
-//   ingredient: '',
-//   ingredients: [],
-// };
-
-// const onSubmit = () => {
-//   console.log('submit');
-// };
-
 function CreateForm(props) {
-  var { mode, onClose, submitHandler, isValid } = props;
+  var {
+    mode,
+    onClose,
+    submitHandler,
+    isValid,
+    enterHandler,
+    listOfIngredient,
+    deleteHandler,
+  } = props;
 
   const formik = useFormik({
     initialValues: {
@@ -42,7 +38,7 @@ function CreateForm(props) {
       cookingTime: '',
       servings: '',
       ingredient: '',
-      ingredients: [],
+      ingredients: [''],
     },
     onSubmit: (values) => {
       console.log(JSON.stringify(values, null, 2));
@@ -54,7 +50,7 @@ function CreateForm(props) {
       initialValues={formik.initialValues}
       validationSchema={validationSchema}
       onSubmit={(values) => console.log(values)}
-      render={({ values, errors, touched }) => (
+      render={({ errors, touched, resetForm }) => (
         <div className={classes.backdrop}>
           <Card className={classes.modal}>
             <Row className={`align-items-center ${classes['modal-top']}`}>
@@ -134,7 +130,7 @@ function CreateForm(props) {
                 <Col sm={12} md={6} className={classes.form}>
                   <Row className={`${classes['row-height']}`}>
                     <div className='mb-3 align-items-center'>
-                      <label htmlFor='ingredient' className='form-label'>
+                      <label htmlFor='ingredients' className='form-label'>
                         Ingredients
                       </label>
                       <Field
@@ -144,18 +140,71 @@ function CreateForm(props) {
                         className={`form-control ${classes.form}`}
                         placeholder='Enter your ingredient'
                         // onChange={props.changeHandler}
-                        // onKeyDown={props.enterHandler}
+                        onKeyDown={(event) => {
+                          if (event.key === 'Enter') {
+                            enterHandler(event);
+                            resetForm();
+                          }
+                        }}
                       />
+                      {/* <FieldArray name='ingredients'>
+                        {(fieldArrayProps) => {
+                          console.log('fieldArrayProps', fieldArrayProps);
+                          const { push, remove, form, resetForm } =
+                            fieldArrayProps;
+                          const { values } = form;
+                          const { ingredients } = values;
+                          return (
+                            <div>
+                              {console.log(values)}
+                              <Field
+                                type='text'
+                                id='ingredient'
+                                name='ingredient'
+                                className={`form-control ${classes.form}`}
+                                placeholder='Enter your ingredient'
+                                onKeyDown={(event) => {
+                                  if (event.key === 'Enter') {
+                                    push(event.target.value);
+                                  }
+                                }}
+                                // onChange={props.changeHandler}
+                                // onKeyDown={enterHandler}
+                              />
+                              <ul>
+                                {/* {ingredients.map((ingredient, index) => (
+                                  <li key={index}>{ingredient}</li>
+                                ))} */}
+                      {/* <IngrediList
+                                  listOfIngredient={ingredients}
+                                  icon={'fas fa-times'}
+                                  deleteHandler={deleteHandler}
+                                  className={classes.li}
+                                /> */}
+                      {/* </ul> */}
+
+                      <ul className={`${classes.ul} mx-1`}>
+                        <IngrediList
+                          listOfIngredient={listOfIngredient}
+                          icon={'fas fa-times'}
+                          deleteHandler={deleteHandler}
+                          className={classes.li}
+                        />
+                      </ul>
+                      {/* </div>
+                          );
+                        }} */}
+                      {/* </FieldArray>  */}
                     </div>
 
-                    <ul className={`${classes.ul} mx-1`}>
-                      {/* <IngrediList
-                      listOfIngredient={props.listOfIngredient}
-                      icon={'fas fa-times'}
-                      deleteHandler={props.deleteHandler}
-                      className={classes.li}
-                    /> */}
-                    </ul>
+                    {/* <ul className={`${classes.ul} mx-1`}>
+                      <IngrediList
+                        listOfIngredient={listOfIngredient}
+                        icon={'fas fa-times'}
+                        deleteHandler={deleteHandler}
+                        className={classes.li}
+                      />
+                    </ul> */}
                   </Row>
                 </Col>
                 <Col>
