@@ -157,50 +157,25 @@ function CreateForm(props) {
                                     setFieldValue('ingredient', '');
                                   }
                                 }}
-                                // onChange={props.changeHandler}
-                                // onKeyDown={enterHandler}
                               />
                               {errors.ingredient && touched.ingredient ? (
                                 <div className={classes.error}>
                                   {errors.ingredient}
                                 </div>
                               ) : null}
-                              <ul>
-                                {/* {console.log(ingredients.length)} */}
-                                {ingredients.map((ingredient, index) => (
-                                  <li key={index}>{ingredient}</li>
-                                ))}
-                              </ul>
-                              {/* <IngrediList
+                              <ul className={classes.ul}>
+                                <IngrediList
                                   listOfIngredient={ingredients}
                                   icon={'fas fa-times'}
-                                  deleteHandler={deleteHandler}
+                                  deleteHandler={remove}
                                   className={classes.li}
                                 />
-                            
-
-                              {/* <ul className={`${classes.ul} mx-1`}>
-                        <IngrediList
-                          listOfIngredient={listOfIngredient}
-                          icon={'fas fa-times'}
-                          deleteHandler={deleteHandler}
-                          className={classes.li}
-                        />
-                      </ul> */}
+                              </ul>
                             </div>
                           );
                         }}
                       </FieldArray>
                     </div>
-
-                    {/* <ul className={`${classes.ul} mx-1`}>
-                      <IngrediList
-                        listOfIngredient={listOfIngredient}
-                        icon={'fas fa-times'}
-                        deleteHandler={deleteHandler}
-                        className={classes.li}
-                      />
-                    </ul> */}
                   </Row>
                 </Col>
                 <Col>
