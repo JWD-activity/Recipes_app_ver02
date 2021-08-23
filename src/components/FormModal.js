@@ -96,7 +96,7 @@ function FormModal(props) {
               </Col>
               <Col xs={12} sm={9}>
                 <header className={classes['modal-header']}>
-                  <h3>
+                  <h3 className='fw-bold'>
                     {mode === 'create' ? 'Add a new recipe' : 'Update a recipe'}
                   </h3>
                 </header>
@@ -108,7 +108,7 @@ function FormModal(props) {
                 <Col sm={12} md={6} className={classes.form}>
                   <Row>
                     <Col className='mb-4'>
-                      <label htmlFor='title' className='form-label'>
+                      <label htmlFor='title' className='form-label fw-bold'>
                         Recipe Title
                       </label>
                       <Field
@@ -125,7 +125,10 @@ function FormModal(props) {
 
                   <Row>
                     <Col xs={12} sm={6} className='mb-4'>
-                      <label htmlFor='cookingTime' className='form-label'>
+                      <label
+                        htmlFor='cookingTime'
+                        className='form-label fw-bold'
+                      >
                         Cook Time
                       </label>
                       <Field
@@ -144,7 +147,7 @@ function FormModal(props) {
                       ) : null}
                     </Col>
                     <Col xs={12} sm={6} className='mb-4'>
-                      <label htmlFor='servings' className='form-label'>
+                      <label htmlFor='servings' className='form-label fw-bold'>
                         Servings
                       </label>
                       <Field
@@ -166,7 +169,10 @@ function FormModal(props) {
                 <Col sm={12} md={6} className={classes.form}>
                   <Row className={`${classes['row-height']}`}>
                     <div className='mb-3 align-items-center'>
-                      <label htmlFor='ingredients' className='form-label'>
+                      <label
+                        htmlFor='ingredients'
+                        className='form-label fw-bold'
+                      >
                         Ingredients
                       </label>
 
@@ -201,7 +207,7 @@ function FormModal(props) {
                                   {errors.ingredients}
                                 </div>
                               ) : null}
-                              <ul className={classes.ul}>
+                              <ul className={`mt-4 ${classes.ul}`}>
                                 <IngrediList
                                   listOfIngredient={ingredients}
                                   icon={'fas fa-times'}
