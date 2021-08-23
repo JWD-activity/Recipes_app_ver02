@@ -11,7 +11,6 @@ function CreateContent(props) {
     const _id = createId();
     onAddRecipe(values, (values.id = _id));
     onCloseModal();
-    console.log('ADD A RECIPE: ', values);
   };
 
   return (

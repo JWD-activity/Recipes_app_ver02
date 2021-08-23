@@ -9,7 +9,7 @@ function ReadContent(props) {
   const data = readRecipe(selectedRecipeId);
   const [recipe] = data;
   //recipe is single recipeobject
-  console.log('RECIPE', recipe);
+  // console.log('RECIPE', recipe);
   const recipeClickHandler = (event) => {
     onRecipeClick(event.target.dataset.id);
   };

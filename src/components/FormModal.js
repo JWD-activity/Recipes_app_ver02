@@ -83,7 +83,8 @@ function FormModal(props) {
       onSubmit={(values) =>
         mode === 'create' ? submitHandler(values) : updateHandler(values)
       }
-      render={({ errors, touched }) => (
+    >
+      {({ errors, touched }) => (
         <div className={classes.backdrop}>
           <Card className={classes.modal}>
             <Row className={`align-items-center ${classes['modal-top']}`}>
@@ -178,7 +179,6 @@ function FormModal(props) {
 
                       <FieldArray name='ingredients'>
                         {(fieldArrayProps) => {
-                          console.log('fieldArrayProps', fieldArrayProps);
                           const { push, remove, form } = fieldArrayProps;
                           const { values, setFieldValue } = form;
                           const { ingredients } = values;
@@ -231,7 +231,7 @@ function FormModal(props) {
           </Card>
         </div>
       )}
-    />
+    </Formik>
   );
 }
 

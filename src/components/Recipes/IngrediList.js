@@ -2,7 +2,6 @@ import React from 'react';
 
 function IngrediList(props) {
   let list = props.listOfIngredient;
-  console.log('LIST', props.listOfIngredient);
   const deleteHandler = (event) => {
     props.deleteHandler(event.target.dataset.index);
   };
