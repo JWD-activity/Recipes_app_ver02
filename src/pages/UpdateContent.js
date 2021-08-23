@@ -1,16 +1,23 @@
 import React from 'react';
-import UpdateForm from '../components/UpdateForm';
+import FormModal from '../components/FormModal';
 
 function UpdateContent(props) {
   console.log('UpdateContent render');
-  const { onCloseModal, recipeList, onUpdate, selectedRecipeId, readRecipe } =
-    props;
+  const {
+    mode,
+    onCloseModal,
+    recipeList,
+    onUpdate,
+    selectedRecipeId,
+    readRecipe,
+  } = props;
 
   console.log('updaterecip: ');
 
   return (
     <>
-      <UpdateForm
+      <FormModal
+        mode={mode}
         onClose={onCloseModal}
         onUpdate={onUpdate}
         recipeList={recipeList}

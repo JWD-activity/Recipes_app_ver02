@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import FormModal from '../components/FormModal';
 import { v4 as createId } from 'uuid';
-import CreateForm from '../components/CreateForm';
+import FormModal from '../components/FormModal';
 
 function CreateContent(props) {
   console.log('CreateContent render');
@@ -99,9 +99,9 @@ function CreateContent(props) {
   return (
     <div>
       {modal && (
-        <CreateForm
-          onClose={closeHandler}
+        <FormModal
           mode={mode}
+          onClose={closeHandler}
           submitHandler={addRecipeHandler}
           // isValid={validated}
           // changeHandler={changeHandler}

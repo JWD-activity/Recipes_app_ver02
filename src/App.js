@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './UI/Header';
 import Footer from './UI/Footer';
-// import { v4 as createId } from 'uuid';
 
 import Welcome from './pages/WelcomeContent';
 import ReadContent from './pages/ReadContent';
@@ -124,10 +123,6 @@ function App() {
     setSelectedRecipeId(id);
   };
 
-  // const isEmptyRecipe = (recipe) => {
-  //   return Object.keys(recipe).length === 0 && recipe.constructor === Object;
-  // };
-
   return (
     <div className='app container'>
       <Header onClick={modalOpenHandler} />
@@ -142,16 +137,15 @@ function App() {
         />
       ) : mode === 'create' ? (
         <CreateContent
+          mode={mode}
           modal={showModal}
           onCloseModal={closeModalHanlder}
           onAddRecipe={addNewRecipeHandler}
           setNewRecipe={setNewRecipe}
-          // selectedRecipe={selectedRecipe}
-          // readRecipe={readRecipe}
-          // list={recipeList}
         />
       ) : mode === 'update' ? (
         <UpdateContent
+          mode={mode}
           modal={showModal}
           onCloseModal={closeModalHanlder}
           ingredients={ingredients}
