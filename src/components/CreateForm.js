@@ -17,27 +17,17 @@ let validationSchema = Yup.object().shape({
     .required('Required')
     .positive('Invalid Servings')
     .integer(),
-  ingredient: Yup.string(),
   ingredients: Yup.array().of(Yup.string()).min(1),
 });
 
 function CreateForm(props) {
-  var {
-    mode,
-    onClose,
-    submitHandler,
-    isValid,
-    enterHandler,
-    listOfIngredient,
-    deleteHandler,
-  } = props;
+  var { onClose, submitHandler } = props;
 
   const formik = useFormik({
     initialValues: {
       title: '',
       cookingTime: '',
       servings: '',
-      ingredient: '',
       ingredients: [],
     },
     onSubmit: (values) => {
@@ -49,8 +39,8 @@ function CreateForm(props) {
     <Formik
       initialValues={formik.initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values) => console.log(values)}
-      render={({ errors, touched, ingredients }) => (
+      onSubmit={(values) => submitHandler(values)}
+      render={({ errors, touched }) => (
         <div className={classes.backdrop}>
           <Card className={classes.modal}>
             <Row className={`align-items-center ${classes['modal-top']}`}>
@@ -127,6 +117,7 @@ function CreateForm(props) {
                     </Col>
                   </Row>
                 </Col>
+
                 <Col sm={12} md={6} className={classes.form}>
                   <Row className={`${classes['row-height']}`}>
                     <div className='mb-3 align-items-center'>
@@ -140,6 +131,7 @@ function CreateForm(props) {
                           const { push, remove, form } = fieldArrayProps;
                           const { values, setFieldValue } = form;
                           const { ingredients } = values;
+
                           return (
                             <div>
                               <Field
@@ -178,6 +170,7 @@ function CreateForm(props) {
                     </div>
                   </Row>
                 </Col>
+
                 <Col>
                   <Button type='submit'>save</Button>
                 </Col>

@@ -8,8 +8,6 @@ function CreateContent(props) {
 
   const { modal, onCloseModal, onAddRecipe, setNewRecipe, mode } = props;
 
-  const [validated, setValidated] = useState(false);
-
   const [ingredientList, setIngredientList] = useState([]);
 
   const [recipe, setRecipe] = useState({
@@ -46,56 +44,60 @@ function CreateContent(props) {
 
   const closeHandler = () => {
     onCloseModal();
-    setValidated(false);
-    setIngredientList([]);
+    // setValidated(false);
+    // setIngredientList([]);
   };
 
-  const onAddIngredient = (event) => {
-    const value = event.target.value;
-    setIngredientList((prevList) => {
-      return [...prevList, value];
-    });
-  };
+  // const onAddIngredient = (event) => {
+  //   const value = event.target.value;
+  //   setIngredientList((prevList) => {
+  //     return [...prevList, value];
+  //   });
+  // };
 
-  const enterKeyPressHandler = (event) => {
-    console.log(event);
-    // if (event.target.value.trim().length !== 0) {
-    event.preventDefault();
-    const id = createId();
-    onAddIngredient(event, id);
+  // const enterKeyPressHandler = (event) => {
+  // console.log(event);
+  // if (event.target.value.trim().length !== 0) {
+  // event.preventDefault();
+  // const id = createId();
+  // onAddIngredient(event, id);
+  // }
+  // };
+
+  const addRecipeHandler = (values) => {
+    // const { _title, _cookingTime, _servings, _ingredients } = values;
+    const _id = createId();
+    setIngredientList(values.modeingredients);
+    onAddRecipe(values, (values.id = _id));
+    onCloseModal();
+
+    // {
+    //   id: _id,
+    //   title: _title,
+    //   cookingTime: _cookingTime,
+    //   servings: _servings,
+    //   // ingredients: _ingredients,
+    // });
+    // setIngredientList([]);
+
+    // onAddRecipe(recipe, (recipe.id = id));
+    // event.preventDefault();
+    // const form = event.currentTarget;
+
+    // if (form.checkValidity() === false) {
+    // event.preventDefault();
+    // event.stopPropagation();
+    // setValidated(true);
+    // } else {
+    console.log('VALUEW', recipe);
+    // onAddRecipe(recipe, (recipe.id = id));
+    // setIngredientList([]);
+    // onCloseModal();
     // }
-  };
-
-  const addRecipeHandler = (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-      setValidated(true);
-    } else {
-      const id = createId();
-      onAddRecipe(recipe, (recipe.id = id));
-      setIngredientList([]);
-      onCloseModal();
-      console.log(recipe);
-    }
   };
 
   return (
     <div>
-      {/* <FormModal
-        onClose={onCloseModal}
-        mode={mode}
-        submitHandler={onAddRecipe}
-        // changeHandler={changeHandler}
-        // enterHandler={enterKeyPressHandler}
-        // deleteHandler={deleteHandler}
-        // onAddIngredient={onAddIngredient}
-        // listOfIngredient={ingredientList}
-        // isValid={validated}
-      /> */}
       {modal && (
         <CreateForm
           onClose={closeHandler}
@@ -103,10 +105,10 @@ function CreateContent(props) {
           submitHandler={addRecipeHandler}
           // isValid={validated}
           // changeHandler={changeHandler}
-          enterHandler={enterKeyPressHandler}
-          deleteHandler={deleteIngredientHandler}
+          // enterHandler={enterKeyPressHandler}
+          // deleteHandler={deleteIngredientHandler}
           // onAddIngredient={onAddIngredient}
-          listOfIngredient={ingredientList}
+          // listOfIngredient={ingredientList}
           // isValid={validated}
         />
       )}
