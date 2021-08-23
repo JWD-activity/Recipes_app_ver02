@@ -6,20 +6,18 @@
 .li {
   padding: 1rem 0rem 1rem 1.5rem;
   margin: 0.5rem 0;
-  background-color: #fff;
+  background-color: #f5f7ec;
+  font-weight: 500;
   font-size: 1.5rem;
+  letter-spacing: 0.05rem;
   transition: all 0.3s;
   cursor: pointer;
 }
 
 .li:hover,
 .li.active {
-  background-color: rgb(235, 125, 92);
-  /* background-color: #f77b41; */
+  background-color: #318161;
   color: #fff;
-  font-weight: 500;
-  font-size: 1.7rem;
-  letter-spacing: 0.05rem;
 }
 
 .icon {

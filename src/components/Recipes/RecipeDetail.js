@@ -18,12 +18,12 @@ function RecipeDetail(props) {
     return recipe ? (
       <ul key={recipe.id} className={`row ${classes.ul}`}>
         <li>{recipe.title}</li>
-        <li className={'col'}>
-          <i className='far fa-clock'></i>
+        <li className={'col-md-4 col-sm-3'}>
+          <i className='far fa-clock me-2'></i>
           {calcCookingTime(+recipe.cookingTime)}
         </li>
-        <li className={'col'}>
-          <i className='fas fa-user-friends'></i>
+        <li className={'col-md-4 col-sm-3'}>
+          <i className='fas fa-user-friends me-2'></i>
           {recipe.servings} servings
         </li>
         <li>Ingredients:</li>
