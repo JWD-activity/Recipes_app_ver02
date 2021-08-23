@@ -61,6 +61,7 @@ function FormModal(props) {
             title: '',
             cookingTime: '',
             servings: '',
+            ingredient: '',
             ingredients: [],
           }
         : mode === 'update'
