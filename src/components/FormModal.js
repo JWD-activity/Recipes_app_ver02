@@ -17,7 +17,10 @@ let validationSchema = Yup.object().shape({
     .required('Required')
     .positive('Invalid Servings')
     .integer(),
-  ingredients: Yup.array().of(Yup.string()).min(1),
+  ingredients: Yup.array()
+    .of(Yup.string())
+    .required('Must have ingredients')
+    .min(2, 'Minimum of 2 ingredients'),
 });
 
 function FormModal(props) {
@@ -187,14 +190,15 @@ function FormModal(props) {
                                     event.key === 'Enter' &&
                                     event.target.value.trim().length !== 0
                                   ) {
+                                    event.preventDefault();
                                     push(event.target.value);
                                     setFieldValue('ingredient', '');
                                   }
                                 }}
                               />
-                              {errors.ingredient && touched.ingredient ? (
+                              {errors.ingredients && touched.ingredients ? (
                                 <div className={classes.error}>
-                                  {errors.ingredient}
+                                  {errors.ingredients}
                                 </div>
                               ) : null}
                               <ul className={classes.ul}>
