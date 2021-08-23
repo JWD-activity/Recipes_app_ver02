@@ -93,7 +93,9 @@ function FormModal(props) {
               </Col>
               <Col xs={12} sm={9}>
                 <header className={classes['modal-header']}>
-                  <h3>111111Add a new recipe</h3>
+                  <h3>
+                    {mode === 'create' ? 'Add a new recipe' : 'Update a recipe'}
+                  </h3>
                 </header>
               </Col>
             </Row>

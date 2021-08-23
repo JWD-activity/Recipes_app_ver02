@@ -5,6 +5,7 @@ function UpdateContent(props) {
   console.log('UpdateContent render');
   const {
     mode,
+    modal,
     onCloseModal,
     recipeList,
     onUpdate,
@@ -12,18 +13,18 @@ function UpdateContent(props) {
     readRecipe,
   } = props;
 
-  console.log('updaterecip: ');
-
   return (
     <>
-      <FormModal
-        mode={mode}
-        onClose={onCloseModal}
-        onUpdate={onUpdate}
-        recipeList={recipeList}
-        selectedRecipeId={selectedRecipeId}
-        readRecipe={readRecipe}
-      />
+      {modal && (
+        <FormModal
+          mode={mode}
+          onClose={onCloseModal}
+          onUpdate={onUpdate}
+          recipeList={recipeList}
+          selectedRecipeId={selectedRecipeId}
+          readRecipe={readRecipe}
+        />
+      )}
     </>
   );
 }

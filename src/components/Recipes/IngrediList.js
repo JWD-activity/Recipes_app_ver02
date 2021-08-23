@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './IngrediList.module.css';
 
 function IngrediList(props) {
   let list = props.listOfIngredient;

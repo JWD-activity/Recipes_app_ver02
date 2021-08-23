@@ -10,7 +10,6 @@ import CreateContent from './pages/CreateContent';
 
 function App() {
   console.log('App render');
-  const [mode, setMode] = useState('read');
   const [recipeList, setRecipeList] = useState([
     {
       id: '59d0208e-0490',
@@ -50,27 +49,21 @@ function App() {
     },
   ]);
 
-  const [ingredients, setIngredients] = useState([]);
-
-  const [newRecipe, setNewRecipe] = useState({
-    id: '',
-    title: '',
-    cookingTime: '',
-    servings: 1,
-    ingredients: ingredients,
-  });
-
+  const [mode, setMode] = useState('read');
   const [showModal, setShowModal] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
 
+  // Add a new recipe handler
   const addNewRecipeHandler = (recipe) => {
-    console.log('new:', recipe);
+    console.log('New recipe was added:', recipe);
+
     setRecipeList((prevRecipeList) => {
       return [recipe, ...prevRecipeList];
     });
     setSelectedRecipeId(recipe.id);
   };
 
+  // Delete a selected recipe handler
   const deleteRecipeHanlder = () => {
     if (
       window.confirm(
@@ -78,61 +71,70 @@ function App() {
       )
     ) {
       var recipes = [...recipeList];
+
+      // Find selected recipe id then delete it from array
       const index = recipes.find((recipe, index) => {
         if (recipe.id === selectedRecipeId) return index;
       });
       recipes.splice(index, 1);
+
+      // Save remaining recipes
       setRecipeList(recipes);
+
+      // Reset mode and selectedRecipeId
       setMode('read');
       setSelectedRecipeId(0);
       alert('The recipe has been deleted successfully!');
     }
   };
 
+  // Updated recipe handler
   const updateRecipeHandler = (recipe) => {
     setRecipeList(recipe);
     setMode('read');
-    // const updatedRecipe = readRecipe(selectedRecipeId);
-    // console.log('after', updatedRecipe);
   };
 
+  // Close modal handler
   const closeModalHanlder = () => {
     setMode('read');
     setShowModal(false);
   };
 
-  const modalOpenHandler = () => {
+  // (Add a new recipe) modal open handler
+  const createModalOpenHandler = () => {
     setMode('create');
     setShowModal(true);
   };
 
+  // (Update seleted recipe) modal open handler
   const updateModalOpenHandler = () => {
     setMode('update');
     setShowModal(true);
   };
 
+  // Render detail of selected recipe
   const readRecipe = (id) => {
-    console.log('read:', id);
     const getRecipe = recipeList.filter((recipe) => {
       if (recipe.id === id) return recipe;
     });
     return getRecipe;
   };
 
+  // Recipe selecte handler (When recipe is clicked from list)
   const recipClickHandler = (id) => {
     setSelectedRecipeId(id);
   };
 
   return (
     <div className='app container'>
-      <Header onClick={modalOpenHandler} />
+      <Header onClick={createModalOpenHandler} />
       {mode === 'welcome' ? (
         <Welcome />
       ) : mode === 'read' ? (
         <ReadContent
           recipeList={recipeList}
-          onRecipeClick={recipClickHandler}
           selectedRecipeId={selectedRecipeId}
+          onRecipeClick={recipClickHandler}
           readRecipe={readRecipe}
         />
       ) : mode === 'create' ? (
@@ -141,17 +143,15 @@ function App() {
           modal={showModal}
           onCloseModal={closeModalHanlder}
           onAddRecipe={addNewRecipeHandler}
-          setNewRecipe={setNewRecipe}
         />
       ) : mode === 'update' ? (
         <UpdateContent
           mode={mode}
           modal={showModal}
-          onCloseModal={closeModalHanlder}
-          ingredients={ingredients}
           recipeList={recipeList}
-          onUpdate={updateRecipeHandler}
           selectedRecipeId={selectedRecipeId}
+          onCloseModal={closeModalHanlder}
+          onUpdate={updateRecipeHandler}
           readRecipe={readRecipe}
         />
       ) : mode === 'delete' ? (
