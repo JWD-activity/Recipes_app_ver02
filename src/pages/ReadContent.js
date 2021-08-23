@@ -31,7 +31,11 @@ function ReadContent(props) {
         />
       </div>
       <div className='recipe col-sm-12 col-md-6 col-lg-7'>
-        {selectedRecipeId ? <RecipeDetail recipe={recipe} /> : 'hi'}
+        {selectedRecipeId ? (
+          <RecipeDetail recipe={recipe} />
+        ) : (
+          <p className={className}>Select a recipe to check the details.</p>
+        )}
       </div>
     </main>
   );

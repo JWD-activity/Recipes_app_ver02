@@ -95,7 +95,6 @@ function App() {
         if (recipe.id === selectedRecipeId) getIndex = index;
         return getIndex;
       });
-
       recipes.splice(index, 1);
 
       // Save remaining recipes

@@ -32,7 +32,7 @@ function RecipeDetail(props) {
         </ul>
       </ul>
     ) : (
-      <p className={classes.p}>Click on the recipe to see the details.</p>
+      ''
     );
   };
 
