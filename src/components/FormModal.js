@@ -32,7 +32,7 @@ function FormModal(props) {
   } = props;
   const data = selectedRecipeId && readRecipe(selectedRecipeId);
   const [recipe] = data ?? '';
-  const { id, title, cookingTime, servings, ingredients } = recipe ?? '';
+  const { title, cookingTime, servings, ingredients } = recipe ?? '';
 
   const updateHandler = (values) => {
     const { title, cookingTime, servings, ingredients } = values;

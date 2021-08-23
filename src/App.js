@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './UI/Header';
 import Footer from './UI/Footer';
@@ -7,6 +7,8 @@ import Welcome from './pages/WelcomeContent';
 import ReadContent from './pages/ReadContent';
 import UpdateContent from './pages/UpdateContent';
 import CreateContent from './pages/CreateContent';
+
+console.log('First App render');
 
 function App() {
   console.log('App render');
@@ -53,10 +55,22 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
 
+  // Load recipes from local storage
+  useEffect(() => {
+    if (localStorage.getItem('recipes') !== null) {
+      const recipes = localStorage.getItem('recipes');
+      setRecipeList(JSON.parse(recipes));
+    }
+  }, []);
+
+  // Save recipes to local storage
+  useEffect(() => {
+    localStorage.setItem('recipes', JSON.stringify(recipeList));
+  }, [recipeList]);
+
   // Add a new recipe handler
   const addNewRecipeHandler = (recipe) => {
     console.log('New recipe was added:', recipe);
-
     setRecipeList((prevRecipeList) => {
       return [recipe, ...prevRecipeList];
     });
@@ -74,8 +88,11 @@ function App() {
 
       // Find selected recipe id then delete it from array
       const index = recipes.find((recipe, index) => {
-        if (recipe.id === selectedRecipeId) return index;
+        var getIndex;
+        if (recipe.id === selectedRecipeId) getIndex = index;
+        return getIndex;
       });
+
       recipes.splice(index, 1);
 
       // Save remaining recipes
@@ -115,7 +132,9 @@ function App() {
   // Render detail of selected recipe
   const readRecipe = (id) => {
     const getRecipe = recipeList.filter((recipe) => {
-      if (recipe.id === id) return recipe;
+      var findRecipe;
+      if (recipe.id === id) findRecipe = recipe;
+      return findRecipe;
     });
     return getRecipe;
   };
@@ -131,12 +150,14 @@ function App() {
       {mode === 'welcome' ? (
         <Welcome />
       ) : mode === 'read' ? (
-        <ReadContent
-          recipeList={recipeList}
-          selectedRecipeId={selectedRecipeId}
-          onRecipeClick={recipClickHandler}
-          readRecipe={readRecipe}
-        />
+        <>
+          <ReadContent
+            recipeList={recipeList}
+            selectedRecipeId={selectedRecipeId}
+            onRecipeClick={recipClickHandler}
+            readRecipe={readRecipe}
+          />
+        </>
       ) : mode === 'create' ? (
         <CreateContent
           mode={mode}
