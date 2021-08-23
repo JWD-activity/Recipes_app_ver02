@@ -18,7 +18,7 @@ let validationSchema = Yup.object().shape({
     .positive('Invalid Servings')
     .integer(),
   ingredient: Yup.string(),
-  ingredients: Yup.array().of(Yup.string()),
+  ingredients: Yup.array().of(Yup.string()).min(1),
 });
 
 function CreateForm(props) {
@@ -38,7 +38,7 @@ function CreateForm(props) {
       cookingTime: '',
       servings: '',
       ingredient: '',
-      ingredients: [''],
+      ingredients: [],
     },
     onSubmit: (values) => {
       console.log(JSON.stringify(values, null, 2));
@@ -50,7 +50,7 @@ function CreateForm(props) {
       initialValues={formik.initialValues}
       validationSchema={validationSchema}
       onSubmit={(values) => console.log(values)}
-      render={({ errors, touched, resetForm }) => (
+      render={({ errors, touched, ingredients }) => (
         <div className={classes.backdrop}>
           <Card className={classes.modal}>
             <Row className={`align-items-center ${classes['modal-top']}`}>
@@ -133,30 +133,15 @@ function CreateForm(props) {
                       <label htmlFor='ingredients' className='form-label'>
                         Ingredients
                       </label>
-                      <Field
-                        type='text'
-                        id='ingredient'
-                        name='ingredient'
-                        className={`form-control ${classes.form}`}
-                        placeholder='Enter your ingredient'
-                        // onChange={props.changeHandler}
-                        onKeyDown={(event) => {
-                          if (event.key === 'Enter') {
-                            enterHandler(event);
-                            resetForm();
-                          }
-                        }}
-                      />
-                      {/* <FieldArray name='ingredients'>
+
+                      <FieldArray name='ingredients'>
                         {(fieldArrayProps) => {
                           console.log('fieldArrayProps', fieldArrayProps);
-                          const { push, remove, form, resetForm } =
-                            fieldArrayProps;
-                          const { values } = form;
+                          const { push, remove, form } = fieldArrayProps;
+                          const { values, setFieldValue } = form;
                           const { ingredients } = values;
                           return (
                             <div>
-                              {console.log(values)}
                               <Field
                                 type='text'
                                 id='ingredient'
@@ -164,37 +149,48 @@ function CreateForm(props) {
                                 className={`form-control ${classes.form}`}
                                 placeholder='Enter your ingredient'
                                 onKeyDown={(event) => {
-                                  if (event.key === 'Enter') {
+                                  if (
+                                    event.key === 'Enter' &&
+                                    event.target.value.trim().length !== 0
+                                  ) {
                                     push(event.target.value);
+                                    setFieldValue('ingredient', '');
                                   }
                                 }}
                                 // onChange={props.changeHandler}
                                 // onKeyDown={enterHandler}
                               />
+                              {errors.ingredient && touched.ingredient ? (
+                                <div className={classes.error}>
+                                  {errors.ingredient}
+                                </div>
+                              ) : null}
                               <ul>
-                                {/* {ingredients.map((ingredient, index) => (
+                                {/* {console.log(ingredients.length)} */}
+                                {ingredients.map((ingredient, index) => (
                                   <li key={index}>{ingredient}</li>
-                                ))} */}
-                      {/* <IngrediList
+                                ))}
+                              </ul>
+                              {/* <IngrediList
                                   listOfIngredient={ingredients}
                                   icon={'fas fa-times'}
                                   deleteHandler={deleteHandler}
                                   className={classes.li}
-                                /> */}
-                      {/* </ul> */}
+                                />
+                            
 
-                      <ul className={`${classes.ul} mx-1`}>
+                              {/* <ul className={`${classes.ul} mx-1`}>
                         <IngrediList
                           listOfIngredient={listOfIngredient}
                           icon={'fas fa-times'}
                           deleteHandler={deleteHandler}
                           className={classes.li}
                         />
-                      </ul>
-                      {/* </div>
+                      </ul> */}
+                            </div>
                           );
-                        }} */}
-                      {/* </FieldArray>  */}
+                        }}
+                      </FieldArray>
                     </div>
 
                     {/* <ul className={`${classes.ul} mx-1`}>

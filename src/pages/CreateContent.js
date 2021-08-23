@@ -5,6 +5,7 @@ import CreateForm from '../components/CreateForm';
 
 function CreateContent(props) {
   console.log('CreateContent render');
+
   const { modal, onCloseModal, onAddRecipe, setNewRecipe, mode } = props;
 
   const [validated, setValidated] = useState(false);
@@ -58,11 +59,11 @@ function CreateContent(props) {
 
   const enterKeyPressHandler = (event) => {
     console.log(event);
-    if (event.target.value.trim().length !== 0) {
-      event.preventDefault();
-      const id = createId();
-      onAddIngredient(event, id);
-    }
+    // if (event.target.value.trim().length !== 0) {
+    event.preventDefault();
+    const id = createId();
+    onAddIngredient(event, id);
+    // }
   };
 
   const addRecipeHandler = (event) => {
