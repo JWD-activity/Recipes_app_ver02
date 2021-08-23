@@ -51,7 +51,7 @@ function App() {
     },
   ]);
 
-  const [mode, setMode] = useState('read');
+  const [mode, setMode] = useState('welcome');
   const [showModal, setShowModal] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
 
@@ -60,12 +60,15 @@ function App() {
     if (localStorage.getItem('recipes') !== null) {
       const recipes = localStorage.getItem('recipes');
       setRecipeList(JSON.parse(recipes));
+      recipeList.length > 0 ? setMode('read') : setMode('welcome');
     }
   }, []);
 
   // Save recipes to local storage
   useEffect(() => {
     localStorage.setItem('recipes', JSON.stringify(recipeList));
+    console.log('LOG', recipeList.length);
+    recipeList.length > 0 ? setMode('read') : setMode('welcome');
   }, [recipeList]);
 
   // Add a new recipe handler
@@ -99,7 +102,7 @@ function App() {
       setRecipeList(recipes);
 
       // Reset mode and selectedRecipeId
-      setMode('read');
+      recipeList.length > 0 ? setMode('read') : setMode('welcome');
       setSelectedRecipeId(0);
       alert('The recipe has been deleted successfully!');
     }
@@ -113,7 +116,7 @@ function App() {
 
   // Close modal handler
   const closeModalHanlder = () => {
-    setMode('read');
+    recipeList.length > 0 ? setMode('read') : setMode('welcome');
     setShowModal(false);
   };
 
@@ -152,10 +155,12 @@ function App() {
       ) : mode === 'read' ? (
         <>
           <ReadContent
+            mode={mode}
             recipeList={recipeList}
             selectedRecipeId={selectedRecipeId}
             onRecipeClick={recipClickHandler}
             readRecipe={readRecipe}
+            className='readContent'
           />
         </>
       ) : mode === 'create' ? (
@@ -164,6 +169,7 @@ function App() {
           modal={showModal}
           onCloseModal={closeModalHanlder}
           onAddRecipe={addNewRecipeHandler}
+          setMode={setMode}
         />
       ) : mode === 'update' ? (
         <UpdateContent

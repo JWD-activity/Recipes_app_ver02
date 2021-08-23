@@ -5,12 +5,13 @@ import FormModal from '../components/FormModal';
 function CreateContent(props) {
   console.log('CreateContent render');
 
-  const { mode, modal, onCloseModal, onAddRecipe } = props;
+  const { mode, modal, onCloseModal, onAddRecipe, setMode } = props;
 
   const addRecipeHandler = (values) => {
     const _id = createId();
     onAddRecipe(values, (values.id = _id));
     onCloseModal();
+    setMode('read');
   };
 
   return (

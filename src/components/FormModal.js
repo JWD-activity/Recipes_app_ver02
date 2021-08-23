@@ -211,7 +211,7 @@ function FormModal(props) {
                                 <IngrediList
                                   listOfIngredient={ingredients}
                                   icon={'fas fa-times'}
-                                  deleteHandler={remove}
+                                  remove={remove}
                                   className={classes.li}
                                 />
                               </ul>

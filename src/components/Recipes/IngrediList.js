@@ -1,9 +1,10 @@
 import React from 'react';
 
 function IngrediList(props) {
-  let list = props.listOfIngredient;
-  const deleteHandler = (event) => {
-    props.deleteHandler(event.target.dataset.index);
+  const { listOfIngredient, remove } = props;
+  let list = listOfIngredient;
+  const onDelete = (event) => {
+    remove(event.target.dataset.index);
   };
   return (
     <>
@@ -13,7 +14,7 @@ function IngrediList(props) {
               key={index}
               data-index={index}
               className={`${props.className ?? ''}`}
-              onClick={deleteHandler}
+              onClick={onDelete}
             >
               {ingredient}
               {props.icon && <i data-index={index} className={props.icon} />}

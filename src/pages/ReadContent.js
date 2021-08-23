@@ -4,7 +4,14 @@ import RecipeDetail from '../components/Recipes/RecipeDetail';
 
 function ReadContent(props) {
   console.log('ReadContent render');
-  const { recipeList, onRecipeClick, selectedRecipeId, readRecipe } = props;
+  const {
+    recipeList,
+    onRecipeClick,
+    selectedRecipeId,
+    readRecipe,
+    className,
+    mode,
+  } = props;
 
   const data = readRecipe(selectedRecipeId);
   const [recipe] = data;
@@ -24,7 +31,7 @@ function ReadContent(props) {
         />
       </div>
       <div className='recipe col-sm-12 col-md-6 col-lg-7'>
-        <RecipeDetail recipe={recipe} />
+        {selectedRecipeId ? <RecipeDetail recipe={recipe} /> : 'hi'}
       </div>
     </main>
   );

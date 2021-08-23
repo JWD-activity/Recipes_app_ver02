@@ -1,10 +1,13 @@
 import React from 'react';
+import classes from './WelcomeContent.module.css';
 
-function WelcomeContent() {
+function WelcomeContent(props) {
   console.log('WelcomeContent render');
   return (
-    <div>
-      <h2>Welcome to COOKBOOK</h2>
+    <div className={classes.container}>
+      <div className={classes['h2-box']}>
+        <h2 className={classes.h2}>Welcome to COOKBOOK</h2>
+      </div>
     </div>
   );
 }
