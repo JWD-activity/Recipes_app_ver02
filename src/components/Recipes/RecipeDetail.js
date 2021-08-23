@@ -5,7 +5,6 @@ import IngrediList from '../Recipes/IngrediList';
 function RecipeDetail(props) {
   console.log('Recipe Detail render');
   const { recipe } = props;
-  console.log('detail after', recipe);
 
   const calcCookingTime = (time) => {
     if (time >= 60) {
@@ -20,7 +19,7 @@ function RecipeDetail(props) {
       <ul key={recipe.id} className={`row ${classes.ul}`}>
         <li>{recipe.title}</li>
         <li className={'col'}>
-          <i className='far fa-clock'></i>{' '}
+          <i className='far fa-clock'></i>
           {calcCookingTime(+recipe.cookingTime)}
         </li>
         <li className={'col'}>
