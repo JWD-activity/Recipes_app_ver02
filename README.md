@@ -15,6 +15,5 @@
 ## Description
 
 
-#### The challenging part
 
 
