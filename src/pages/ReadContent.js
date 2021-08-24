@@ -4,14 +4,8 @@ import RecipeDetail from '../components/Recipes/RecipeDetail';
 
 function ReadContent(props) {
   console.log('ReadContent render');
-  const {
-    recipeList,
-    onRecipeClick,
-    selectedRecipeId,
-    readRecipe,
-    className,
-    mode,
-  } = props;
+  const { recipeList, onRecipeClick, selectedRecipeId, readRecipe, className } =
+    props;
 
   const data = readRecipe(selectedRecipeId);
   const [recipe] = data;

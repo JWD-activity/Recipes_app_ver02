@@ -67,7 +67,6 @@ function App() {
   // Save recipes to local storage
   useEffect(() => {
     localStorage.setItem('recipes', JSON.stringify(recipeList));
-    console.log('LOG', recipeList.length);
     recipeList.length > 0 ? setMode('read') : setMode('welcome');
   }, [recipeList]);
 
