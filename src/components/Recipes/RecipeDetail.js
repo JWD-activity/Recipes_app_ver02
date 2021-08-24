@@ -9,7 +9,7 @@ function RecipeDetail(props) {
     if (time >= 60) {
       let hours = Math.floor(time / 60);
       var min = time % 60;
-      return hours + 'hr ' + min + 'mins';
+      return min > 0 ? hours + 'hr ' + min + 'mins' : hours + 'hr ';
     } else return time + 'mins';
   };
 
