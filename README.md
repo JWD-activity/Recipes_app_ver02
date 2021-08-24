@@ -13,7 +13,8 @@
   - **gh-pages**  https://www.npmjs.com/package/gh-pages
 
 ## Description
-
-
+#### Project Purpose
+The purpose of this app is to make it easier for users to manage recipes.
+In particular, this application allows users to save information about recipe name, serving, cooking time, and ingredients. Users can update and delete recipes whenever necessary. In addition, all recipes that you manage are stored in the browser's local storage, so the data remains intact after the browser window closes.
 
 
