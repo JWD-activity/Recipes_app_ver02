@@ -3,12 +3,14 @@ import Button from '../components/Button';
 import classes from './Footer.module.css';
 
 export default function Footer(props) {
-  const { onUpdate, setMode, selectedRecipeId } = props;
+  const { onUpdate, setMode, selectedRecipeId, onDelete } = props;
 
   console.log('footer render');
   const deleteClickHandler = () => {
     setMode('delete');
+    onDelete();
   };
+
   return (
     <footer className={`row ${classes.footer}`}>
       <div className='col-sm-12 col-md-6 col-lg-5'></div>

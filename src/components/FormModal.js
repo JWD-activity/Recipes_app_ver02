@@ -184,7 +184,7 @@ function FormModal(props) {
                   </Col>
 
                   <Col sm={12} md={6} className={classes.form}>
-                    <Row className={`${classes['row-height']}`}>
+                    <Row>
                       <div className='mb-3 align-items-center'>
                         <label
                           htmlFor='ingredients'
@@ -239,7 +239,7 @@ function FormModal(props) {
                     </Row>
                   </Col>
 
-                  <Col>
+                  <Col className='my-2'>
                     <Button type='submit'>save</Button>
                   </Col>
                 </Row>

@@ -4,13 +4,12 @@ import RecipeDetail from '../components/Recipes/RecipeDetail';
 
 function ReadContent(props) {
   console.log('ReadContent render');
-  const { recipeList, onRecipeClick, selectedRecipeId, readRecipe, className } =
-    props;
+  const { recipeList, onRecipeClick, selectedRecipeId, readRecipe } = props;
 
   const data = readRecipe(selectedRecipeId);
   const [recipe] = data;
   //recipe is single recipeobject
-  // console.log('RECIPE', recipe);
+
   const recipeClickHandler = (event) => {
     onRecipeClick(event.target.dataset.id);
   };
@@ -25,11 +24,7 @@ function ReadContent(props) {
         />
       </div>
       <section className='recipe col-sm-12 col-md-6 col-lg-7'>
-        {selectedRecipeId ? (
-          <RecipeDetail recipe={recipe} />
-        ) : (
-          <p className={className}>Select a recipe to check the details.</p>
-        )}
+        <RecipeDetail recipe={recipe} />
       </section>
     </main>
   );

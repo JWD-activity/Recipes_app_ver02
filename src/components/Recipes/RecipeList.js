@@ -6,6 +6,10 @@ function RecipeList(props) {
   const { onClick, recipeList, isActive } = props;
   return (
     <ul className={classes.ul}>
+      <p className={classes.p}>
+        <i className='fas fa-arrow-circle-down me-2' />
+        Select a recipe to check the details.
+      </p>
       {recipeList.map((recipe) => (
         <li
           key={recipe.id}

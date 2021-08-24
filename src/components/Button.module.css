@@ -7,7 +7,6 @@
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   cursor: pointer;
-  margin-left: 1rem;
 }
 
 .icon {
@@ -22,12 +21,12 @@
 
 .fill:hover {
   background-color: #318161;
+  color: #fff;
 }
 
 @media screen and (max-width: 576px) {
   button {
     padding: 0.5rem 1rem;
-    margin-left: 0.5rem;
   }
 
   .icon {

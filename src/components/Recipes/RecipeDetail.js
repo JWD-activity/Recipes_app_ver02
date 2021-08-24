@@ -5,7 +5,6 @@ import IngrediList from '../Recipes/IngrediList';
 function RecipeDetail(props) {
   console.log('Recipe Detail render');
   const { recipe } = props;
-
   const calcCookingTime = (time) => {
     if (time >= 60) {
       let hours = Math.floor(time / 60);

@@ -53,10 +53,6 @@
   /* overflow-y: scroll; */
 }
 
-.row-height {
-  min-height: 25rem;
-}
-
 .error {
   color: #dc3545;
 }

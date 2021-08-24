@@ -11,12 +11,6 @@
   position: relative;
 }
 
-.readContent {
-  text-align: center;
-  padding: 1rem;
-  font-size: 1.5rem;
-}
-
 @media screen and (max-width: 768px) {
   .app.container {
     margin: 2rem auto;

@@ -100,10 +100,10 @@ function App() {
       setRecipeList(recipes);
 
       // Reset mode and selectedRecipeId
-      recipeList.length > 0 ? setMode('read') : setMode('welcome');
       setSelectedRecipeId(0);
       alert('The recipe has been deleted successfully!');
     }
+    recipeList.length > 0 ? setMode('read') : setMode('welcome');
   };
 
   // Updated recipe handler
@@ -158,7 +158,6 @@ function App() {
             selectedRecipeId={selectedRecipeId}
             onRecipeClick={recipClickHandler}
             readRecipe={readRecipe}
-            className='readContent'
           />
         </>
       ) : mode === 'create' ? (
@@ -179,8 +178,6 @@ function App() {
           onUpdate={updateRecipeHandler}
           readRecipe={readRecipe}
         />
-      ) : mode === 'delete' ? (
-        deleteRecipeHanlder()
       ) : (
         ''
       )}
@@ -188,6 +185,7 @@ function App() {
         selectedRecipeId={selectedRecipeId}
         onUpdate={updateModalOpenHandler}
         setMode={setMode}
+        onDelete={deleteRecipeHanlder}
       />
     </div>
   );
