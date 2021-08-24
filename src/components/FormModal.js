@@ -9,7 +9,7 @@ import Card from './Card';
 import IngrediList from './Recipes/IngrediList';
 
 let validationSchema = Yup.object().shape({
-  title: Yup.string().required('Required').min(1),
+  title: Yup.string().trim().strict(true).required('Required').min(1),
   cookingTime: Yup.number()
     .required('Required')
     .positive('Invalid Cooking time')

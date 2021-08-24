@@ -9,8 +9,8 @@ function RecipeDetail(props) {
     if (time >= 60) {
       let hours = Math.floor(time / 60);
       var min = time % 60;
-      return min > 0 ? hours + 'hr ' + min + 'mins' : hours + 'hr ';
-    } else return time + 'mins';
+      return min > 0 ? hours + ' hr ' + min + ' mins' : hours + ' hr ';
+    } else return time + ' mins';
   };
 
   const renderDetailInfo = (recipe) => {
