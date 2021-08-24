@@ -62,7 +62,7 @@ function App() {
       setRecipeList(JSON.parse(recipes));
       recipeList.length > 0 ? setMode('read') : setMode('welcome');
     }
-  });
+  }, []);
 
   // Save recipes to local storage
   useEffect(() => {
