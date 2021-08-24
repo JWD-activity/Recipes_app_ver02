@@ -8,10 +8,6 @@ import Button from './Button';
 import Card from './Card';
 import IngrediList from './Recipes/IngrediList';
 
-const Backdrop = (props) => {
-  return <div className={props.className}></div>;
-};
-
 let validationSchema = Yup.object().shape({
   title: Yup.string().required('Required').min(1),
   cookingTime: Yup.number()
@@ -85,13 +81,14 @@ function FormModal(props) {
   return (
     <>
       {ReactDOM.createPortal(
-        <Backdrop className={classes.backdrop} />,
+        <div className={classes.backdrop}></div>,
         document.getElementById('backdrop-root')
       )}
       {ReactDOM.createPortal(
         <Formik
           initialValues={formik.initialValues}
           validationSchema={validationSchema}
+          onKeyDown={(event) => event.preventDefault()}
           onSubmit={(values) =>
             mode === 'create' ? submitHandler(values) : updateHandler(values)
           }
