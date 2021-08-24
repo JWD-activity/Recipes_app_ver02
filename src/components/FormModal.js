@@ -195,7 +195,7 @@ function FormModal(props) {
 
                         <FieldArray name='ingredients'>
                           {(fieldArrayProps) => {
-                            const { push, remove, form } = fieldArrayProps;
+                            const { unshift, remove, form } = fieldArrayProps;
                             const { values, setFieldValue } = form;
                             const { ingredients } = values;
 
@@ -213,7 +213,7 @@ function FormModal(props) {
                                       event.target.value.trim().length !== 0
                                     ) {
                                       event.preventDefault();
-                                      push(event.target.value);
+                                      unshift(event.target.value);
                                       setFieldValue('ingredient', '');
                                     }
                                   }}
