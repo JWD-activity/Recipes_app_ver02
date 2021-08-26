@@ -1,5 +1,5 @@
 import classes from './FormModal.module.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
 import { Formik, Form, Field, useFormik, FieldArray } from 'formik';
 import * as Yup from 'yup';
@@ -7,6 +7,10 @@ import { Row, Col } from 'react-bootstrap';
 import Button from './Button';
 import Card from './Card';
 import IngrediList from './Recipes/IngrediList';
+import { RecipesContext } from '../contexts/RecipesContext';
+import { SelectedIdContext } from '../contexts/SelectedIdContext';
+import { ModalContext } from '../contexts/ModalContext';
+import { v4 as createId } from 'uuid';
 
 let validationSchema = Yup.object().shape({
   title: Yup.string().trim().strict(true).required('Required').min(1),
@@ -24,35 +28,48 @@ let validationSchema = Yup.object().shape({
     .min(2, 'Minimum of 2 ingredients'),
 });
 
-function FormModal(props) {
-  const {
-    onClose,
-    submitHandler,
-    recipeList,
-    onUpdate,
-    selectedRecipeId,
-    readRecipe,
-    mode,
-  } = props;
-  const data = selectedRecipeId && readRecipe(selectedRecipeId);
-  const [recipe] = data ?? '';
-  const { title, cookingTime, servings, ingredients } = recipe ?? '';
+function FormModal({ mode, setMode }) {
+  const { recipeList, addRecipe, updateRecipe, readRecipe, activeRecipe } =
+    useContext(RecipesContext);
+  const { setSelectedId, selectedRecipeId } = useContext(SelectedIdContext);
+  const { setShowModal, closeModal } = useContext(ModalContext);
 
+  // For updating a recipe form
+  selectedRecipeId && readRecipe(selectedRecipeId);
+  const { id, title, cookingTime, servings, ingredients } = activeRecipe ?? '';
+
+  // When a new recipe is submitted
+  const addRecipeHandler = (recipe) => {
+    addRecipe(recipe, (recipe.id = createId()));
+    setSelectedId(recipe.id);
+    setMode('read');
+    closeModal();
+  };
+
+  // When modal close button is clicked
+  const closeHandler = () => {
+    setMode('read');
+    closeModal();
+  };
+
+  // When a updated recipe is submitted
   const updateHandler = (values) => {
-    const { title, cookingTime, servings, ingredients } = values;
-    const updatedRecipe = recipeList.map((recipe) =>
-      recipe.id === selectedRecipeId
-        ? {
-            id: recipe.id,
-            title: title,
-            cookingTime: cookingTime,
-            servings: servings,
-            ingredients: ingredients,
-          }
-        : recipe
-    );
-
-    onUpdate(updatedRecipe);
+    // const { title, cookingTime, servings, ingredients } = values;
+    // const updatedRecipe = recipeList.map((recipe) =>
+    //   recipe.id === selectedRecipeId
+    //     ? {
+    //         id: recipe.id,
+    //         title: title,
+    //         cookingTime: cookingTime,
+    //         servings: servings,
+    //         ingredients: ingredients,
+    //       }
+    //     : recipe
+    // );
+    console.log('UPDATE', values);
+    updateRecipe(values, selectedRecipeId);
+    setShowModal(false);
+    setMode('read');
   };
 
   const formik = useFormik({
@@ -77,7 +94,6 @@ function FormModal(props) {
       console.log(JSON.stringify(values, null, 2));
     },
   });
-
   return (
     <>
       {ReactDOM.createPortal(
@@ -90,7 +106,7 @@ function FormModal(props) {
           validationSchema={validationSchema}
           onKeyDown={(event) => event.preventDefault()}
           onSubmit={(values) =>
-            mode === 'create' ? submitHandler(values) : updateHandler(values)
+            mode === 'create' ? addRecipeHandler(values) : updateHandler(values)
           }
         >
           {({ errors, touched }) => (
@@ -100,7 +116,7 @@ function FormModal(props) {
                   <Button
                     icon='fas fa-times'
                     className={classes['modal-close']}
-                    onClick={onClose}
+                    onClick={closeHandler}
                   />
                 </Col>
                 <Col xs={12} sm={9}>
@@ -113,13 +129,12 @@ function FormModal(props) {
                   </header>
                 </Col>
               </Row>
-
               <Form>
                 <Row>
                   <Col sm={12} md={6} className={classes.form}>
                     <Row>
                       {mode === 'update' && (
-                        <input type='hidden' name='id' value={recipe.id} />
+                        <input type='hidden' name='id' value={id} />
                       )}
                       <Col className='mb-4'>
                         <label htmlFor='title' className='form-label fw-bold'>
@@ -136,7 +151,6 @@ function FormModal(props) {
                         ) : null}
                       </Col>
                     </Row>
-
                     <Row>
                       <Col xs={12} sm={6} className='mb-4'>
                         <label
@@ -182,7 +196,6 @@ function FormModal(props) {
                       </Col>
                     </Row>
                   </Col>
-
                   <Col sm={12} md={6} className={classes.form}>
                     <Row>
                       <div className='mb-3 align-items-center'>
@@ -192,13 +205,11 @@ function FormModal(props) {
                         >
                           Ingredients
                         </label>
-
                         <FieldArray name='ingredients'>
                           {(fieldArrayProps) => {
                             const { unshift, remove, form } = fieldArrayProps;
                             const { values, setFieldValue } = form;
                             const { ingredients } = values;
-
                             return (
                               <div>
                                 <Field
@@ -225,9 +236,9 @@ function FormModal(props) {
                                 ) : null}
                                 <ul className={`mt-4 ${classes.ul}`}>
                                   <IngrediList
-                                    listOfIngredient={ingredients}
                                     icon={'fas fa-times'}
                                     remove={remove}
+                                    ingredients={ingredients}
                                     className={classes.li}
                                   />
                                 </ul>
@@ -238,7 +249,6 @@ function FormModal(props) {
                       </div>
                     </Row>
                   </Col>
-
                   <Col className='my-2'>
                     <Button type='submit'>save</Button>
                   </Col>

@@ -1,8 +1,9 @@
 import React from 'react';
 import classes from './WelcomeContent.module.css';
 
-function WelcomeContent(props) {
+function WelcomeContent() {
   console.log('WelcomeContent render');
+
   return (
     <div className={classes.container}>
       <div className={classes['h2-box']}>

@@ -1,23 +1,25 @@
 import React from 'react';
 
 function IngrediList(props) {
-  const { listOfIngredient, remove } = props;
-  let list = listOfIngredient;
+  const { icon, remove, className, ingredients } = props;
+
+  // When Delete button is clicked on ingredient badge
   const onDelete = (event) => {
     remove(event.target.dataset.index);
   };
+
   return (
     <>
-      {list.length > 0
-        ? list.map((ingredient, index) => (
+      {ingredients.length > 0
+        ? ingredients.map((ingredient, index) => (
             <li
               key={index}
               data-index={index}
-              className={`${props.className ?? ''}`}
+              className={`${className ?? ''}`}
               onClick={onDelete}
             >
               {ingredient}
-              {props.icon && <i data-index={index} className={props.icon} />}
+              {icon && <i data-index={index} className={icon} />}
             </li>
           ))
         : ''}

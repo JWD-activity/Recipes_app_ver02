@@ -1,30 +1,12 @@
-import React from 'react';
-import { v4 as createId } from 'uuid';
+import React, { useContext } from 'react';
 import FormModal from '../components/FormModal';
+import { ModalContext } from '../contexts/ModalContext';
 
-function CreateContent(props) {
+const CreateContent = ({ mode, setMode }) => {
   console.log('CreateContent render');
+  const { showModal } = useContext(ModalContext);
 
-  const { mode, modal, onCloseModal, onAddRecipe, setMode } = props;
-
-  const addRecipeHandler = (values) => {
-    const _id = createId();
-    onAddRecipe(values, (values.id = _id));
-    onCloseModal();
-    setMode('read');
-  };
-
-  return (
-    <>
-      {modal && (
-        <FormModal
-          mode={mode}
-          onClose={onCloseModal}
-          submitHandler={addRecipeHandler}
-        />
-      )}
-    </>
-  );
-}
+  return <>{showModal && <FormModal mode={mode} setMode={setMode} />}</>;
+};
 
 export default CreateContent;

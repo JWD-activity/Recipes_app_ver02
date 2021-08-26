@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classes from './RecipeDetail.module.css';
-import IngrediList from '../Recipes/IngrediList';
+import { RecipesContext } from '../../contexts/RecipesContext';
 
-function RecipeDetail(props) {
+function RecipeDetail() {
   console.log('Recipe Detail render');
-  const { recipe } = props;
+  const { activeRecipe: recipe } = useContext(RecipesContext);
+
+  // Function to cooking time formatting
   const calcCookingTime = (time) => {
     if (time >= 60) {
       let hours = Math.floor(time / 60);
@@ -13,29 +15,33 @@ function RecipeDetail(props) {
     } else return time + ' mins';
   };
 
-  const renderDetailInfo = (recipe) => {
-    return recipe ? (
-      <ul key={recipe.id} className={`row ${classes.ul}`}>
-        <li>{recipe.title}</li>
-        <li className={'col-md-4 col-sm-3'}>
-          <i className='far fa-clock me-2'></i>
-          {calcCookingTime(+recipe.cookingTime)}
-        </li>
-        <li className={'col-md-4 col-sm-3'}>
-          <i className='fas fa-user-friends me-2'></i>
-          {recipe.servings} servings
-        </li>
-        <li>Ingredients:</li>
-        <ul className={classes.ingredients}>
-          {<IngrediList listOfIngredient={recipe.ingredients} />}
+  return (
+    <>
+      {recipe ? (
+        <ul key={recipe.id} className={`row ${classes.ul}`}>
+          <li>{recipe.title}</li>
+          <li className={'col-md-4 col-sm-3'}>
+            <i className='far fa-clock me-2'></i>
+            {calcCookingTime(+recipe.cookingTime)}
+          </li>
+          <li className={'col-md-4 col-sm-3'}>
+            <i className='fas fa-user-friends me-2'></i>
+            {recipe.servings} servings
+          </li>
+          <li>Ingredients:</li>
+          <ul className={classes.ingredients}>
+            {recipe.ingredients.map((ingredient, index) => (
+              <li key={index} data-index={index}>
+                {ingredient}
+              </li>
+            ))}
+          </ul>
         </ul>
-      </ul>
-    ) : (
-      ''
-    );
-  };
-
-  return <>{renderDetailInfo(recipe)}</>;
+      ) : (
+        ''
+      )}
+    </>
+  );
 }
 
 export default RecipeDetail;

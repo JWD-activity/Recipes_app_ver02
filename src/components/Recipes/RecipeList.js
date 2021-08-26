@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classes from './RecipeList.module.css';
+import { RecipesContext } from '../../contexts/RecipesContext';
+import { SelectedIdContext } from '../../contexts/SelectedIdContext';
 
-function RecipeList(props) {
+function RecipeList() {
   console.log('RecipeList render');
-  const { onClick, recipeList, isActive } = props;
+
+  const { recipeList, readRecipe, activeRecipe } = useContext(RecipesContext);
+  const { setSelectedId } = useContext(SelectedIdContext);
+
+  // When the list of recipes is clicked shows recipe details
+  const clickHandler = (event) => {
+    setSelectedId(event.target.dataset.id);
+    readRecipe(event.target.dataset.id);
+  };
+
   return (
     <ul className={classes.ul}>
       <p className={classes.p}>
@@ -14,10 +25,10 @@ function RecipeList(props) {
         <li
           key={recipe.id}
           data-id={recipe.id}
+          onClick={clickHandler}
           className={`${classes.li} text-capitalize ${
-            isActive.id === recipe.id ? classes.active : ''
+            activeRecipe && activeRecipe.id === recipe.id ? classes.active : ''
           }`}
-          onClick={onClick}
         >
           {recipe.title}
         </li>
