@@ -11,6 +11,8 @@ html {
 }
 
 body {
+  height: 100vh;
+  position: relative;
   background-image: linear-gradient(to right bottom, #edebbe, #cfdab6);
   background-size: cover;
   background-repeat: no-repeat;

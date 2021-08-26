@@ -7,7 +7,6 @@ function SelectedIdContextProvider(props) {
 
   const setSelectedId = (id) => {
     setSelectedRecipeId(id);
-    // console.log('YOU CLIKCED', id);
   };
 
   return (

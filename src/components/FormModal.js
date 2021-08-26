@@ -12,7 +12,7 @@ import { SelectedIdContext } from '../contexts/SelectedIdContext';
 import { ModalContext } from '../contexts/ModalContext';
 import { v4 as createId } from 'uuid';
 
-// Validation
+// Validation schema
 let validationSchema = Yup.object().shape({
   title: Yup.string().trim().strict(true).required('Required').min(1),
   cookingTime: Yup.number()
