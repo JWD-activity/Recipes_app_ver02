@@ -48,13 +48,11 @@ const RecipesContextProvider = (props) => {
   const readRecipe = (id) => {
     recipeList.filter((recipe) => {
       if (recipe.id === id) setActiveRecipe(recipe);
-      // console.log('ACTIVE', activeRecipe);
     });
   };
 
   // Add a new recipe handler
   const addRecipe = (recipe) => {
-    // console.log('New recipe was added:', recipe);
     setRecipeList((prevRecipeList) => {
       return [recipe, ...prevRecipeList];
     });
@@ -63,6 +61,7 @@ const RecipesContextProvider = (props) => {
   // Updated recipe handler
   const updateRecipe = (recipe, id) => {
     const { title, cookingTime, servings, ingredients } = recipe;
+    setActiveRecipe(recipe, (recipe.id = id));
 
     const updatedRecipe = recipeList.map((recipe) =>
       recipe.id === id
@@ -75,7 +74,6 @@ const RecipesContextProvider = (props) => {
           }
         : recipe
     );
-
     setRecipeList(updatedRecipe);
   };
 
@@ -93,6 +91,7 @@ const RecipesContextProvider = (props) => {
     setRecipeList(recipes);
     // Reset activeRecipe;
     setActiveRecipe();
+
     alert('The recipe has been deleted successfully!');
   };
 

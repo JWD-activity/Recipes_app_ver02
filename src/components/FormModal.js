@@ -12,6 +12,7 @@ import { SelectedIdContext } from '../contexts/SelectedIdContext';
 import { ModalContext } from '../contexts/ModalContext';
 import { v4 as createId } from 'uuid';
 
+// Validation
 let validationSchema = Yup.object().shape({
   title: Yup.string().trim().strict(true).required('Required').min(1),
   cookingTime: Yup.number()
@@ -29,14 +30,9 @@ let validationSchema = Yup.object().shape({
 });
 
 function FormModal({ mode, setMode }) {
-  const { recipeList, addRecipe, updateRecipe, readRecipe, activeRecipe } =
-    useContext(RecipesContext);
+  const { addRecipe, updateRecipe, activeRecipe } = useContext(RecipesContext);
   const { setSelectedId, selectedRecipeId } = useContext(SelectedIdContext);
   const { setShowModal, closeModal } = useContext(ModalContext);
-
-  // For updating a recipe form
-  selectedRecipeId && readRecipe(selectedRecipeId);
-  const { id, title, cookingTime, servings, ingredients } = activeRecipe ?? '';
 
   // When a new recipe is submitted
   const addRecipeHandler = (recipe) => {
@@ -53,24 +49,15 @@ function FormModal({ mode, setMode }) {
   };
 
   // When a updated recipe is submitted
-  const updateHandler = (values) => {
-    // const { title, cookingTime, servings, ingredients } = values;
-    // const updatedRecipe = recipeList.map((recipe) =>
-    //   recipe.id === selectedRecipeId
-    //     ? {
-    //         id: recipe.id,
-    //         title: title,
-    //         cookingTime: cookingTime,
-    //         servings: servings,
-    //         ingredients: ingredients,
-    //       }
-    //     : recipe
-    // );
-    console.log('UPDATE', values);
-    updateRecipe(values, selectedRecipeId);
-    setShowModal(false);
+  const updateHandler = (values, id) => {
+    updateRecipe(values, id);
     setMode('read');
+    setShowModal(false);
+    console.log(activeRecipe);
   };
+
+  // Getting values for updating form
+  var { id, title, cookingTime, servings, ingredients } = activeRecipe ?? '';
 
   const formik = useFormik({
     initialValues:
@@ -94,6 +81,7 @@ function FormModal({ mode, setMode }) {
       console.log(JSON.stringify(values, null, 2));
     },
   });
+
   return (
     <>
       {ReactDOM.createPortal(
@@ -106,7 +94,9 @@ function FormModal({ mode, setMode }) {
           validationSchema={validationSchema}
           onKeyDown={(event) => event.preventDefault()}
           onSubmit={(values) =>
-            mode === 'create' ? addRecipeHandler(values) : updateHandler(values)
+            mode === 'create'
+              ? addRecipeHandler(values)
+              : updateHandler(values, selectedRecipeId)
           }
         >
           {({ errors, touched }) => (
