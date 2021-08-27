@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './UI/Header';
-import Footer from './UI/Footer';
 
 import WelcomeContent from './pages/WelcomeContent';
 import ReadContent from './pages/ReadContent';
@@ -36,8 +35,6 @@ function App() {
             ) : (
               ''
             )}
-
-            <Footer setMode={setMode} />
           </SelectedIdContextProvider>
         </ModalContextProvider>
       </RecipesContextProvider>
