@@ -30,13 +30,8 @@ let validationSchema = Yup.object().shape({
 });
 
 function FormModal({ mode, setMode }) {
-  const {
-    addRecipe,
-    updateRecipe,
-    activeRecipe,
-    setActiveRecipe,
-    dispatchRecipeList,
-  } = useContext(RecipesContext);
+  const { activeRecipe, setActiveRecipe, dispatchRecipeList } =
+    useContext(RecipesContext);
   const { setSelectedId, selectedRecipeId } = useContext(SelectedIdContext);
   const { setShowModal, closeModal } = useContext(ModalContext);
 

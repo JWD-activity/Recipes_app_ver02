@@ -1,15 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import RecipeList from '../components/Recipes/RecipeList';
 import RecipeDetail from '../components/Recipes/RecipeDetail';
-import { RecipesContext } from '../contexts/RecipesContext';
 import Footer from '../UI/Footer';
 const ReadContent = ({ setMode }) => {
   console.log('ReadContent render');
-  const { recipeList } = useContext(RecipesContext);
-
-  useEffect(() => {
-    recipeList.length > 0 ? setMode('read') : setMode('welcome');
-  }, [recipeList]);
 
   return (
     <>

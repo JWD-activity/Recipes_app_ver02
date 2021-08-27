@@ -16,10 +16,14 @@ function recipeReducer(state, action) {
       ];
 
     case 'REMOVE_RECIPE':
-      const getIndex = state.find((recipe, index) => {
-        if (recipe.id === action.id) return index;
+      let foundIndex;
+      state.find((recipe, index) => {
+        if (recipe.id === action.id) {
+          foundIndex = index;
+        }
       });
-      state.splice(getIndex, 1);
+
+      state.splice(foundIndex, 1);
       return state;
 
     case 'UPDATE_RECIPE':
@@ -40,7 +44,7 @@ function recipeReducer(state, action) {
   }
 }
 
-const RecipesContextProvider = (props) => {
+const RecipesContextProvider = ({ setMode, children }) => {
   const [recipeList, dispatchRecipeList] = useReducer(recipeReducer, [], () => {
     const localData = localStorage.getItem('recipes');
     return localData
@@ -88,7 +92,7 @@ const RecipesContextProvider = (props) => {
   const [activeRecipe, setActiveRecipe] = useState();
 
   useEffect(() => {
-    recipeList.length > 0 ? props.setMode('read') : props.setMode('welcome');
+    settingMode(recipeList.length);
     localStorage.setItem('recipes', JSON.stringify(recipeList));
   }, [recipeList.length, recipeList]);
 
@@ -98,6 +102,10 @@ const RecipesContextProvider = (props) => {
       if (recipe.id === id) setActiveRecipe(recipe);
       return recipe;
     });
+  };
+
+  const settingMode = (recipeLength) => {
+    recipeLength > 0 ? setMode('read') : setMode('welcome');
   };
 
   return (
@@ -110,7 +118,7 @@ const RecipesContextProvider = (props) => {
         dispatchRecipeList,
       }}
     >
-      {props.children}
+      {children}
     </RecipesContext.Provider>
   );
 };
