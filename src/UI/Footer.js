@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Button from '../components/Button';
 import classes from './Footer.module.css';
 import { RecipesContext } from '../contexts/RecipesContext';
@@ -9,17 +9,18 @@ export default function Footer({ setMode }) {
   console.log('footer render');
   const { selectedRecipeId, setSelectedId } = useContext(SelectedIdContext);
   const { updateModalOpen } = useContext(ModalContext);
-  const { dispatchRecipeList, setActiveRecipe } = useContext(RecipesContext);
+  const { setActiveRecipe, dispatchRecipeList } = useContext(RecipesContext);
 
-  console.log('SELECTID:', selectedRecipeId);
-  // When delete button is clicked
   const deleteClickHandler = () => {
     if (
       window.confirm(
         'Are you sure want to delete the recipe? If you delete the recipe, you will permanently lose your selected recipe.'
       )
     ) {
-      dispatchRecipeList({ type: 'REMOVE_RECIPE', id: selectedRecipeId });
+      dispatchRecipeList({
+        type: 'REMOVE_RECIPE',
+        id: setSelectedId,
+      });
       setSelectedId(0);
       setActiveRecipe();
       alert('The recipe has been deleted successfully!');

@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className='app container'>
-      <RecipesContextProvider>
+      <RecipesContextProvider setMode={setMode}>
         <ModalContextProvider>
           <Header setMode={setMode} />
 
