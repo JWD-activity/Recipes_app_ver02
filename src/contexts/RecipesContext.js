@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 
 export const RecipesContext = createContext();
 
@@ -44,10 +44,15 @@ const RecipesContextProvider = (props) => {
 
   const [activeRecipe, setActiveRecipe] = useState();
 
+  useEffect(() => {
+    localStorage.setItem('recipes', JSON.stringify(recipeList));
+  }, [recipeList]);
+
   // Render detail of selected recipe
   const readRecipe = (id) => {
     recipeList.filter((recipe) => {
       if (recipe.id === id) setActiveRecipe(recipe);
+      return recipe;
     });
   };
 
@@ -83,7 +88,9 @@ const RecipesContextProvider = (props) => {
 
     // Find selected recipe id then delete it from array
     const index = recipes.find((recipe, index) => {
-      if (recipe.id === id) return index;
+      let find;
+      if (recipe.id === id) find = index;
+      return find;
     });
     recipes.splice(index, 1);
 
@@ -105,6 +112,7 @@ const RecipesContextProvider = (props) => {
         updateRecipe,
         deleteRecipe,
         setActiveRecipe,
+        setRecipeList,
       }}
     >
       {props.children}

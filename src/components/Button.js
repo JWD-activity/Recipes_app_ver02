@@ -4,6 +4,7 @@ import classes from './Button.module.css';
 function Button(props) {
   return (
     <button
+      type={props.type || ''}
       onClick={props.onClick}
       className={`${classes.button} ${classes.fill} ${props.className ?? ''}`}
     >

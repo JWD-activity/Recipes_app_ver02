@@ -1,8 +1,6 @@
 import React from 'react';
 
-function IngrediList(props) {
-  const { icon, remove, className, ingredients } = props;
-
+function IngrediList({ icon, remove, className, ingredients }) {
   // When Delete button is clicked on ingredient badge
   const onDelete = (event) => {
     remove(event.target.dataset.index);

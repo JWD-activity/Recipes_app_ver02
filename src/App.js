@@ -16,6 +16,7 @@ console.log('First App render');
 function App() {
   console.log('App render');
   const [mode, setMode] = useState('read');
+  // Load recipes from local storage
 
   return (
     <div className='app container'>

@@ -55,7 +55,6 @@ function FormModal({ mode, setMode }) {
     updateRecipe(values, id);
     setMode('read');
     setShowModal(false);
-    console.log(activeRecipe);
   };
 
   // Getting values for updating form
