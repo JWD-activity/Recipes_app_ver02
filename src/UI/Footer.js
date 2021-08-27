@@ -9,8 +9,9 @@ export default function Footer({ setMode }) {
   console.log('footer render');
   const { selectedRecipeId, setSelectedId } = useContext(SelectedIdContext);
   const { updateModalOpen } = useContext(ModalContext);
-  const { deleteRecipe } = useContext(RecipesContext);
+  const { dispatchRecipeList, setActiveRecipe } = useContext(RecipesContext);
 
+  console.log('SELECTID:', selectedRecipeId);
   // When delete button is clicked
   const deleteClickHandler = () => {
     if (
@@ -18,8 +19,10 @@ export default function Footer({ setMode }) {
         'Are you sure want to delete the recipe? If you delete the recipe, you will permanently lose your selected recipe.'
       )
     ) {
-      deleteRecipe(selectedRecipeId);
+      dispatchRecipeList({ type: 'REMOVE_RECIPE', id: selectedRecipeId });
       setSelectedId(0);
+      setActiveRecipe();
+      alert('The recipe has been deleted successfully!');
     }
   };
 

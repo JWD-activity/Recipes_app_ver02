@@ -7,15 +7,15 @@ import { RecipesContext } from '../contexts/RecipesContext';
 
 function Header({ setMode }) {
   const { createModalOpen } = useContext(ModalContext);
-  const { setRecipeList } = useContext(RecipesContext);
+  const { dispatchRecipeList } = useContext(RecipesContext);
   const [smallButton, setSmallButton] = useState(true);
 
-  useEffect(() => {
-    if (localStorage.getItem('recipes') !== null) {
-      const recipes = localStorage.getItem('recipes');
-      setRecipeList(JSON.parse(recipes));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem('recipes') !== null) {
+  //     const recipes = localStorage.getItem('recipes');
+  //     dispatchRecipeList({ type: 'LODA_RECIPE', recipes: JSON.parse(recipes) });
+  //   }
+  // }, []);
 
   // When window size(width) is less than 576px show mobile version of button
   const showButton = () => {

@@ -1,9 +1,49 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, useReducer, createContext, useEffect } from 'react';
 
 export const RecipesContext = createContext();
+function recipeReducer(state, action) {
+  switch (action.type) {
+    case 'ADD_RECIPE':
+      return [
+        {
+          id: action.recipe.id,
+          title: action.recipe.title,
+          cookingTime: action.recipe.cookingTime,
+          servings: action.recipe.servings,
+          ingredients: action.recipe.ingredients,
+        },
+        ...state,
+      ];
+
+    case 'REMOVE_RECIPE':
+      const getIndex = state.find((recipe, index) => {
+        if (recipe.id === action.id) return index;
+      });
+      state.splice(getIndex, 1);
+      return state;
+
+    case 'UPDATE_RECIPE':
+      return state.map((recipe) =>
+        recipe.id === action.id
+          ? {
+              id: recipe.id,
+              title: action.updatedRecipe.title,
+              cookingTime: action.updatedRecipe.cookingTime,
+              servings: action.updatedRecipe.servings,
+              ingredients: action.updatedRecipe.ingredients,
+            }
+          : recipe
+      );
+
+    case 'LODA_RECIPE':
+      return [...action.recipes];
+    default:
+      return state;
+  }
+}
 
 const RecipesContextProvider = (props) => {
-  const [recipeList, setRecipeList] = useState([
+  const [recipeList, dispatchRecipeList] = useReducer(recipeReducer, [
     {
       id: '59d0208e-0490',
       title: 'Garlic and Green Olives Pasta',
@@ -56,63 +96,14 @@ const RecipesContextProvider = (props) => {
     });
   };
 
-  // Add a new recipe handler
-  const addRecipe = (recipe) => {
-    setRecipeList((prevRecipeList) => {
-      return [recipe, ...prevRecipeList];
-    });
-  };
-
-  // Updated recipe handler
-  const updateRecipe = (recipe, id) => {
-    const { title, cookingTime, servings, ingredients } = recipe;
-    setActiveRecipe(recipe, (recipe.id = id));
-
-    const updatedRecipe = recipeList.map((recipe) =>
-      recipe.id === id
-        ? {
-            id: recipe.id,
-            title: title,
-            cookingTime: cookingTime,
-            servings: servings,
-            ingredients: ingredients,
-          }
-        : recipe
-    );
-    setRecipeList(updatedRecipe);
-  };
-
-  // Delete a selected recipe handler
-  const deleteRecipe = (id) => {
-    var recipes = [...recipeList];
-
-    // Find selected recipe id then delete it from array
-    const index = recipes.find((recipe, index) => {
-      let find;
-      if (recipe.id === id) find = index;
-      return find;
-    });
-    recipes.splice(index, 1);
-
-    // Save remaining recipes
-    setRecipeList(recipes);
-    // Reset activeRecipe;
-    setActiveRecipe();
-
-    alert('The recipe has been deleted successfully!');
-  };
-
   return (
     <RecipesContext.Provider
       value={{
         recipeList,
         activeRecipe,
         readRecipe,
-        addRecipe,
-        updateRecipe,
-        deleteRecipe,
         setActiveRecipe,
-        setRecipeList,
+        dispatchRecipeList,
       }}
     >
       {props.children}
