@@ -19,7 +19,9 @@ function RecipeDetail() {
     <>
       {recipe ? (
         <ul key={recipe.id} className={`row ${classes.ul}`}>
-          <li>{recipe.title}</li>
+          <li>
+            <h2>{recipe.title}</h2>
+          </li>
           <li className={'col-md-4 col-sm-3'}>
             <i className='far fa-clock me-2'></i>
             {calcCookingTime(+recipe.cookingTime)}
