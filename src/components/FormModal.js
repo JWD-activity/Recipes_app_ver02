@@ -30,8 +30,13 @@ let validationSchema = Yup.object().shape({
 });
 
 function FormModal({ mode, setMode }) {
-  const { activeRecipe, setActiveRecipe, dispatchRecipeList } =
-    useContext(RecipesContext);
+  const {
+    activeRecipe,
+    setActiveRecipe,
+    dispatchRecipeList,
+    settingMode,
+    recipeList,
+  } = useContext(RecipesContext);
   const { setSelectedId, selectedRecipeId } = useContext(SelectedIdContext);
   const { setShowModal, closeModal } = useContext(ModalContext);
 
@@ -51,7 +56,8 @@ function FormModal({ mode, setMode }) {
 
   // When modal close button is clicked
   const closeHandler = () => {
-    setMode('read');
+    // setMode('read');
+    settingMode(recipeList.length);
     closeModal();
   };
 

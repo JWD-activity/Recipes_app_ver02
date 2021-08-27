@@ -116,6 +116,7 @@ const RecipesContextProvider = ({ setMode, children }) => {
         readRecipe,
         setActiveRecipe,
         dispatchRecipeList,
+        settingMode,
       }}
     >
       {children}

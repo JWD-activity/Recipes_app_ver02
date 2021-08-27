@@ -11,8 +11,8 @@ function RecipeDetail() {
     if (time >= 60) {
       let hours = Math.floor(time / 60);
       var min = time % 60;
-      return min > 0 ? hours + ' hr ' + min + ' mins' : hours + ' hr ';
-    } else return time + ' mins';
+      return min > 0 ? hours + 'hr ' + min + 'mins' : hours + 'hr ';
+    } else return time + 'mins';
   };
 
   return (
@@ -22,7 +22,7 @@ function RecipeDetail() {
           <li>
             <h2>{recipe.title}</h2>
           </li>
-          <li className={'col-md-4 col-sm-3'}>
+          <li className={'col-md-5 col-sm-3'}>
             <i className='far fa-clock me-2'></i>
             {calcCookingTime(+recipe.cookingTime)}
           </li>
