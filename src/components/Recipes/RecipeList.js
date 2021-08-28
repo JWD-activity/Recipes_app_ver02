@@ -2,12 +2,21 @@ import React, { useContext } from 'react';
 import classes from './RecipeList.module.css';
 import { RecipesContext } from '../../contexts/RecipesContext';
 import { SelectedIdContext } from '../../contexts/SelectedIdContext';
+import RecipeName from './RecipeName';
+
+import { RECIPE_PER_PAGE } from '../../utils/constants';
 
 // Rendering list of recipes
-function RecipeList() {
+function RecipeList({ page }) {
   console.log('RecipeList render');
   const { recipeList, readRecipe, activeRecipe } = useContext(RecipesContext);
   const { setSelectedId } = useContext(SelectedIdContext);
+  const startIndex = (page - 1) * RECIPE_PER_PAGE;
+
+  const selectedList = recipeList.slice(
+    startIndex,
+    startIndex + RECIPE_PER_PAGE
+  );
 
   // When the list of recipes is clicked shows recipe details
   const clickHandler = (event) => {
@@ -21,17 +30,13 @@ function RecipeList() {
         <i className='fas fa-arrow-circle-down me-2' />
         Select a recipe to check the details.
       </p>
-      {recipeList.map((recipe) => (
-        <li
+      {selectedList.map((recipe) => (
+        <RecipeName
           key={recipe.id}
-          data-id={recipe.id}
-          onClick={clickHandler}
-          className={`${classes.li} text-capitalize ${
-            activeRecipe && activeRecipe.id === recipe.id ? classes.active : ''
-          }`}
-        >
-          {recipe.title}
-        </li>
+          recipeId={recipe.id}
+          name={recipe.title}
+          clickHandler={clickHandler}
+        />
       ))}
     </ul>
   );

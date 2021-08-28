@@ -1,0 +1,18 @@
+.li {
+  padding: 1rem 1.5rem;
+  margin: 0.5rem 0;
+  background-color: #eff1e0;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 1.5rem;
+  letter-spacing: 0.05rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.li:hover,
+.li.active {
+  border-radius: 0.5rem;
+  background-color: #318161;
+  color: #fff;
+}
