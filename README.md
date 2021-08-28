@@ -18,13 +18,13 @@ The purpose of this app is to make it easier for users to manage recipes.
 In particular, this application allows users to save information about recipe name, serving, cooking time, and ingredients. Users can update and delete recipes whenever necessary. In addition, all recipes that you manage are stored in the browser's local storage, so the data remains intact after the browser window closes.
 
 
-## Things I learned and applied
+## Things I applied
 -  JavaScript Array Methods: filter, find, map
 - React
   - Styled-components
   - Props and Events: Passing data and functions between components
   - Conditional Rendering of Components
-  - Hooks: useState, useEffect
+  - Hooks: useState, useEffect, useReducer,useContext
 
 #### The challenging part
 #### My soultion
