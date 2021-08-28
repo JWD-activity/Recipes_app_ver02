@@ -1,11 +1,11 @@
 import React from 'react';
 
+// Rendering ingredient badge
 function IngrediList({ icon, remove, className, ingredients }) {
   // When Delete button is clicked on ingredient badge
   const onDelete = (event) => {
     remove(event.target.dataset.index);
   };
-
   return (
     <>
       {ingredients.length > 0

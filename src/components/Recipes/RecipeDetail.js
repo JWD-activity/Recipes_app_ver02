@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import classes from './RecipeDetail.module.css';
 import { RecipesContext } from '../../contexts/RecipesContext';
 
+// Rendering detail of a seleted recipe
 function RecipeDetail() {
   console.log('Recipe Detail render');
   const { activeRecipe: recipe } = useContext(RecipesContext);
 
-  // Function to cooking time formatting
+  // Formatting cooking time
   const calcCookingTime = (time) => {
     if (time >= 60) {
       let hours = Math.floor(time / 60);

@@ -56,7 +56,6 @@ function FormModal({ mode, setMode }) {
 
   // When modal close button is clicked
   const closeHandler = () => {
-    // setMode('read');
     settingMode(recipeList.length);
     closeModal();
   };

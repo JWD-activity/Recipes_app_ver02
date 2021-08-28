@@ -3,9 +3,9 @@ import classes from './RecipeList.module.css';
 import { RecipesContext } from '../../contexts/RecipesContext';
 import { SelectedIdContext } from '../../contexts/SelectedIdContext';
 
+// Rendering list of recipes
 function RecipeList() {
   console.log('RecipeList render');
-
   const { recipeList, readRecipe, activeRecipe } = useContext(RecipesContext);
   const { setSelectedId } = useContext(SelectedIdContext);
 
