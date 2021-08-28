@@ -24,7 +24,7 @@ In particular, this application allows users to save information about recipe na
   - Styled-components
   - Props and Events: Passing data and functions between components
   - Conditional Rendering of Components
-  - Hooks: useState, useEffect, useReducer,useContext
+  - Hooks: useState, useEffect, useReducer, useContext
 
 #### The challenging part
 #### My soultion
