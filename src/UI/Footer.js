@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Button from '../components/Button';
 import classes from './Footer.module.css';
+
 import { RecipesContext } from '../contexts/RecipesContext';
 import { SelectedIdContext } from '../contexts/SelectedIdContext';
 import { ModalContext } from '../contexts/ModalContext';
@@ -9,7 +10,8 @@ export default function Footer({ setMode }) {
   console.log('footer render');
   const { selectedRecipeId, setSelectedId } = useContext(SelectedIdContext);
   const { updateModalOpen } = useContext(ModalContext);
-  const { setActiveRecipe, dispatchRecipeList } = useContext(RecipesContext);
+  const { setActiveRecipe, dispatchRecipeList, recipeList } =
+    useContext(RecipesContext);
 
   const deleteClickHandler = () => {
     if (
