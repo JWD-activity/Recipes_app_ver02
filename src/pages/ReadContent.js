@@ -31,11 +31,12 @@ const ReadContent = ({ setMode }) => {
           <RecipeList page={page} />
           <Pagination total={totalPages} clickHandler={handlePagination} />
         </div>
+
         <section className='recipe col-sm-12 col-md-6 col-lg-7'>
-          <RecipeDetail />
+          <RecipeDetail setMode={setMode} />
         </section>
       </main>
-      <Footer setMode={setMode} />
+      {/* <Footer setMode={setMode} /> */}
     </>
   );
 };
