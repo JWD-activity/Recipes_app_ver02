@@ -8,7 +8,7 @@ import { RECIPE_PER_PAGE } from '../../utils/constants';
 
 // Rendering list of recipes
 function RecipeList({ page }) {
-  console.log('RecipeList render');
+  // console.log('RecipeList render');
   const { recipeList, readRecipe } = useContext(RecipesContext);
   const { setSelectedId } = useContext(SelectedIdContext);
   const startIndex = (page - 1) * RECIPE_PER_PAGE;

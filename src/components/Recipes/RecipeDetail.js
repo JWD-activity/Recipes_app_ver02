@@ -7,7 +7,7 @@ import classes from './RecipeDetail.module.css';
 
 // Rendering detail of a seleted recipe
 function RecipeDetail({ setMode }) {
-  console.log('Recipe Detail render');
+  // console.log('Recipe Detail render');
 
   const {
     activeRecipe: recipe,
