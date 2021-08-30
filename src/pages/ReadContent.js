@@ -9,7 +9,7 @@ const ReadContent = ({ setMode }) => {
   console.log('ReadContent render');
   const { recipeList } = useContext(RecipesContext);
   const [list, setList] = useState([]);
-  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
@@ -18,18 +18,22 @@ const ReadContent = ({ setMode }) => {
       setTotalPages(Math.ceil(recipeList.length / RECIPE_PER_PAGE));
     };
     fetchRecipes();
-  }, []);
+  }, [recipeList.length]);
 
   const handlePagination = (num) => {
-    setPage(num);
+    setCurrentPage(num);
   };
 
   return (
     <>
       <main className='row'>
         <div className='recipe col-sm-12 col-md-6 col-lg-5'>
-          <RecipeList page={page} />
-          <Pagination total={totalPages} clickHandler={handlePagination} />
+          <RecipeList page={currentPage} />
+          <Pagination
+            total={totalPages}
+            currentPage={currentPage}
+            clickHandler={handlePagination}
+          />
         </div>
 
         <section className='recipe col-sm-12 col-md-6 col-lg-7'>

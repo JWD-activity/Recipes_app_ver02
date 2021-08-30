@@ -1,6 +1,31 @@
 .button {
   border: none;
   padding: 0.5rem 1rem;
-  margin-right: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
   border-radius: 5rem;
+  background-color: #181818;
+  color: #fce8ad;
+  transition: all 0.3s;
+}
+
+.button:hover {
+  background-color: #318161;
+  color: #fff;
+}
+
+.button:disabled {
+  background-color: #dfd5cd;
+  color: #fff;
+}
+
+.span {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+  color: #318161;
+}
+
+.i {
+  font-size: 1rem;
 }
