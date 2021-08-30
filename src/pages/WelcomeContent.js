@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './WelcomeContent.module.css';
 
 function WelcomeContent() {
-  console.log('WelcomeContent render');
+  // console.log('WelcomeContent render');
 
   return (
     <div className={classes.container}>

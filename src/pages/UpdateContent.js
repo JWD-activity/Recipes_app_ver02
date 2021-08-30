@@ -3,7 +3,7 @@ import FormModal from '../components/FormModal';
 import { ModalContext } from '../contexts/ModalContext';
 
 function UpdateContent({ mode, setMode }) {
-  console.log('UpdateContent render');
+  // console.log('UpdateContent render');
 
   const { showModal } = useContext(ModalContext);
 

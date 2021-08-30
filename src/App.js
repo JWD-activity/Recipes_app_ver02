@@ -13,7 +13,7 @@ import ModalContextProvider from './contexts/ModalContext';
 console.log('First App render');
 
 function App() {
-  console.log('App render');
+  // console.log('App render');
   const [mode, setMode] = useState('');
 
   return (

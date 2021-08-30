@@ -7,7 +7,7 @@ import { RecipesContext } from '../contexts/RecipesContext';
 import { RECIPE_PER_PAGE } from '../utils/constants';
 
 const ReadContent = ({ setMode }) => {
-  console.log('ReadContent render');
+  // console.log('ReadContent render');
   const { recipeList, setActiveRecipe } = useContext(RecipesContext);
   const { setSelectedId } = useContext(SelectedIdContext);
   const [currentPage, setCurrentPage] = useState(1);
