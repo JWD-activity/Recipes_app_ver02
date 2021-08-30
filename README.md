@@ -37,6 +37,7 @@ In particular, this application allows users to save information about recipe na
   ![add-02](https://user-images.githubusercontent.com/83196262/131287657-07f133ee-0e7b-4cc8-9d5a-037e19eb906b.jpg)
 
 - Users can view the details of the recipe by clicking on the recipe list on the left. You can also update or delete recipe details by clicking the UPDATE and DELETE buttons at the bottom right.
+
   ![list-01](https://user-images.githubusercontent.com/83196262/131288169-24909f11-f8be-47b0-b57c-470def87c12e.JPG)
 
 - When more than seven recipes are saved, a Pagination button is created so that the user can navigate to the next recipe list.
