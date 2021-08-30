@@ -1,1 +1,1 @@
-export const RECIPE_PER_PAGE = 2;
+export const RECIPE_PER_PAGE = 6;

@@ -5,42 +5,20 @@ function Pagination({ total, clickHandler, currentPage }) {
   const numPages = [...Array(total).keys()].map((num) => num + 1);
   console.log(numPages, currentPage);
 
-  // Page 1, and there are other pages
-  if (currentPage === 1 && numPages.length > 1) {
-    return (
-      <div className='d-flex justify-content-center align-items-center'>
-        <span className={classes.span}>{`${currentPage}`}</span> / {total}
-        <button
-          data-goto={currentPage + 1}
-          className={classes.button}
-          key={currentPage + 1}
-          onClick={() => clickHandler(currentPage + 1)}
-        >
-          <i className={`fas fa-chevron-right ${classes.i}`}></i>
-        </button>
-      </div>
-    );
-    // Last page
-  } else if (currentPage === numPages.length && numPages.length > 1) {
-    return (
-      <div className='d-flex justify-content-center align-items-center'>
-        <button
-          data-goto={currentPage - 1}
-          className={classes.button}
-          key={currentPage - 1}
-          onClick={() => clickHandler(currentPage - 1)}
-        >
-          <i className={`fas fa-chevron-left ${classes.i}`} />
-        </button>
-        <span className={classes.span}>{`${currentPage}`}</span> / {total}
+  const renderPrevBtn = (currPage, num) => {
+    // Page 1, and there are other pages or last page
+    if (currPage === 1 && num.length > 1)
+      return (
         <button className={classes.button} disabled>
-          <i className={`fas fa-chevron-right ${classes.i}`}></i>
+          <i className={`fas fa-chevron-left ${classes.i}`} />
         </button>
-      </div>
-    );
-  } else if (currentPage < numPages.length) {
-    return (
-      <div className='d-flex justify-content-center align-items-center'>
+      );
+    // Other page
+    else if (
+      currPage < num.length ||
+      (currPage !== 1 && currPage === num.length)
+    ) {
+      return (
         <button
           data-goto={currentPage - 1}
           className={classes.button}
@@ -49,18 +27,42 @@ function Pagination({ total, clickHandler, currentPage }) {
         >
           <i className={`fas fa-chevron-left ${classes.i}`} />
         </button>
-        <span className={classes.span}>{`${currentPage}`}</span> / {total}
+      );
+    }
+  };
+
+  const renderNextBtn = (currPage, num) => {
+    // Page 1, and there are other pages
+    if ((currPage === 1 && num.length > 1) || currPage < num.length) {
+      return (
         <button
           data-goto={currentPage + 1}
           className={classes.button}
           key={currentPage + 1}
           onClick={() => clickHandler(currentPage + 1)}
         >
-          <i className={`fas fa-chevron-right ${classes.i}`}></i>
+          <i className={`fas fa-chevron-right ${classes.i}`} />
         </button>
-      </div>
-    );
-  } else return '';
+      );
+    } else if (currPage !== 1 && currPage === num.length) {
+      // Other page or Last page
+      return (
+        <button className={classes.button} disabled>
+          <i className={`fas fa-chevron-right ${classes.i}`} />
+        </button>
+      );
+    }
+  };
+
+  return currentPage === 1 && numPages.length === 1 ? (
+    ''
+  ) : (
+    <div className='d-flex justify-content-center align-items-center'>
+      {renderPrevBtn(currentPage, numPages)}
+      <span className={classes.span}>{`${currentPage}`}</span> / {total}
+      {renderNextBtn(currentPage, numPages)}
+    </div>
+  );
 }
 
 export default Pagination;
