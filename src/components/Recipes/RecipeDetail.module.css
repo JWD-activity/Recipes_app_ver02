@@ -4,7 +4,7 @@
   font-size: 1.5rem;
   color: #181818;
   padding: 0 2rem;
-  height: 35rem;
+  height: 36rem;
   overflow: auto;
 }
 
@@ -24,6 +24,7 @@
 
 @media screen and (max-width: 576px) {
   .ul {
+    margin-top: 3rem;
     padding: 2rem 2rem;
   }
 }

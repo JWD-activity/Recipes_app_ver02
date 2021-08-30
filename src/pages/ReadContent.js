@@ -2,19 +2,19 @@ import React, { useState, useEffect, useContext } from 'react';
 import RecipeList from '../components/Recipes/RecipeList';
 import RecipeDetail from '../components/Recipes/RecipeDetail';
 import Pagination from '../components/Pagination';
+import { SelectedIdContext } from '../contexts/SelectedIdContext';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { RECIPE_PER_PAGE } from '../utils/constants';
 
 const ReadContent = ({ setMode }) => {
   console.log('ReadContent render');
-  const { recipeList } = useContext(RecipesContext);
-  const [list, setList] = useState([]);
+  const { recipeList, setActiveRecipe } = useContext(RecipesContext);
+  const { setSelectedId } = useContext(SelectedIdContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     const fetchRecipes = () => {
-      setList(recipeList);
       setTotalPages(Math.ceil(recipeList.length / RECIPE_PER_PAGE));
     };
     fetchRecipes();
@@ -22,6 +22,8 @@ const ReadContent = ({ setMode }) => {
 
   const handlePagination = (num) => {
     setCurrentPage(num);
+    setSelectedId(0);
+    setActiveRecipe();
   };
 
   return (
