@@ -34,7 +34,7 @@ function RecipeDetail({ setMode }) {
     ) {
       dispatchRecipeList({
         type: 'REMOVE_RECIPE',
-        id: setSelectedId,
+        id: selectedRecipeId,
       });
       setSelectedId(0);
       setActiveRecipe();

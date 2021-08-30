@@ -3,17 +3,17 @@ import classes from './Pagination.module.css';
 
 function Pagination({ total, clickHandler, currentPage }) {
   const numPages = [...Array(total).keys()].map((num) => num + 1);
-  console.log(numPages, currentPage);
 
+  // Render previous button
   const renderPrevBtn = (currPage, num) => {
-    // Page 1, and there are other pages or last page
+    // Current Page 1, and there are other pages.
     if (currPage === 1 && num.length > 1)
       return (
         <button className={classes.button} disabled>
           <i className={`fas fa-chevron-left ${classes.i}`} />
         </button>
       );
-    // Other page
+    // Other page, or last page
     else if (
       currPage < num.length ||
       (currPage !== 1 && currPage === num.length)
@@ -31,8 +31,9 @@ function Pagination({ total, clickHandler, currentPage }) {
     }
   };
 
+  // Render Next button
   const renderNextBtn = (currPage, num) => {
-    // Page 1, and there are other pages
+    // Page 1, and there are other pages or not last page
     if ((currPage === 1 && num.length > 1) || currPage < num.length) {
       return (
         <button
@@ -44,8 +45,8 @@ function Pagination({ total, clickHandler, currentPage }) {
           <i className={`fas fa-chevron-right ${classes.i}`} />
         </button>
       );
-    } else if (currPage !== 1 && currPage === num.length) {
       // Other page or Last page
+    } else if (currPage !== 1 && currPage === num.length) {
       return (
         <button className={classes.button} disabled>
           <i className={`fas fa-chevron-right ${classes.i}`} />
